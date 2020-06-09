@@ -16,7 +16,7 @@
 <meta property="og:description" content="pip 是 Python 包管理工具，该工具提供了对Python 包的查找、下载、安装、卸载的功能。 目前如果你在 python.org 下载最新版本的安装包，则是已经自带了该工具。 Python 2.7.9 + 或 Python 3.4+ 以上版本都自带 pip 工具。">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2020-06-09T14:17:17.000Z">
-<meta property="article:modified_time" content="2020-06-09T14:25:25.322Z">
+<meta property="article:modified_time" content="2020-06-09T14:32:58.460Z">
 <meta property="article:author" content="HorseSF">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -242,6 +242,16 @@
 <li>查看可升级的包</li>
 </ul>
 <figure class="highlight python"><figcaption><span>pip</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip list -o</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>生成<code>requirements.txt</code>文件</li>
+</ul>
+<figure class="highlight python"><figcaption><span>pip</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装<code>requirements.txt</code>依赖</li>
+</ul>
+<figure class="highlight python"><figcaption><span>pip</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
 
 
       
