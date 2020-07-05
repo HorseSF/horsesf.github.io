@@ -151,6 +151,204 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Python的装饰器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/05/Python%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/">Python的装饰器</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/05/Python%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2020-07-05T12:42:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>python装饰器（fuctional decorators）就是用于拓展原来函数功能的一种函数，目的是在不改变原函数名(或类名)的情况下，给函数增加新的功能。 </p>
+<h3 id="带有固定参数的装饰器"><a href="#带有固定参数的装饰器" class="headerlink" title="带有固定参数的装饰器"></a>带有固定参数的装饰器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">deco</span><span class="params">(f)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(a,b)</span>:</span></span><br><span class="line">        start_time = time.time()</span><br><span class="line">        f(a,b)</span><br><span class="line">        end_time = time.time()</span><br><span class="line">        execution_time = (end_time - start_time)*<span class="number">1000</span></span><br><span class="line">        print(<span class="string">"time is %d ms"</span> % execution_time)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@deco</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(a,b)</span>:</span></span><br><span class="line">    print(<span class="string">"be on"</span>)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">"result is %d"</span> %(a+b))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    f(<span class="number">3</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="无固定参数的装饰器"><a href="#无固定参数的装饰器" class="headerlink" title="无固定参数的装饰器"></a>无固定参数的装饰器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">deco</span><span class="params">(f)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        start_time = time.time()</span><br><span class="line">        f(*args, **kwargs)</span><br><span class="line">        end_time = time.time()</span><br><span class="line">        execution_time_ = (end_time - start_time)*<span class="number">1000</span></span><br><span class="line">        print(<span class="string">"time is %d ms"</span> %execution_time)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@deco</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(a,b)</span>:</span></span><br><span class="line">    print(<span class="string">"be on"</span>)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">"result is %d"</span> %(a+b))</span><br><span class="line"></span><br><span class="line"><span class="meta">@deco</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">(a,b,c)</span>:</span></span><br><span class="line">    print(<span class="string">"be on"</span>)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">"result is %d"</span> %(a+b+c))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    f2(<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">    f(<span class="number">3</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用多个装饰器装饰一个函数"><a href="#使用多个装饰器装饰一个函数" class="headerlink" title="使用多个装饰器装饰一个函数"></a>使用多个装饰器装饰一个函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">deco01</span><span class="params">(f)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">"this is deco01"</span>)</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        f(*args, **kwargs)</span><br><span class="line">        end_time = time.time()</span><br><span class="line">        execution_time = (end_time - start_time)*<span class="number">1000</span></span><br><span class="line">        print(<span class="string">"time is %d ms"</span> % execution_time)</span><br><span class="line">        print(<span class="string">"deco01 end here"</span>)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">deco02</span><span class="params">(f)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">"this is deco02"</span>)</span><br><span class="line">        f(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"deco02 end here"</span>)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line"><span class="meta">@deco01</span></span><br><span class="line"><span class="meta">@deco02</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(a,b)</span>:</span></span><br><span class="line">    print(<span class="string">"be on"</span>)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">"result is %d"</span> %(a+b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    f(<span class="number">3</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Python内置装饰器"><a href="#Python内置装饰器" class="headerlink" title="Python内置装饰器"></a>Python内置装饰器</h3><p>在Python中有三个内置的装饰器，都是跟class相关的：staticmethod、classmethod 和property。</p>
+<ul>
+<li>taticmethod 是类静态方法，其跟成员方法的区别是没有 self 参数，并且可以在类不进行实例化的情况下调用</li>
+<li>classmethod 与成员方法的区别在于所接收的第一个参数不是 self （类实例的指针），而是cls（当前类的具体类型）</li>
+<li>property 是属性的意思，表示可以通过通过类实例直接访问的信息</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/05/Python%E7%9A%84%E8%A3%85%E9%A5%B0%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python3魔法方法总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/19/Python3%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">Python3魔法方法总结</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/19/Python3%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2020-06-19T13:11:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在python中，有一些内置好的特定的方法，这些方法在进行特定的操作时会自动被调用，称之为魔法方法。</p>
+<h2 id="构造和初始化"><a href="#构造和初始化" class="headerlink" title="构造和初始化"></a>构造和初始化</h2><p>__new__和__init__共同构成了构造函数。</p>
+<p>__new__是用来创建类并返回这个类的实例。</p>
+<p>__init__只是将传入的参数来初始化该实例。</p>
+<p>__new__在创建一个实例的过程中必定会被调用，但是__init__就不一定会被调用。</p>
+<p>在对象生命结束时，__del__会被调用，是当一个对象进行垃圾回收时的行为。</p>
+<p>x.__del__()并不是对del x的实现，但是在执行del x时会调用x.__del__()。</p>
+<hr>
+<h2 id="属性访问控制"><a href="#属性访问控制" class="headerlink" title="属性访问控制"></a>属性访问控制</h2><p>__getattr__(self, name) 定义了试图访问一个不存在的属性时的行为。重载该方法可以实现捕获错误拼写然后进行重定向，或者对一些废弃的属性进行警告。</p>
+<p>__setattr__(self, name, value) 定义了对属性进行赋值和修改操作时的行为。不管对象的某个属性是否存在，都可以为该属性进行赋值。使用时需避免无限递归错误。</p>
+<p>__delattr__(self, name) 定义了删除属性时的行为。使用时需避免无限递归错误。</p>
+<p>__getattribute__(self, name) 定义了属性被访问时的行为，调用__getattr__前必定会调用__getattribute__。</p>
+<h3 id="无限递归错误"><a href="#无限递归错误" class="headerlink" title="无限递归错误"></a>无限递归错误</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self, name, value)</span>:</span></span><br><span class="line">	self.name = value</span><br><span class="line"><span class="comment"># 每一次属性赋值时 __setattr__ 都会被调用，因此不断调用自身导致无限递归。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="属性访问控制实例"><a href="#属性访问控制实例" class="headerlink" title="属性访问控制实例"></a>属性访问控制实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Access</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    def__getattr__(self, name):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'__getattr__'</span></span><br><span class="line">        <span class="keyword">return</span> super(Access, self).__getattr__(name)</span><br><span class="line"></span><br><span class="line">    def__setattr__(self, name, value):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'__setattr__'</span></span><br><span class="line">        <span class="keyword">return</span> super(Access, self).__setattr__(name, value)</span><br><span class="line"></span><br><span class="line">    def__delattr__(self, name):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'__delattr__'</span></span><br><span class="line">        <span class="keyword">return</span> super(Access, self).__delattr__(name)</span><br><span class="line"></span><br><span class="line">    def__getattribute__(self, name):</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'__getattribute__'</span></span><br><span class="line">        <span class="keyword">return</span> super(Access, self).__getattribute__(name)</span><br><span class="line"></span><br><span class="line">access = Access()</span><br><span class="line">access.attr1 = <span class="literal">True</span>  <span class="comment"># __setattr__调用</span></span><br><span class="line">access.attr1  <span class="comment"># 属性存在,只有__getattribute__调用</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    access.attr2  <span class="comment"># 属性不存在, 先调用__getattribute__, 后调用__getattr__</span></span><br><span class="line"><span class="keyword">except</span> AttributeError:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">del</span> access.attr1  <span class="comment"># __delattr__调用</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>描述器对象</li>
+<li>构造自定义容器</li>
+<li>上下文管理</li>
+<li>运算符相关<ul>
+<li>比较运算符</li>
+<li>一元运算符和函数</li>
+<li>算数运算符</li>
+<li>反算数运算符</li>
+<li>增量赋值</li>
+<li>类型转化</li>
+</ul>
+</li>
+<li>其他</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/19/Python3%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Python-pip使用方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -172,8 +370,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>pip 是 Python 包管理工具，该工具提供了对Python 包的查找、下载、安装、卸载的功能。</p>
-<p>目前如果你在 <a href="https://www.python.org/" target="_blank" rel="noopener">python.org</a> 下载最新版本的安装包，则是已经自带了该工具。</p>
-<p>Python 2.7.9 + 或 Python 3.4+ 以上版本都自带 pip 工具。</p>
         
           <a class="article-more-a" href="/2020/06/09/Python-pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/#more">more >></a>
         
