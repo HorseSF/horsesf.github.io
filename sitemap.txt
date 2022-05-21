@@ -1,3 +1,4 @@
+http://yoursite.com/2022/05/21/hexo-blog/
 http://yoursite.com/2022/05/15/N1%E6%96%87%E6%B3%95/
 http://yoursite.com/2022/02/23/G%E6%A4%9C%E5%AE%9A/
 http://yoursite.com/2021/05/04/Python%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/
@@ -9,6 +10,7 @@ http://yoursite.com/2020/06/05/Markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/
 http://yoursite.com/categories/index.html
 http://yoursite.com/
 http://yoursite.com/tags/Markdown/
-http://yoursite.com/tags/Python/
-http://yoursite.com/tags/G%E6%A4%9C%E5%AE%9A%E3%83%A1%E3%83%A2/
 http://yoursite.com/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/
+http://yoursite.com/tags/Python/
+http://yoursite.com/tags/hexo-command/
+http://yoursite.com/tags/G%E6%A4%9C%E5%AE%9A%E3%83%A1%E3%83%A2/

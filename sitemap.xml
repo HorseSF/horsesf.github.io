@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2022/05/21/hexo-blog/</loc>
+    
+    <lastmod>2022-05-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2022/05/15/N1%E6%96%87%E6%B3%95/</loc>
     
     <lastmod>2022-05-21</lastmod>
@@ -99,6 +108,13 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/</loc>
+    <lastmod>2022-05-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/tags/Python/</loc>
     <lastmod>2022-05-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -106,14 +122,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/G%E6%A4%9C%E5%AE%9A%E3%83%A1%E3%83%A2/</loc>
+    <loc>http://yoursite.com/tags/hexo-command/</loc>
     <lastmod>2022-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/</loc>
+    <loc>http://yoursite.com/tags/G%E6%A4%9C%E5%AE%9A%E3%83%A1%E3%83%A2/</loc>
     <lastmod>2022-05-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

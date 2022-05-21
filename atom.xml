@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-05-21T14:30:03.179Z</updated>
+  <updated>2022-05-21T14:37:07.980Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo blog</title>
+    <link href="http://yoursite.com/2022/05/21/hexo-blog/"/>
+    <id>http://yoursite.com/2022/05/21/hexo-blog/</id>
+    <published>2022-05-21T14:34:36.000Z</published>
+    <updated>2022-05-21T14:37:07.980Z</updated>
+    
+    <content type="html"><![CDATA[<p>hexo command。</p><a id="more"></a><p>安装 Hexo</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>使用终端<code>cd</code>到一个您指定的目录，执行以下命令(命令中的<code>blog</code>是您将要建立的文件夹的名称)：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure><p>使用终端<code>cd</code>到<code>blog</code>文件夹下，执行以下命令，安装npm：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure><p>好了，现在可以试试看是否已经初始化成功，执行如下命令，开启本地 Hexo 服务器：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>此时，浏览器中打开网址(默认是4000端口) <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000</a> 。</p><h2 id="关联-GitHub"><a href="#关联-GitHub" class="headerlink" title="关联 GitHub"></a>关联 GitHub</h2><h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><ol><li>登录您的 GitHub 账号，新建名称为<code>您的用户名.github.io</code>的仓库。假设我的 GitHub 账号的用户名是 <code>luxun</code>，那么我就应该新建名称为<code>luxun.github.io</code>的仓库。</li><li><code>Description</code>可写可不写，随意。</li><li>勾上<code>Initialize this repository with a README</code>。</li><li>点击<code>Create Repository</code>完成创建。</li></ol><h3 id="开启-GitHub-Pages"><a href="#开启-GitHub-Pages" class="headerlink" title="开启 GitHub Pages"></a>开启 GitHub Pages</h3><p>点击<code>Settings</code>，你将会打开这个库的 Settings 页面，向下拖动，直到看见 GitHub Pages。</p><h3 id="修改全局配置文件"><a href="#修改全局配置文件" class="headerlink" title="修改全局配置文件"></a>修改全局配置文件</h3><p>找到本地<code>blog</code>文件夹下<code>_config.yml</code>，打开后滑到最后，修改成下边的样子：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">https://github.com/xxx/xxx.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure><p>然后，您需要为自己配置身份信息，终端输入<code>yourname</code>和<code>youremail</code>换成您自己的 GitHub 用户名和邮箱)：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "yourname"</span><br><span class="line">git config --global user.email "youremail"</span><br></pre></td></tr></table></figure><p>终端<code>cd</code>到<code>blog</code>文件夹下执行生成静态页面命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure><p>然后在当前目录下，终端输入：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure><h2 id="常用指令和发布文章"><a href="#常用指令和发布文章" class="headerlink" title="常用指令和发布文章"></a>常用指令和发布文章</h2><ul><li>常用指令</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo new "postName"        //新建文章</span><br><span class="line">hexo new page "pageName"        //新建页面</span><br><span class="line">hexo g          //生成静态页面至public目录</span><br><span class="line">hexo server         //开启预览访问端口（默认端口4000，'ctrl + c'关闭server）</span><br><span class="line">hexo deploy         //将.deploy目录部署到GitHub</span><br></pre></td></tr></table></figure><ul><li>常用组合</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br><span class="line"></span><br><span class="line">hexo d -g #生成部署</span><br><span class="line">hexo s -g #生成预览</span><br></pre></td></tr></table></figure><ul><li>发布文章</li></ul><p>终端<code>cd</code>到<code>blog</code>文件夹下，执行如下命令新建文章：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new "xxx"</span><br></pre></td></tr></table></figure><p>文章编辑完成后，终端<code>cd</code>到<code>blog</code>文件夹下，依次执行如下命令来发布：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;hexo command。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="hexo command" scheme="http://yoursite.com/tags/hexo-command/"/>
+    
+  </entry>
   
   <entry>
     <title>N1文法</title>
