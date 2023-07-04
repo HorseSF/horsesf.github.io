@@ -16,7 +16,7 @@
 <meta property="og:description" content="AWS Certified Cloud Practitioner">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2023-07-02T07:43:08.000Z">
-<meta property="article:modified_time" content="2023-07-02T10:10:58.255Z">
+<meta property="article:modified_time" content="2023-07-04T11:13:52.423Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -262,7 +262,241 @@
 </ul>
 <p>AWS Systems Manager はAWS でご利用のインフラストラクチャを可視化し、制御するためのサービスであり、リソースメトリクスのモニタリングはできません。</p>
 <p>AWS Systems Manager は、AWSで利用しているインフラストラクチャを可視化し、制御するためのサービスであり、ユーザーアクティビティを確認するものではありません。</p>
-<h2 id="データベース"><a href="#データベース" class="headerlink" title="データベース"></a>データベース</h2><h2 id="AWS利用ツール"><a href="#AWS利用ツール" class="headerlink" title="AWS利用ツール"></a>AWS利用ツール</h2><h2 id="ストレージ"><a href="#ストレージ" class="headerlink" title="ストレージ"></a>ストレージ</h2><h2 id="サーバレス"><a href="#サーバレス" class="headerlink" title="サーバレス"></a>サーバレス</h2><h2 id="ネットワーク"><a href="#ネットワーク" class="headerlink" title="ネットワーク"></a>ネットワーク</h2><h2 id="AWSの設計原則"><a href="#AWSの設計原則" class="headerlink" title="AWSの設計原則"></a>AWSの設計原則</h2><h2 id="IAM・認証"><a href="#IAM・認証" class="headerlink" title="IAM・認証"></a>IAM・認証</h2><h2 id="移行・接続"><a href="#移行・接続" class="headerlink" title="移行・接続"></a>移行・接続</h2><h2 id="コスト最適化"><a href="#コスト最適化" class="headerlink" title="コスト最適化"></a>コスト最適化</h2><h2 id="クラウド全般"><a href="#クラウド全般" class="headerlink" title="クラウド全般"></a>クラウド全般</h2><h2 id="セキュリティ"><a href="#セキュリティ" class="headerlink" title="セキュリティ"></a>セキュリティ</h2><h2 id="環境の自動化"><a href="#環境の自動化" class="headerlink" title="環境の自動化"></a>環境の自動化</h2>
+<h2 id="データベース"><a href="#データベース" class="headerlink" title="データベース"></a>データベース</h2><ul>
+<li><p>AWS Database Migration Service （DMS）<br>データベースの機能に悪影響を与えずにオンプレミス環境とAWS間やAWSのデータベース間の移行をサポートするデータベース移行支援サービスです。移行中でもソースデータベースは完全に利用可能な状態が保たれ、データベースを利用するアプリケーションのダウンタイムを最小限に抑えられます。</p>
+</li>
+<li><p>Aamzon ElastiCache<br>クラウド内のインメモリデータストアまたはキャッシュを簡単にデプロイ、操作、およびスケーリングできるようにするデータベースサービスです。Redis または Memcached に互換性のある完全マネージド型のインメモリデータストアミリ秒未満のレイテンシーを実現し、リアルタイムアプリケーションを強化します。</p>
+</li>
+<li><p>Amazon DynamoDB<br>フルマネージド型の可用性の高いNoSQLサービスです。完全マネージド型マルチリージョン、マルチマスターで耐久性があるデータベースで、セキュリティ、バックアップおよび復元と、インターネット規模のアプリケーション用のメモリ内キャッシュが組み込まれています。</p>
+</li>
+<li><p>Amazon RDS<br>AWSにおいてマネージド型で提供することで、運用に必要となるデータベースタスクの時間を節約して、ユーザーに必要な高速パフォーマンスと高可用性を提供するリレーショナルデータベースです。Amazon RDSでは、6つの人気データベースエンジンから選択して、マネージドリレーショナルデータベースを構築します。</p>
+</li>
+<li><p>Amazon Aurora<br>クラウド用に構築されたMySQLおよびPostgreSQL互換のリレーショナルデータベースです。  標準のMySQLの最大5倍のスループットと、標準のPostgreSQLの最大3倍のスループットを実現します。<br>DB インスタンスは起動すると常に自動バックアップが有効になっています。Aurora の自動バックアップを無効にすることはできません。Aurora のバックアップ保持期間は、DB クラスターによって管理されます。バックアップはデータベースのパフォーマンスに影響を与えません。</p>
+</li>
+<li><p>Amazon RDS リードレプリカと自動フェールオーバー<br>Amazon RDSはリードレプリカを別リージョンに設置することで、DBの読み取り処理用データベースを冗長化して、コスト最適に災害復旧対応を実現することができます。リードレプリカは読取専用のDBインスタンスの複製です。この機能によって、1 つの DB インスタンスのキャパシティーを伸縮自在にスケールし、読み取り頻度の高いデータベースのワークロードを緩和できます。<br>Amazon RDSではプライマリーDB インスタンスに付随したリードレプリカを最大5台まで作成することができます。</p>
+</li>
+</ul>
+<p>RDSにおいてプライマリデータベースが応答しない場合の自動フェールオーバーは、マルチAZ配置機能によって実施されます。マルチAZ配置によって、RDS DBインスタンスの可用性と耐久性を強化することができます。</p>
+<ul>
+<li><p>AWS Outposts<br>データセンターなどのオンプレミス環境に対して、AWSのインフラストラクチャおよびサービス、API、ツールを展開することができるサービスです。Amazon RDS on AWS Outpostsでは、AWS環境と同じように、オンプレミス環境においてMySQLやPostgreSQLリレーショナルデータベースをセットアップ、運用、スケーリングすることができます。</p>
+</li>
+<li><p>Amazon EMR<br>Apache Hadoop や Apache Spark などのオープンソースのビッグデータフレームワークを利用して、大量のデータを処理・分析するマネージド型クラスタープラットフォームです。これらのフレームワークと関連するオープンソースプロジェクトを使用することで、分析用のデータやビジネスインテリジェンスワークロードを構成できます。</p>
+</li>
+<li><p>Amazon Redshift<br>業務データなどを利用したBIシステムやデータウェアハウスとして利用可能なリレーショナルデータベースサービスです。AWSが提供するフルマネージド型サービスであり、ペタバイト規模のデータを扱う性能を有しています。</p>
+</li>
+<li><p>Amazon Athena<br>インタラクティブなクエリサービスで、Amazon S3 内のデータを標準 SQL を使用して簡単に分析できます。他のサービスと異なり、Amazon AthenaはS3と統合して利用可能なサーバレスサービスであり、準備時間を要せずに、S3バケットを指定してSQLによる解析を即時に実行することが可能です。</p>
+</li>
+<li><p>Amazon Neptune<br>高速かつ信頼性の高いフルマネージドグラフデータベースサービスです。このサービスでは、高度に接続されたデータセットと連携するアプリケーションを簡単に構築できます。Amazon Neptuneを利用することで、洗練されたインタラクティブなグラフアプリケーションを作成することができます。</p>
+</li>
+</ul>
+<h2 id="AWS利用ツール"><a href="#AWS利用ツール" class="headerlink" title="AWS利用ツール"></a>AWS利用ツール</h2><ul>
+<li><p>AWS マネジメントコンソール<br>ユーザーがAWSにアカウント登録して、最初に利用するGUIツールがAWS マネジメントコンソールです。シンプルで直感的なウェブベースのユーザーインターフェイスからAWS にアクセスできます。マネジメントコンソールのモバイルアプリも提供されており、スマホなどを利用して外出先でリソースをすばやく確認することもできます。<br>AWSマネジメントコンソールを利用する際に、ユーザーIDとパスワードによるログインを実施します。</p>
+</li>
+<li><p>AWS CLI<br>スクリプトを使用して複数のAWSサービスを管理するために利用されるツールです。AWS コマンドラインインターフェイス (AWS CLI) は、AWS のサービスを管理するための統合ツールです。コマンドラインからスクリプトを使用して複数の AWS サービスを設定・管理することができます。</p>
+</li>
+<li><p>AWS SDK<br>各言語に対応したAWS SDKを選択することで、開発者は特定のプログラミング言語を使用して、AWS 上でアプリケーションを開発することができます。 SDKを利用することでAWSリソースのAPIをアプリケーションに容易に組み込むことができます。それによって、AWSベースのアプリケーションが容易に開発できます。</p>
+</li>
+</ul>
+<h2 id="ストレージ"><a href="#ストレージ" class="headerlink" title="ストレージ"></a>ストレージ</h2><p>AZ（Availability Zone）はAWSのデータセンターが置かれている場所のことを示しています。AWSのサービスはリージョン内のAZ上に設置されることがほとんどですが、一部のサービスはAZではなく直接にリージョンを指定して設置することが必要なサービスがあります。その際は、グローバルに一意のIDが必要です。代表的なサービスはS3やDynamoDBです。</p>
+<ul>
+<li>Amazon EBS<br>実行中のインスタンスに接続可能な高可用性、信頼性、耐久性、ブロックレベルのストレージボリュームを提供します。 Amazon EBS ボリュームはEC2インスタンスのホストサーバーに物理的に接続されたストレージではなく、ネットワークを介してAmazon EBS ボリュームを、EC2 インスタンスにアタッチして利用します。<br>Amazon EBSはスナップショットを作成することで、ボリュームに保存されたデータを Amazon S3 にバックアップして、データ消失を防ぐことができます。<br>EBSのスナップショット方式は増分バックアップです。つまり、二回目以降のスナップショットでは最後にスナップショットを作成した時点から、ボリューム上で変更のあるブロックだけが追加で保存されます。</li>
+</ul>
+<p>EBSはAWS KMSを利用してデータを暗号化することができます。Amazon EBS ボリュームを暗号化する際は、AWS KMS カスタマーマスターキー (CMK) を指定します。デフォルトでは、Amazon EBS は、ユーザーのアカウントに割り当てられた Amazon EBS 用の AWS 管理の CMK を使用します。しかしながら、AWS KMSを利用してユーザーが独自のキーを作成している場合は、EBSの暗号化設定でカスタマー管理の CMK を指定できます。<br>Amazon EBSは指定された CMK を使用して各ボリュームの一意のデータキーを生成します。次に、Amazon EC2 インスタンスにボリュームを接続すると、Amazon EBS はデータキーを使用してボリュームへのすべてのディスク I/O を暗号化します。</p>
+<ul>
+<li><p>Amazon EFS<br>EC2インスタンスからLAN上にあるNASのように利用可能な共有ファイルストレージを提供するサービスです。複数のEC2インスタンスから接続可能なストレージとして機能します。そして、S3と異なり、インターネットから直接のアクセスができないストレージであり、完全な内部サーバー向けストレージとしてセキュリティを強化することができます。 また、S3がデータの大量保存に特化しているのに対して、EFSは高速データ処理のストレージレイヤーに向いています。<br>Network File System バージョン 4.0 および 4.1 (NFSv4) プロトコルを使用して、Amazon EFS ファイルシステムをEC2インスタンスにマウントして共有ファイルシステムとして利用することができます。</p>
+</li>
+<li><p>Amazon S3<br>Amazon S3はオブジェクトタイプのストレージで、大量データを中長期保存するのに向いています。S3を利用すると、ユーザーが設定しなくても、AWS側でストレージリソースを自動的にスケールアップ/ダウンして、変動する需要に対応します。また、保存されたデータを複数のAZに自動的にコピーして保存しており、99.999999999% (9 x 11) のデータ耐久性を実現するように設計されています。</p>
+</li>
+</ul>
+<p>Amazon S3 バケットで S3 バージョニングを設定するとMFA (多要素認証) Delete を利用することができるようになります。この設定を行うと、バケット所有者は、特定のオブジェクトのバージョンを削除したりバケットのバージョニング状態を変更したりするリクエストが発生すると、MFA認証が必要になります。MFA Delete では以下のいずれかの操作で追加の認証が必要になります。<br>・バケットのバージョニング状態を変更する<br>・オブジェクトバージョンを完全に削除する</p>
+<table>
+<thead>
+<tr>
+<th>タイプ</th>
+<th>特徴</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>STANDARD</td>
+<td>頻繫に利用するデータを大量に保存する</td>
+</tr>
+<tr>
+<td>STANDARD-IA</td>
+<td>低頻度アクセスデータ用ストレージ</td>
+</tr>
+<tr>
+<td>one Zone-IA</td>
+<td>低頻度アクセスデータ用ストレージ</td>
+</tr>
+<tr>
+<td>S3 Intelligent Tiering</td>
+<td>高頻度と低頻度という2つのアクセス階層を利用し、アクセスがあるファイルは高頻度に維持しつつ、アクセスがないファイルは低頻度に自動で移動する</td>
+</tr>
+<tr>
+<td>S3 Glacier Flexible Retrieval</td>
+<td>標準のデータ取得で数時間を要するため、安価にデータを保存することができますが、S3 Glacier Deep Archiveよりも料金が高くなります</td>
+</tr>
+<tr>
+<td>S3 Glacier Instance Retrieval</td>
+<td>中長期保存するデータに対してミリ秒単位でのアクセスを可能にするストレージです</td>
+</tr>
+<tr>
+<td>S3 Glacier Deep Archive</td>
+<td>1 年のうち 1 回か 2 回しかアクセスされないようなデータを対象とした長期保存やデジタル保存をサポートします</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>Amazon S3 Transfer Acceleration<br>Amazon CloudFront の世界中に分散したエッジロケーションを利用してユーザーに近いエッジロケーションを介したS3へのファイル転送を可能にするサービスです。エッジロケーションに到着したデータは、最適化されたネットワークパスで Amazon S3 にルーティングされます。</p>
+</li>
+<li><p>インスタンスストア<br>EC2インスタンスの一時的なデータを保持するストレージです。インスタンスストアは、インスタンス用のブロックレベルの一時ストレージを提供します。このストレージは、ホストコンピュータに物理的にアタッチされたディスク上にあります。</p>
+</li>
+<li><p>AWS Storage Gateway<br>オンプレミス環境のストレージをAmazon S3にシームレスに接続することができるハイブリッドストレージサービスです。 AWS Storage GatewayはオンプレミスストレージをAmazon S3バケットに接続して、バックアップ構成にしたり、データ移行したりできます。このサービスはバックアップ、アーカイブ、災害復旧、クラウドデータ処理、および移行に使用できます。</p>
+</li>
+</ul>
+<h2 id="サーバレス"><a href="#サーバレス" class="headerlink" title="サーバレス"></a>サーバレス</h2><table>
+<thead>
+<tr>
+<th>サービス</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Amazon SNS</td>
+<td>分散型システム、およびサーバーレスアプリケーションの分離を可能にするpub/sub メッセージングサービスです。プッシュ方式でコンポーネント間のメッセージングを処理することができます。</td>
+</tr>
+<tr>
+<td>Amazon SQS</td>
+<td>完全マネージド型のメッセージキューイングサービスです。マイクロサービス、分散システム、およびサーバーレスアプリケーションの切り離しとスケーリングが可能です。プッシュ方式ではなくポーリング処理による通知を実施します。</td>
+</tr>
+<tr>
+<td>Amazon SES</td>
+<td>マーケティング、通知、トランザクションに関するEメールを送信できるように設計された、クラウドベースのEメール送信サービスです。これを利用してアプリケーションにEメールの一斉送信機能などを追加することができます。</td>
+</tr>
+<tr>
+<td>Amazon MQ</td>
+<td>業界標準APIやプロトコルを利用して、クラウド内のメッセージブローカーを利用できる、Apache ActiveMQ向けマネージ型メッセージブローカーサービス</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>AWS Lambda<br>サーバーをプロビジョニングしなくても、必要なときにアプリケーションを実行できるサービスはサーバレスコンピューティングサービスのことです。<br>Lambdaは可用性の高いコンピューティングインフラストラクチャにおいてLambda関数と呼ばれるコードを実行してアプリケーション処理を行う代表的なサーバレスコンピューティングサービスです。その際に利用するサーバー、システムのメンテナンス、容量のプロビショニングと自動スケーリング、コードのモニタリングやログ記録などはAWS側で管理されており、ユーザーはコードをセットして実行するだけでアプリケーション処理をサーバレスに利用できます。</p>
+</li>
+<li><p>AWS Fargate<br>Amazon Elastic Container Service (ECS) と Amazon Elastic Kubernetes Service (EKS) の両方で動作する、コンテナ向けサーバーレスコンピューティングエンジンです。<br>Fargate を使用すると、開発者はサーバー管理なしにアプリケーションの構築に簡単に集中することができます。Fargate ではサーバーのプロビジョンと管理が不要となり、設計段階からのアプリケーション分離によりセキュリティを強化します。EC2起動モードとは異なり、 Fargate 起動モードを選択すると、インスタンスの選択やクラスター容量のスケーリングなしに、適切なコンピューティング容量が自動的に割り当てられます。</p>
+</li>
+</ul>
+<h2 id="ネットワーク"><a href="#ネットワーク" class="headerlink" title="ネットワーク"></a>ネットワーク</h2><ul>
+<li><p>CloudFront<br>低レイテンシーの高速転送により世界中の視聴者に安全にデータや動画などコンテンツを配信する高速コンテンツ配信ネットワーク (CDN) サービスです。動画は世界中でストリーミングされるデータを高い転送速度で配信する際に最適なサービスとなります。<br>CloudFrontはエッジロケーションにキャッシュを保存してグローバルなコンテンツ配信を実施します。エッジロケーションはAZとは異なるデータセンターであり、Route 53、CloudFront、AWS WAF などが配置されています。世界で50か所以上設置されていて、DNSやコンテンツ配信サービスが使用されています。</p>
+</li>
+<li><p>ゲートウェイ</p>
+<table>
+<thead>
+<tr>
+<th>ゲートウェイ</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>インターネットゲートウェイ</td>
+<td>VPC内に配置されたインスタンスからインターネットへの通信を可能にする VPC コンポーネントです。インターネットゲートウェイをVPCに配置して、サブネットにルート設定することにより、サブネット内のリソースからインターネットへのアクセスを可能にします。</td>
+</tr>
+<tr>
+<td>仮想プライベートゲートウェイ</td>
+<td>VPCがDirect Connect（or VPN） と接続するために利用するゲートウェイです。オンプレミス環境に接続する際に、AWSのVPC側に仮想プライベートゲートウェイを設定することが必要となります。</td>
+</tr>
+<tr>
+<td>NATゲートウェイ</td>
+<td>プライベートアドレスをインターネット用のパブリックIPアドレスに変換することでプライベートネットワークからインターネットへの通信を可能にしてくれるゲートウェイです。これを構成することで、プライベートサブネットのインスタンスからはインターネットや他の AWS サービスに接続できますが、インターネットからはインスタンスに直接通信ができないようにすることができます。これはインターネットアクセス自体を可能にするものではありません。</td>
+</tr>
+<tr>
+<td>カスタマーゲートウェイ</td>
+<td>カスタマーゲートウェイはVPCとオンプレミス環境を接続する際に利用されるアンカーです。Amazon VPCのVPN 接続では、データセンター (またはネットワーク) を Amazon Virtual Private Cloud (VPC) にリンクします。その際に、ユーザーのデータセンター側のゲートウェイとして設定するのがカスタマーゲートウェイです。VPN 接続の AWS 側のアンカーは、仮想プライベートゲートウェイと呼ばれます。これはインターネットアクセス自体を可能にするものではありません。</td>
+</tr>
+<tr>
+<td>Egress-Only Internet Gatway</td>
+<td>IPv6向けインターネットゲートウェイ</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Amazon Route 53<br>可用性と拡張性に優れたクラウドのドメインネームシステム (DNS) サービスです。 Amazon Route 53 は名前解決を活用して、<a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> のようなドメインをコンピュータが互いに接続するためにドメインをIP アドレス (192.0.2.1 など) に変換して、インターネット上で利用可能となるようにルーティングすることができます。Amazon Route 53 は IPv6 にも完全準拠しています。</p>
+</li>
+</ul>
+<p>Route 53はアプリケーションとWebサーバーおよびその他のリソースの状態とパフォーマンスを監視するヘルスチェック機能を提供します。 ヘルスチェックに基づいて、Route 53は正常なエンドポイントのみにトラフィックをルーティングして、アプリケーションのフォールトトレランスのレベルを高めることができます。<br>Amazon Route 53 ヘルスチェックでは以下の３つの方法で、ウェブアプリケーション、ウェブサーバー、その他のリソースの正常性とパフォーマンスを監視することができます。</p>
+<ul>
+<li><p>VPC<br>AWSのユーザーはVPCを使用することで、AWSクラウドの一部をカーブアウトした仮想ネットワークを作り出すことができます。 この仮想ネットワークは、AWSのスケーラブルなインフラストラクチャを使用する利点を備え、独自のデータセンターで運用する従来のネットワークに非常に似ています。</p>
+</li>
+<li><p>VPCのネットワークACL<br>VPCのサブネットに関連付けてサブネット内外のトラフィックを制御するファイアウォールとして任意のセキュリティを提供します。セキュリティグループの設定と同じようにACLのルールを適応することによって、VPCに追加のセキュリティ層を提供します。</p>
+</li>
+<li><p>WaveLengthゾーン<br>WaveLengthゾーンは5G通信を提供する通信プロパイダのロケーションをAWS用に接続した特別なゾーンです。AWS コンピューティングおよびストレージサービスを 5G ネットワーク内に組み込んで、超低レイテンシーアプリケーションの開発、デプロイおよびスケーリングのためのモバイルエッジコンピューティングインフラストラクチャを提供します。WaveLengthゾーンでは５G通信を利用した高速アクセスが可能なアプリケーションをデプロイすることができます。日本国内はKDDIが WaveLengthゾーンの5G ネットワークロケーションを提供しています。</p>
+</li>
+<li><p>AWS Local Zones<br>AWS Local ZonesはリージョンやAZが遠い地域のユーザーに対して、レイテンシーの影響を受けやすいアプリケーションをエンドユーザーにより近い場所で実行するために作られた特別なゾーンです。インフラストラクチャをデプロイするタイプのサービスで、コンピューティング、ストレージ、データベース、その他の厳選された AWS のサービスを人口の多い場所や産業の中心地近くに配置します。VRアプリケーションにも適切ですが、東京リージョンにはローカルゾーンが存在しません。</p>
+</li>
+<li><p>AWS Global Accelerator<br>AWSの有するグローバルなインフラネットワークを利用して、ユーザーのトラフィックのパフォーマンスを最大 60％ 向上させるネットワーキングサービスです。これによって、インターネットが混雑している場合にパケット損失、ジッター、レイテンシーを一貫して低く保ちながら、世界中のユーザーに提供するアプリケーションの可用性とパフォーマンスを改善します。<br>AWS Global Acceleratorはユーザーからアプリケーションへのパスを最適化し、TCP および UDP トラフィックのパフォーマンスを改善します。アプリケーションエンドポイントの状態を継続的に監視し、異常なエンドポイントを検出し、1 分以内に正常なエンドポイントにトラフィックをリダイレクトします。</p>
+</li>
+<li><p>Amazon Lightsail<br>コンテナなどのクラウドリソースを予測可能な低価格で簡単に管理できる、使いやすい仮想プライベートサーバー (VPS) です。VPSとは、一台の物理的なサーバコンピュータ上で仮想的なサーバコンピュータを何台も起動する技術（仮想機械; Virtual Machine）によってつくられた仮想的なサーバコンピュータのことです。 一般的に、VPSはホスティングサーバ（レンタルサーバ）事業者のサービスとして提供されています。<br>Amazon Lightsail を利用すれば、コンソールからのクリック操作でウェブアプリケーションやウェブサイトを簡単に立ち上げることができます。EC2がサーバーの単体機能を提供するのに対して、Lightsail はインスタンス、コンテナ、データベース、ストレージなどの簡素化された総合的なサービスを提供します。簡易なWEBアプリケーションを即時に立ち上げる際はAmazon Lightsailを利用します。</p>
+</li>
+</ul>
+<h2 id="AWSの設計原則"><a href="#AWSの設計原則" class="headerlink" title="AWSの設計原則"></a>AWSの設計原則</h2><h2 id="IAM・認証"><a href="#IAM・認証" class="headerlink" title="IAM・認証"></a>IAM・認証</h2><ul>
+<li><p>AWS Organizations<br>複数のAWSアカウントの統合管理を実施するサービスです。個々のAWSアカウント内部で利用可能な権限範囲を管理することができます。<br>AWS Organizationsでは、１つのAWSアカウントをマスターアカウントに設定して、他のAWSアカウント（メンバーアカウントと呼ぶ）を管理することができます。マスターアカウントはメンバーアカウントに対して、様々なポリシーを適用して制御することが可能です。また、一括請求機能を利用して、すべてのアカウントに単一の支払い方法を利用することで請求を簡素化できます。<br>マスターアカウントはサービスコントロールポリシー（SCP）を利用して、AWSアカウント内のIAMアイデンティティ（ユーザー、グループ、ロール）に必要なAWSサービスへのアクセスのみを許可するための権限範囲を設定します。OUに対してSCPを設定して、アクセス権限範囲を制限します。</p>
+</li>
+<li><p>IAMで利用されるアイデンティティのタイプ<br>AWSのアイデンティティには、IAMユーザーとIAMグループとIAMロールが含まれます。 これらのIDを利用してAWSリソースへのアクセスを管理し、各リソースで実行できるアクションを決定します。IAMはこうしたIDを作成して管理することができるユーザー管理サービスです。</p>
+</li>
+<li><p>IAMポリシー<br>IAMポリシーを使用してIAMユーザーやIAMロールに対してアカウント内のAWSリソースに対するアクセス許可を定義します。IAMポリシーはAWSリソースの許可権限を規定するJSON形式のドキュメントです。<br>AWS でのアクセスを管理するには、IAMポリシーを作成し、IAM アイデンティティ (ユーザー、ユーザーのグループ、ロール) または AWS リソースにアタッチします。IAMポリシーによって、アイデンティティやリソースに関連付けて、これらのアクセス許可を定義します。AWSはプリンシパル (ユーザーまたはロール) によってリクエストが行われると、それらのポリシーを評価します。ポリシーでのアクセス許可により、リクエストが許可されるか拒否されるかが決まります。</p>
+</li>
+<li><p>AWS Security Token Service (AWS STS)<br>AWS サービスへのアクセスに使用できる一時的な限定権限認証情報を提供するサービスです。デフォルトでは、AWS STS は <a href="https://sts.amazonaws.com" target="_blank" rel="noopener">https://sts.amazonaws.com</a> に 1 つのエンドポイントのあるグローバルサービスです。ただし、他のサポートされているリージョンにあるエンドポイントへの AWS STS API 呼び出しを実行することもできます。</p>
+</li>
+<li><p>アクセスキーとシークレットアクセスキー<br>AWSサービスへのプログラム呼び出しを認証するために使用されるのはアクセスキー とシークレットアクセスキーです。AWS サービス側でアクセスリクエストを認可するためにアクセスキー ID とシークレットアクセスキーを使ってリクエストに署名することができます。<br>アクセスキーとシークレットアクセスキーはIAMのユーザー管理画面で作成することができます。これを設定することで、AWS CLIなどのプログラムアクセス用のツールを認証することが可能となります。</p>
+</li>
+<li><p>Amazon Cognito<br>Amazon Cognito を使用すれば、ウェブアプリケーションおよびモバイルアプリにユーザーのサインアップ/サインイン機能とアクセスコントロール機能を追加できます。これによって、アプリケーション上でユーザー認証を実施することができます。<br>Amazon Cognito は、ウェブアプリケーションやモバイルアプリケーションの認証、許可、ユーザー管理をサポートしています。ユーザーは、ユーザー名とパスワードを使用して直接サインインするか、Facebook、Amazon、Google などのサードパーティーを通じてサインインできます。</p>
+</li>
+</ul>
+<h2 id="移行・接続"><a href="#移行・接続" class="headerlink" title="移行・接続"></a>移行・接続</h2><ul>
+<li>AWS Snowball Edge<br>AWSクラウドへの安全な大量データの転送を可能にするサービスです。セキュリティに考慮して設計されたデバイスを使用するペタバイト規模のデータ転送ソリューションで、AWS クラウド内外に大容量データを転送できます。</li>
+</ul>
+<h2 id="コスト最適化"><a href="#コスト最適化" class="headerlink" title="コスト最適化"></a>コスト最適化</h2><ul>
+<li><p>AWS Pricing Calculator<br>AWSのユーザーがAWS請求額を効率的に見積もる際に利用するツールです。 これを使用して、ベストケースとワーストケースのシナリオを決定して、利用するAWSリソース構成に応じた見積もりを算出することができます。</p>
+</li>
+<li><p>AWS Cost Explorer<br>「コストと使用状況」を表示および分析するためのコスト分析ツールです。メイングラフ、コストと使用状況レポート、または Cost Explorer RI レポートを使用して、使用状況とコストを確認できます。過去 13 か月までのデータを表示し、今後 3 か月間にどれくらい費やす可能性が高いかを予測することができます。また、さらに調べる必要がある分野を特定し、コストを把握するために使用できる傾向を確認できます。</p>
+</li>
+</ul>
+<h2 id="クラウド全般"><a href="#クラウド全般" class="headerlink" title="クラウド全般"></a>クラウド全般</h2><ul>
+<li><p>Platform as a Service（PaaS）<br>インフラやミドルウェアが提供された開発プラットフォームなどのクラウドモデルです。ユーザーは基盤となるインフラストラクチャ（通常はハードウェアとオペレーティングシステム）やランタイムなどのミドルウェアを管理する必要がなくなり、アプリケーションの展開と管理に集中できます。これにより、リソースの調達、キャパシティプランニング、ソフトウェアメンテナンス、パッチの適用、またはアプリケーションの実行に関連する作業を実施する必要がなくなるため、より効率的にアプリケーションの開発と運用が可能となります。</p>
+</li>
+<li><p>Infrastructure as a service（IaaS）<br>インターネットを介してプロビジョニングされサービスとして提供されるサーバーなどのインフラストラクチャです。 OS選択やミドルウェアの管理はユーザーが実施します。</p>
+</li>
+<li><p>Software as a service（SaaS）<br>ソフトウェアがサブスクリプションベースでライセンスされ、一元的にホストされるソフトウェアライセンスおよび配信モデルです。これは出来上がったサービスやアプリケーションそのものをインターネットを介して利用する形態であり、アプリケーション開発や管理も必要ありません。</p>
+</li>
+<li><p>Desktop as a Service（DaaS）<br>仮想デスクトップサービスのことです。インターネットを介してPC内の設定や機能をデスクトップに提供します。</p>
+</li>
+</ul>
+<h2 id="セキュリティ"><a href="#セキュリティ" class="headerlink" title="セキュリティ"></a>セキュリティ</h2><ul>
+<li><p>AWS WAF<br>WEBアプリケーションを、アプリケーションの可用性、セキュリティの侵害、リソースの過剰な消費などのウェブ攻撃から保護するウェブアプリケーションファイアウォールを提供するサービスです。これによって、SQLインジェクションやアプリケーションコードなどの脆弱性からWebアプリケーションを保護することができます。</p>
+</li>
+<li><p>AWS Shield<br>マネージド型の分散サービス妨害 (DDoS) に対する保護サービスで、AWS で実行しているアプリケーションを保護します。</p>
+</li>
+<li><p>AWS Network Firewall<br>すべての Amazon Virtual Private Cloud (VPC) に不可欠なネットワークファイアーウォールや侵入防止システムをデプロイするマネージド型サービスです。Network Firewall のルールエンジンでは、特定のリクエストをブロックして悪意のあるアクティビティの拡散を防ぐなど、ネットワークトラフィックを詳細まで制御できるファイアウォールルールを定義できます。<br>AWS Network Firewall のステートフルファイアウォールは、接続の追跡やプロトコルの識別などのトラフィックフローからコンテキストを組み込んで、VPC が不正なプロトコルを使用してドメインにアクセスするのを防ぐポリシーを適用できます。<br>AWS Network Firewall の侵入防止システム (IPS) は、アクティブなトラフィックフロー検査を提供するため、シグネチャベースの検出を使用して脆弱性の悪用を特定してブロックできます。既知の不正な URL へのトラフィックを停止し、完全修飾ドメイン名を監視できるウェブフィルタリングも提供します。</p>
+</li>
+<li><p>Amazon Inspector<br>事前に定義されたテンプレートに基づいて、EC2インスタンスやEC２インスタンスにホストされたアプリケーションを分析し、脆弱性をチェックすることができます。これにより、Amazon Inspector では、自動的にアプリケーションを評価し、露出、脆弱性、ベストプラクティスからの逸脱がないかどうかを確認できます。AWS にデプロイしたアプリケーションのセキュリティとコンプライアンスを向上させることができます。<br>Amazon Inspector でセキュリティ評価を実施すると、Amazon EC2 インスタンスへの意図しないネットワークアクセスや、EC2 インスタンス上の脆弱性をチェックできます。Amazon Inspector の評価では、事前に定義されたルールパッケージによって評価を実施します。ルールパッケージには一般的なセキュリティのベストプラクティスと脆弱性が定義されています。利用する際は、先に評価ターゲットを設定して、評価テンプレートを作成します。そして、テンプレートを使用して、評価の実行、モニタリング、分析プロセスを開始し、結果のセットを作成します。</p>
+</li>
+</ul>
+<h2 id="環境の自動化"><a href="#環境の自動化" class="headerlink" title="環境の自動化"></a>環境の自動化</h2><ul>
+<li><p>AWS OpsWorks<br>Chef や Puppet のマネージド型インスタンスを利用した構成管理サービスです。Chef や Puppet は、コードを使用してサーバーの構成を自動化するためのオートメーションプラットフォームです。Puppetを使用してEC2インスタンスの構成方法を自動化することができます。</p>
+</li>
+<li><p>Elastic Beanstalk<br>AWS クラウド上にアプリケーションをすばやくデプロイし、管理を自動化できます。これはGo、Java、.NET、Node.js、PHP、Python、Ruby で開発されたアプリケーションをサポートしており、.NETアプリケーションをAWSクラウドにすばやくデプロイすることが可能です。</p>
+</li>
+<li><p>Amazon Elastic Container Registry (ECR)<br>DockerコンテナイメージをAWSクラウドに保存・管理することができます。ECRは完全マネージド型の Docker コンテナレジストリとして提供されています。</p>
+</li>
+<li><p>AWS CloudFormation<br>AWSのインフラ構成をコード化してテンプレート化するサービスです。テンプレートファイルを使用して、あらゆるリージョンとあらゆるアカウントにおいて、AWSリソースをモデル化し、自動でプロビジョニングできます。</p>
+</li>
+<li><p>AWS CodeCommit<br>フルマネージド型のソース管理サービスであり、プライベートGitリポジトリを利用することができます。開発者はAWS CodeCommitを使用して、ソースコードからバイナリまで、あらゆるデータを安全に保存でき、ライブラリなどのアプリケーション資産をコードと共に保存することが可能です。<br>Gitはコードの過去の変更履歴 (バックアップ)を保存しておくシステムです。Gitのリポジトリとは、このGITを利用してコードを保存する収納場所（リポジトリ）のことです。 </p>
+</li>
+<li><p>AWS CodeBuild<br>クラウド内のコードをビルドおよびテストするサービスです。ライブラリなどのアプリケーション資産をコードと共に保存することはできません。</p>
+</li>
+<li><p>AWS CodeDeploy<br>Amazon EC2、AWS Fargate、AWS Lambda、オンプレミスで実行されるサーバーなどをデプロイすることができるフルマネージド型のサービスです。ライブラリなどのアプリケーション資産をコードと共に保存することはできません。</p>
+</li>
+<li><p>AWS CodePipeline<br>フルマネージド型の継続的デリバリーサービスで、素早く確実性のあるアプリケーションとインフラストラクチャを展開するための、パイプラインを自動化します。ライブラリなどのアプリケーション資産をコードと共に保存することはできません。</p>
+</li>
+</ul>
+<h2 id="AWSサービス詳細"><a href="#AWSサービス詳細" class="headerlink" title="AWSサービス詳細"></a>AWSサービス詳細</h2><p>EC2などのAWSサービスの無料枠利用期間は12か月間です。アカウント作成日からの 1 年間、12 か月無料タイプのサービスは所定の上限まで製品を無料で利用できます。 EC2インスタンスの場合は750時間まで無料で利用可能となります。したがって、12か月の無料利用期間であっても750時間を超過した場合は有料となります。<br>無期限無料タイプのサービスの場合は、AWS アカウントを有している間は常に、所定の上限まで製品を無料で利用できます。</p>
+
       
 
       
@@ -363,7 +597,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#EC2"><span class="toc-number">1.</span> <span class="toc-text">EC2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#運用上の優秀性"><span class="toc-number">2.</span> <span class="toc-text">運用上の優秀性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#データベース"><span class="toc-number">3.</span> <span class="toc-text">データベース</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS利用ツール"><span class="toc-number">4.</span> <span class="toc-text">AWS利用ツール</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ストレージ"><span class="toc-number">5.</span> <span class="toc-text">ストレージ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#サーバレス"><span class="toc-number">6.</span> <span class="toc-text">サーバレス</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ネットワーク"><span class="toc-number">7.</span> <span class="toc-text">ネットワーク</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWSの設計原則"><span class="toc-number">8.</span> <span class="toc-text">AWSの設計原則</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM・認証"><span class="toc-number">9.</span> <span class="toc-text">IAM・認証</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移行・接続"><span class="toc-number">10.</span> <span class="toc-text">移行・接続</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#コスト最適化"><span class="toc-number">11.</span> <span class="toc-text">コスト最適化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#クラウド全般"><span class="toc-number">12.</span> <span class="toc-text">クラウド全般</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#セキュリティ"><span class="toc-number">13.</span> <span class="toc-text">セキュリティ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#環境の自動化"><span class="toc-number">14.</span> <span class="toc-text">環境の自動化</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#EC2"><span class="toc-number">1.</span> <span class="toc-text">EC2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#運用上の優秀性"><span class="toc-number">2.</span> <span class="toc-text">運用上の優秀性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#データベース"><span class="toc-number">3.</span> <span class="toc-text">データベース</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS利用ツール"><span class="toc-number">4.</span> <span class="toc-text">AWS利用ツール</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ストレージ"><span class="toc-number">5.</span> <span class="toc-text">ストレージ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#サーバレス"><span class="toc-number">6.</span> <span class="toc-text">サーバレス</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ネットワーク"><span class="toc-number">7.</span> <span class="toc-text">ネットワーク</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWSの設計原則"><span class="toc-number">8.</span> <span class="toc-text">AWSの設計原則</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM・認証"><span class="toc-number">9.</span> <span class="toc-text">IAM・認証</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移行・接続"><span class="toc-number">10.</span> <span class="toc-text">移行・接続</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#コスト最適化"><span class="toc-number">11.</span> <span class="toc-text">コスト最適化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#クラウド全般"><span class="toc-number">12.</span> <span class="toc-text">クラウド全般</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#セキュリティ"><span class="toc-number">13.</span> <span class="toc-text">セキュリティ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#環境の自動化"><span class="toc-number">14.</span> <span class="toc-text">環境の自動化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWSサービス詳細"><span class="toc-number">15.</span> <span class="toc-text">AWSサービス詳細</span></a></li></ol>
                     </div>
                 </span>
             </div>
