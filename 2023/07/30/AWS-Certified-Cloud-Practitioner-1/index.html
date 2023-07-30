@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>AWS Certified Cloud Practitioner  | HorseSF blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="AWS Certified Solutions Architect - Associate  AWSクラウドの基本 IaaS (Infrastructure as a Service)   ネットワークやストレージを含むサーバー機能を提供するサービスです。ユーザーはサーバーのスペックを選択し、OSやミドルウェアの導入をします。  PaaS (Platform as a Service)   OSや">
+  <meta name="description" content="AWS Certified Solutions Architect - Associate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AWS Certified Cloud Practitioner ">
 <meta property="og:url" content="http://yoursite.com/2023/07/30/AWS-Certified-Cloud-Practitioner-1/index.html">
 <meta property="og:site_name" content="HorseSF blog">
-<meta property="og:description" content="AWS Certified Solutions Architect - Associate  AWSクラウドの基本 IaaS (Infrastructure as a Service)   ネットワークやストレージを含むサーバー機能を提供するサービスです。ユーザーはサーバーのスペックを選択し、OSやミドルウェアの導入をします。  PaaS (Platform as a Service)   OSや">
+<meta property="og:description" content="AWS Certified Solutions Architect - Associate">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2023-07-30T01:49:55.000Z">
-<meta property="article:modified_time" content="2023-07-30T02:43:19.074Z">
+<meta property="article:modified_time" content="2023-07-30T07:20:59.362Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -175,6 +175,8 @@
       
         <p>AWS Certified Solutions Architect - Associate</p>
 <hr>
+<a id="more"></a>
+
 <h3 id="AWSクラウドの基本"><a href="#AWSクラウドの基本" class="headerlink" title="AWSクラウドの基本"></a>AWSクラウドの基本</h3><ul>
 <li><p>IaaS (Infrastructure as a Service)  </p>
 <p>ネットワークやストレージを含むサーバー機能を提供するサービスです。ユーザーはサーバーのスペックを選択し、OSやミドルウェアの導入をします。</p>
@@ -248,6 +250,42 @@
 </li>
 <li><p>メタデータ</p>
 <p>メタデータは、実行中のインスタンスに関するデータです。メタデータには、インスタンスIDやパブリックIPアドレス、DNSホスト名などが含まれます。</p>
+</li>
+</ul>
+<h4 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h4><h5 id="バージョニング"><a href="#バージョニング" class="headerlink" title="バージョニング"></a>バージョニング</h5><p>バケットに保存しているオブジェクトの世代管理ができる機能です。バージョニングを有効にすると、オブジェクトの更新時には更新前と更新後の両方のオブジェクトが保存され、各オブジェクトに固有のバージョンIDが割り当てられます。オブジェクトの削除時には、オブジェクトを完全に削除する代わりに削除フラグを意味する削除マーカーが付与され、それが最新のバージョンとなります。バージョニングを利用することで、ユーザーが誤ってデータの上書きや削除をしてしまっても元のデータを復元できます。</p>
+<h5 id="MFA-Delete"><a href="#MFA-Delete" class="headerlink" title="MFA Delete"></a>MFA Delete</h5><p>S3のバージョニング機能を使用して管理されているオブジェクトを削除する際に、MFAデバイスの認証が必要となる機能です。MFA（Multi-Factor Authentication：多要素認証）とは、ユーザーIDとパスワードでの認証の際に、追加でワンタイムパスワードや指紋などのバイオメトリクスを使用する認証方法です。MFAデバイスには、物理デバイス（例：YubiKey）と仮想デバイス（例：スマートフォンにインストールされたGoogle Authenticator）があります。<br>MFA Deleteを利用すると、ルートユーザー（AWSとの契約を行ったアカウント）のみが、世代管理されたデータの削除権限を持つようになります。MFA Deleteが有効になっているバケットのオブジェクトを完全に削除するには、ルートユーザーがMFA認証を行い、削除対象のオブジェクトのバージョンIDを指定します。これにより、誤った削除や不正アクセスによるデータ損失を防ぐことができます。</p>
+<h5 id="オブジェクトロック"><a href="#オブジェクトロック" class="headerlink" title="オブジェクトロック"></a>オブジェクトロック</h5><p>S3バケットに保存したオブジェクトに対して更新・削除を制限する機能です。S3バケット作成時にのみ設定可能で、オブジェクトロックを有効にするとバージョニング機能も有効になります。<br>オブジェクトロックは、主にオブジェクトが意図的に改ざん・削除されることを防止する目的で使用します。  </p>
+<p>オブジェクトロックには、保持期間が無期限の「リーガルホールド」と、期限付きの「リテンションモード」の2種類があります。</p>
+<ul>
+<li><p>リーガルホールド</p>
+<p>権限（s3:PutObjectLegalHold）を持たないユーザーに対して、リーガルホールドが解除されるまでオブジェクトを読み取り専用にします。権限を持つユーザーのみオブジェクトの更新・削除と、リーガルホールドの解除ができます。</p>
+</li>
+<li><p>リテンションモード</p>
+<p>リテンションモードは「ガバナンスモード」と「コンプライアンスモード」に分かれており、どちらかを選択します。</p>
+<ul>
+<li><p>ガバナンスモード</p>
+<p>権限（s3:BypassGovernanceRetention）を持たないユーザーに対して、指定した保持期間中オブジェクトを読み取り専用にします。権限を持つユーザーのみオブジェクトの更新・削除と、ガバナンスモードの解除ができます。</p>
+</li>
+<li><p>コンプライアンスモード</p>
+<p>ルートユーザーを含む全てのユーザーに対して、指定した保持期間中オブジェクトを読み取り専用にします。保持期間中はルートユーザーを含めてコンプライアンスモードを解除できません。  </p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="クロスリージョンレプリケーション"><a href="#クロスリージョンレプリケーション" class="headerlink" title="クロスリージョンレプリケーション"></a>クロスリージョンレプリケーション</h5><p>S3のデータを自動的に異なるリージョンに保存したい場合に利用します。クロスリージョンレプリケーションを設定すると、別のリージョンにあるバケットへ自動的にオブジェクトをコピーします。コピー先のリージョンは指定することができ、コピーは非同期で実行されます。レプリケーション先は、同一AWSアカウントが所有するバケットでも、異なるAWSアカウントが所有するバケットでも指定できます。</p>
+<h5 id="S3-Transfer-Acceleration"><a href="#S3-Transfer-Acceleration" class="headerlink" title="S3 Transfer Acceleration"></a>S3 Transfer Acceleration</h5><p>S3上のデータをAWSネットワーク内から最速で通信できるルートを経由して転送させる機能です。S3が所属しているリージョンから地理的に遠い場所へデータを転送する際に、転送速度を高速化できます。</p>
+<h5 id="マルチパートアップロード"><a href="#マルチパートアップロード" class="headerlink" title="マルチパートアップロード"></a>マルチパートアップロード</h5><p>S3バケットに保存できるオブジェクトの最大サイズは5TBですが、一度にアップロードできる最大サイズは5GBです。5GBを超えるファイルをアップロードするには「マルチパートアップロード」を利用します。マルチパートアップロードは、巨大なファイルを複数に分割してS3バケットにアップロードする機能です。分割したファイルはそれぞれ並列にアップロードするので、アップロード時間の短縮にもなります。AWSではファイルサイズが100MB以上の場合は、マルチパートアップロードの使用を推奨しています。</p>
+<h5 id="S3のアクセス制御方法"><a href="#S3のアクセス制御方法" class="headerlink" title="S3のアクセス制御方法"></a>S3のアクセス制御方法</h5><p>S3ストレージ上のバケットやオブジェクトは、デフォルトではバケットやオブジェクトを作成したAWSアカウント（S3リソースの所有者）だけがアクセスできます。権限を制限されたIAMユーザー（IAM分野で学習します）や、他のAWSアカウントからS3リソースへアクセスできるようにするには、S3リソースの所有者であるAWSアカウントでオブジェクトやバケットへのアクセス制御を行います。</p>
+<ul>
+<li><p>バケットポリシー</p>
+<p>バケット単位でアクセス権限を設定する機能です。自AWSアカウントのIAMユーザーや他のAWSアカウントのユーザーに対して、S3リソースへのアクセス権限を設定します。また、アクセス元のIPアドレスやドメイン名によるアクセス制御もできます。</p>
+</li>
+<li><p>ユーザー（IAM）ポリシー</p>
+<p>IAMユーザー単位でアクセス権限を設定する機能です。自AWSアカウントのIAMユーザーやグループ、ロールに対して、S3リソースへのアクセス権限を設定します。バケットポリシーとは違い、他のAWSアカウントには設定できません。<br>ユーザー（IAM）ポリシーによるアクセス権限は、バケットポリシーと同じくアクセス元のIPアドレスやドメイン名によるアクセス制御もできます。</p>
+</li>
+<li><p>ACL（アクセスコントロールリスト）</p>
+</li>
+<li><p>AWSアカウント単位でアクセス権限を設定する機能です。他のAWSアカウントに対して、オブジェクトもしくはバケットへの読み取り/書き込みを許可します。</p>
 </li>
 </ul>
 
@@ -351,7 +389,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AWSクラウドの基本"><span class="toc-number">1.</span> <span class="toc-text">AWSクラウドの基本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要なサービス"><span class="toc-number">2.</span> <span class="toc-text">主要なサービス</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#EC2"><span class="toc-number">2.1.</span> <span class="toc-text">EC2</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Amazon-マシンイメージ（AMI）の選択"><span class="toc-number">2.1.1.</span> <span class="toc-text">Amazon マシンイメージ（AMI）の選択</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#インスタンスタイプの選択"><span class="toc-number">2.1.2.</span> <span class="toc-text">インスタンスタイプの選択</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#キーペアの設定"><span class="toc-number">2.1.3.</span> <span class="toc-text">キーペアの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ネットワークの設定"><span class="toc-number">2.1.4.</span> <span class="toc-text">ネットワークの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ストレージの設定"><span class="toc-number">2.1.5.</span> <span class="toc-text">ストレージの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.1.6.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高度な設定"><span class="toc-number">2.1.7.</span> <span class="toc-text">高度な設定</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AWSクラウドの基本"><span class="toc-number">1.</span> <span class="toc-text">AWSクラウドの基本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要なサービス"><span class="toc-number">2.</span> <span class="toc-text">主要なサービス</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#EC2"><span class="toc-number">2.1.</span> <span class="toc-text">EC2</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Amazon-マシンイメージ（AMI）の選択"><span class="toc-number">2.1.1.</span> <span class="toc-text">Amazon マシンイメージ（AMI）の選択</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#インスタンスタイプの選択"><span class="toc-number">2.1.2.</span> <span class="toc-text">インスタンスタイプの選択</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#キーペアの設定"><span class="toc-number">2.1.3.</span> <span class="toc-text">キーペアの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ネットワークの設定"><span class="toc-number">2.1.4.</span> <span class="toc-text">ネットワークの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ストレージの設定"><span class="toc-number">2.1.5.</span> <span class="toc-text">ストレージの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.1.6.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高度な設定"><span class="toc-number">2.1.7.</span> <span class="toc-text">高度な設定</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S3"><span class="toc-number">2.2.</span> <span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#バージョニング"><span class="toc-number">2.2.1.</span> <span class="toc-text">バージョニング</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MFA-Delete"><span class="toc-number">2.2.2.</span> <span class="toc-text">MFA Delete</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#オブジェクトロック"><span class="toc-number">2.2.3.</span> <span class="toc-text">オブジェクトロック</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#クロスリージョンレプリケーション"><span class="toc-number">2.2.4.</span> <span class="toc-text">クロスリージョンレプリケーション</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#S3-Transfer-Acceleration"><span class="toc-number">2.2.5.</span> <span class="toc-text">S3 Transfer Acceleration</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#マルチパートアップロード"><span class="toc-number">2.2.6.</span> <span class="toc-text">マルチパートアップロード</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#S3のアクセス制御方法"><span class="toc-number">2.2.7.</span> <span class="toc-text">S3のアクセス制御方法</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
