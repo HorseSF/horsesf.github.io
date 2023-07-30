@@ -151,6 +151,145 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-AWS-Certified-Cloud-Practitioner-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/07/30/AWS-Certified-Cloud-Practitioner-1/">AWS Certified Cloud Practitioner </a>
+    </h1>
+  
+
+        
+        <a href="/2023/07/30/AWS-Certified-Cloud-Practitioner-1/" class="archive-article-date">
+  	<time datetime="2023-07-30T01:49:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>AWS Certified Solutions Architect - Associate</p>
+<hr>
+<h3 id="AWSクラウドの基本"><a href="#AWSクラウドの基本" class="headerlink" title="AWSクラウドの基本"></a>AWSクラウドの基本</h3><ul>
+<li><p>IaaS (Infrastructure as a Service)  </p>
+<p>ネットワークやストレージを含むサーバー機能を提供するサービスです。ユーザーはサーバーのスペックを選択し、OSやミドルウェアの導入をします。</p>
+</li>
+<li><p>PaaS (Platform as a Service)  </p>
+<p>OSやミドルウェア、ランタイムなどのアプリケーション実行環境を含むプラットフォームを提供するサービスです。ユーザーはインフラを意識せずに、アプリケーションの開発・導入ができます。</p>
+</li>
+<li><p>SaaS (Software as a Service)  </p>
+<p>アプリケーションを含むすべての機能を提供するサービスです。ユーザーは機能のオプションを設定するだけでアプリケーションを利用できます。</p>
+</li>
+</ul>
+<h3 id="主要なサービス"><a href="#主要なサービス" class="headerlink" title="主要なサービス"></a>主要なサービス</h3><h4 id="EC2"><a href="#EC2" class="headerlink" title="EC2"></a>EC2</h4><h5 id="Amazon-マシンイメージ（AMI）の選択"><a href="#Amazon-マシンイメージ（AMI）の選択" class="headerlink" title="Amazon マシンイメージ（AMI）の選択"></a>Amazon マシンイメージ（AMI）の選択</h5><p>Amazon マシンイメージ（AMI）は、EC2インスタンスを起動するために必要なOSやミドルウェアなどのテンプレートです。EC2インスタンスはユーザーが選択したAMIを元に作成されます。AMIに含まれないサーバー固有のOSの設定や、ミドルウェアの導入は個別に実施する必要があります。</p>
+<h5 id="インスタンスタイプの選択"><a href="#インスタンスタイプの選択" class="headerlink" title="インスタンスタイプの選択"></a>インスタンスタイプの選択</h5><p>インスタンスタイプは、インスタンス作成時に選択できるCPU、メモリ、ストレージ性能、ネットワークキャパシティーの組み合わせです。インスタンスタイプごとにインスタンスに割り当てるCPUコア数、メモリ容量、ストレージの種類、ネットワークキャパシティーが決まっているので、ユーザーはその中からニーズに合ったインスタンスタイプを選択してインスタンスを作成します。</p>
+<table>
+<thead>
+<tr>
+<th>インスタンスファミリー</th>
+<th>インスタンスの分類</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>M</td>
+<td>汎用</td>
+</tr>
+<tr>
+<td>T</td>
+<td>汎用（CPUバースト機能）</td>
+</tr>
+<tr>
+<td>C</td>
+<td>コンピューティング最適化</td>
+</tr>
+<tr>
+<td>R、X</td>
+<td>メモリ最適</td>
+</tr>
+<tr>
+<td>P、G、F</td>
+<td>高速コンピューティング</td>
+</tr>
+<tr>
+<td>I、D、H</td>
+<td>ストレージ最適</td>
+</tr>
+</tbody></table>
+<h5 id="キーペアの設定"><a href="#キーペアの設定" class="headerlink" title="キーペアの設定"></a>キーペアの設定</h5><p>キーペアとは、EC2インスタンスに安全に接続するための暗号鍵のペア（SSHキー）のことです。AWS上に保管されるパブリックキーと、ユーザーの環境上に保管するプライベートキーの2つの鍵で構成されます。</p>
+<h5 id="ネットワークの設定"><a href="#ネットワークの設定" class="headerlink" title="ネットワークの設定"></a>ネットワークの設定</h5><p>ネットワークの設定ではEC2インスタンスを配置するVPCやAZを選択します。EC2インスタンスはデフォルトで冗長化されていないので、ユーザーにてマルチAZ構成にするなどの対応が必要です。</p>
+<h5 id="ストレージの設定"><a href="#ストレージの設定" class="headerlink" title="ストレージの設定"></a>ストレージの設定</h5><p>EC2インスタンスのストレージには、Amazon EBSおよびインスタンスストアを利用します。</p>
+<ul>
+<li><p>Amazon EBS（Elastic Block Store）</p>
+<p>EC2インスタンスに割り当てられるブロックストレージで、物理ハードディスクドライブと同じように利用できます。</p>
+</li>
+<li><p>インスタンスストア</p>
+<p>EC2インスタンスから利用できる揮発性の（インスタンス稼働中にだけ利用可能な）ブロックストレージです。ホストコンピュータに物理的に割り当てられたディスク上にあり、頻繁に変更されるデータの一時的なストレージとして利用できます。</p>
+</li>
+</ul>
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><h5 id="高度な設定"><a href="#高度な設定" class="headerlink" title="高度な設定"></a>高度な設定</h5><ul>
+<li><p>プレイスメントグループ</p>
+<p>プレイスメントグループは複数のEC2インスタンスを論理的にグループ化し、インスタンス間での低遅延な通信や、ハードウェア障害による影響を軽減できる機能です。</p>
+<ol>
+<li><p>クラスタープレイスメントグループ</p>
+<p>クラスタープレイスメントグループは、グループ内のEC2インスタンスを単一AZ内の物理的に近い距離に配置します。各EC2インスタンス同士の通信は遅延が発生しにくく高速な通信が可能になります。クラスタープレイスメントグループが所属するAZに何らかの障害が発生した場合はサービスが利用不能になってしまうため、可用性を犠牲にしてでもEC2インスタンス間の通信遅延を極力なくしたい場合に利用します。</p>
+</li>
+<li><p>パーティションプレイスメントグループ</p>
+<p>パーティションプレイスメントグループでは、グループをパーティションとよばれる論理グループに分割し、それぞれのパーティションに1つ以上のEC2インスタンスが所属します。各パーティションは1つのラックが対応しており、ラックには独立した電源とネットワークが配備されています。グループ内の各パーティションはラックを共有しないので、ハードウェア障害による影響を軽減します。パーティションプレイスメントグループは異なるAZにEC2インスタンスを配置することもできます。</p>
+</li>
+<li><p>スプレッドプレイスメントグループ</p>
+<p>スプレッドプレイスメントグループは、グループ内のEC2インスタンスを異なるハードウェア（ラック）に配置します。パーティションプレイスメントグループではラック内に同一グループのEC2インスタンスを1つ以上配置しますが、スプレッドプレイスメントグループは同一グループのEC2インスタンスを1つしか配置しません。グループ内の各EC2インスタンスはハードウェアを共有しないので、ハードウェア障害による影響を軽減します。スプレッドプレイスメントグループは異なるAZにEC2インスタンスを配置することもできます。</p>
+</li>
+</ol>
+</li>
+<li><p>メタデータ</p>
+<p>メタデータは、実行中のインスタンスに関するデータです。メタデータには、インスタンスIDやパブリックIPアドレス、DNSホスト名などが含まれます。</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/07/30/AWS-Certified-Cloud-Practitioner-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-AWS-Certified-Cloud-Practitioner" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -795,82 +934,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/19/Python3%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python-pip使用方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/Python-pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">Python pip使用方法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/Python-pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-06-09T14:17:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>pip 是 Python 包管理工具，该工具提供了对Python 包的查找、下载、安装、卸载的功能。</p>
-        
-          <a class="article-more-a" href="/2020/06/09/Python-pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/Python-pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">展开全文 >></a>
         </p>
       
 
