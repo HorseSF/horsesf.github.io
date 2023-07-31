@@ -16,7 +16,7 @@
 <meta property="og:description" content="AWS Certified Solutions Architect - Associate">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2023-07-30T01:49:55.000Z">
-<meta property="article:modified_time" content="2023-07-30T11:19:53.483Z">
+<meta property="article:modified_time" content="2023-07-31T11:17:15.270Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -319,6 +319,133 @@
 </ul>
 <h5 id="VPCエンドポイントポリシー"><a href="#VPCエンドポイントポリシー" class="headerlink" title="VPCエンドポイントポリシー"></a>VPCエンドポイントポリシー</h5><p>VPCエンドポイントを作成すると、VPC内のリソースはVPCエンドポイントからVPC外のAWSサービスへアクセスできるようになります。VPCエンドポイントからの接続先を制限するには「VPCエンドポイントポリシー」を使用します。VPCエンドポイントポリシーは、VPCエンドポイントのゲートウェイ型とAWS PrivateLink（インターフェイス型）の両方で利用できます。  </p>
 <p>VPCエンドポイントポリシーを設定するには、許可/拒否する接続先のAmazonリソース名（ARN）を指定します。</p>
+<h4 id="ELB-Auto-Scaling"><a href="#ELB-Auto-Scaling" class="headerlink" title="ELB/Auto Scaling"></a>ELB/Auto Scaling</h4><h5 id="Elastic-Load-Balancing（ELB）"><a href="#Elastic-Load-Balancing（ELB）" class="headerlink" title="Elastic Load Balancing（ELB）"></a>Elastic Load Balancing（ELB）</h5><p>ELB配下の負荷分散先リソースのことを「ターゲット」といい、一つのELB配下で管理されるターゲットの集合を「ターゲットグループ」といいます。ターゲットにはEC2などのインスタンスや、IPアドレス、Lambda関数が指定でき、それらをまとめたターゲットグループ単位に負荷分散を行います。なお、AZ障害時の影響を少なくするためにも、ターゲットはマルチAZ（複数のAZに配置する構成）にするのが一般的です。</p>
+<h5 id="ELBの種類"><a href="#ELBの種類" class="headerlink" title="ELBの種類"></a>ELBの種類</h5><ul>
+<li>Application Load Balancer（ALB）<br>ALBはレイヤー7（アプリケーション層）で負荷分散を行います。ALBではHTTP、HTTPSをサポートしています。また、WebSocketや、同一インスタンス内の複数ポートへの負荷分散、ホストベースやパスベース、URLクエリ文字列でのルーティングに対応しています。</li>
+<li><ul>
+<li>ALBが対応している主なルーティング</li>
+<li>ホストベース<br>ホストベースのルーティングとは、クライアントがリクエストした接続先URLのFQDNに従ってルーティングできる機能のことです。</li>
+<li>パスベース<br>パスベースのルーティングとは、クライアントがリクエストした接続先URLのパスに従ってルーティングできる機能のことです。</li>
+<li>URLクエリ文字列<br>URLクエリ文字列でのルーティングとは、クライアントがリクエストした接続先URLのクエリ文字列に従ってルーティングできる機能のことです。</li>
+</ul>
+</li>
+<li>Network Load Balancer（NLB）<br>NLBはレイヤー4（トランスポート層）で負荷分散を行います。NLBではTCP、UDP、TLSをサポートしています。また、WebSocketや、同一インスタンス内の複数ポートへの負荷分散に対応しています。</li>
+<li>Classic Load Balancer（CLB）<br>CLBはレイヤー7（アプリケーション層）およびレイヤー4（トランスポート層）で負荷分散を行います。CLBではHTTP、HTTPS、TCP、SSL/TLSをサポートしています。CLBはALBやNLBより古いサービスでパフォーマンスが劣るため、基本的にはALBやNLBの利用が推奨されています。</li>
+</ul>
+<h5 id="ELBの機能"><a href="#ELBの機能" class="headerlink" title="ELBの機能"></a>ELBの機能</h5><ul>
+<li><p>ヘルスチェック</p>
+</li>
+<li><p>アクセスログ<br>ELBに送信されるリクエストを記録しログをAmazon S3に保存します。記録されたログはトラフィックの分析やコンプライアンスの監査に利用できます。アクセスログには、クライアントのアクセス日時、接続元IPアドレス、ポート番号、ステータスコードなどクライアントの接続情報が記録されます。</p>
+</li>
+<li><p>ELB自身のスケーリング<br>ELBにはリクエスト数の増減に応じてELB自身が自動的にスケーリングする機能があります。リクエスト数が増加したらELB自身を自動的にスケールアウト（追加）し、リクエスト数が減少したらスケールイン（削除）して元の状態に戻ります。</p>
+</li>
+<li><p>リダイレクト<br>ALBには、ALBに送られてきたリクエストを別のURLにリダイレクトする機能があります。例えば、ユーザーから「<a href="http://www.example.com」（HTTP）へ送られたリクエストを「https://www.example.com」（HTTPS）に変換することで、セキュアな通信が可能になります。HTTPのリクエストをHTTPSに変換するには、ALBでHTTPリスナーを作成し、HTTPSへリダイレクトするルールを設定します。" target="_blank" rel="noopener">http://www.example.com」（HTTP）へ送られたリクエストを「https://www.example.com」（HTTPS）に変換することで、セキュアな通信が可能になります。HTTPのリクエストをHTTPSに変換するには、ALBでHTTPリスナーを作成し、HTTPSへリダイレクトするルールを設定します。</a></p>
+</li>
+<li><p>ELB経由の暗号化通信<br>ELB経由でクライアントとターゲット間の通信を暗号化させるには、暗号化する通信の範囲とサーバー証明書（SSL/TLS証明書）の配置によって3つの方法があります。サーバー証明書とは、ユーザーとの通信をHTTPSで暗号化するとともに、ドメイン（ping-t.com など）の使用権を確認してアクセス先のサーバーが本物であるという証明する電子証明書のことです。ELB経由の暗号化通信に利用するサーバー証明書は、AWS Certificate Manager（SSL/TLS証明書を管理するサービス）で管理されている証明書を利用できます。</p>
+<ul>
+<li>クライアントとELB間の通信を暗号化する<ul>
+<li>ELBにサーバー証明書を導入する<br>クライアントとELB間で通信を暗号化し、ELBとターゲット間は平文の通信（暗号化されていない通信）を行う方法です。クライアントとELB間での通信の暗号化・復号をELBが行うため、ターゲットに暗号化・復号による負荷が発生しません。すべてのELBが対応しています。</li>
+</ul>
+</li>
+<li>クライアントとターゲット間の通信を暗号化する<ul>
+<li>ELBとターゲットにサーバー証明書を導入する<br>クライアントとELB間、ELBとターゲット間で別の暗号化通信を行う方法です。暗号化接続はELBが終端となり、ELBから別の暗号化接続を確立して通信します。ELB、ターゲットに暗号化・復号による負荷がかかりますが、クライアントからターゲットまでの通信すべてを暗号化できます。ALB、CLBが対応しています。</li>
+<li>ターゲットにサーバー証明書を導入する<br>ELBでは暗号化・復号せず、直接クライアントとターゲット間で暗号化通信を行う方法です。ターゲットに暗号化・復号による負荷が発生しますが、ELBによる暗号化・復号の遅延を発生させずに通信全てを暗号できます。NLB、CLBが対応しています。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>SNIを利用したELB経由の暗号化通信<br>SNI（Server Name Indication）は、暗号化通信で使用するサーバー証明書をパブリックIPアドレスではなくドメイン名によって判断する技術です。SNIに対応したELBに複数のサーバー証明書を導入すると、ELBが宛先ドメイン名から適切なサーバー証明書を判断してサーバーへ通信を転送します。SNIはALBとNLBが対応しています。</p>
+</li>
+</ul>
+<h5 id="Auto-Scaling"><a href="#Auto-Scaling" class="headerlink" title="Auto Scaling"></a>Auto Scaling</h5><ul>
+<li><p>シンプルスケーリング<br>1つのメトリクス（CPU使用率などシステムのパフォーマンスに関するデータ）に対する1つのしきい値に基づいて、インスタンスを増減します。<br>例：300秒間の平均CPU使用率が50％を超えたら、インスタンスを1台追加する</p>
+</li>
+<li><p>ステップスケーリング<br>1つのメトリクスに対する複数のしきい値に基づいて、インスタンスの増減を段階的に行います。<br>例：300秒間の平均CPU使用率が50％を超えたらインスタンスを1台追加し、90％を超えたら2台追加する</p>
+</li>
+<li><p>ターゲット追跡スケーリング<br>1つのメトリクスが指定した目標値になるように、インスタンスを増減します。増減するインスタンス数はAWS側で調整されます。<br>例：平均CPU使用率を30％に維持する</p>
+</li>
+</ul>
+<h3 id="コンピューティング"><a href="#コンピューティング" class="headerlink" title="コンピューティング"></a>コンピューティング</h3><h4 id="Lambda-API-Gateway"><a href="#Lambda-API-Gateway" class="headerlink" title="Lambda/API Gateway"></a>Lambda/API Gateway</h4><h5 id="Amazon-API-Gateway種類"><a href="#Amazon-API-Gateway種類" class="headerlink" title="Amazon API Gateway種類"></a>Amazon API Gateway種類</h5><ul>
+<li>REST API（RESTful API）<br>クライアントからのリクエストに対してレスポンスを返す形式のAPIです。サーバーが扱う情報はURI(URL)で定義されており、クライアントはHTTP（HTTPS）でリクエストを送信することでレスポンスを得ます。データベースの検索など、クライアントからのリクエストに応答するアプリケーションで使われます。</li>
+<li>HTTP API<br>REST APIよりも低遅延かつコスト効率を高くする目的で設計されたAPIです。REST APIと同じ形式のAPIですが、APIキャッシュを利用できないなど細かな差異があります。</li>
+<li>WebSocket API<br>クライアントとサーバー間でリアルタイムな情報のやり取りを目的とするAPIです。REST APIとは違い、継続的なデータの送受信を行えます。<br>チャットや株価情報のような常に情報をモニタリングするようなアプリケーションで使われます。なお、WebSocket APIとはサーバー・クライアント間で双方向のセッションを確立できる技術を利用したAPIのことです。通信の状態を管理される「ステートフル」な接続方式です。</li>
+</ul>
+<h5 id="API-キャッシュ"><a href="#API-キャッシュ" class="headerlink" title="API キャッシュ"></a>API キャッシュ</h5><p>Amazon API Gatewayにはクライアントへ送信したデータを保存する「API キャッシュ」機能があります。REST APIではどのクライアントからでも同一のリクエストであれば同一のレスポンスになります。API キャッシュではクライアントに送ったレスポンスをAPI Gatewayでキャッシュし、再度同一のリクエストを受け取るとキャッシュからデータを返します。API キャッシュから応答を返すことにより、Lambda関数の実行を省略できるのでレスポンス速度が向上します。</p>
+<h4 id="ECS-Fargate"><a href="#ECS-Fargate" class="headerlink" title="ECS/Fargate"></a>ECS/Fargate</h4><h3 id="ストレージ"><a href="#ストレージ" class="headerlink" title="ストレージ"></a>ストレージ</h3><h4 id="EBS"><a href="#EBS" class="headerlink" title="EBS"></a>EBS</h4><p>HDDのボリュームタイプ（st1、sc1）はEC2インスタンスの起動ボリュームには指定できません。</p>
+<h4 id="EFS"><a href="#EFS" class="headerlink" title="EFS"></a>EFS</h4><h5 id="Amazon-EFS（Elastic-File-System）の特徴"><a href="#Amazon-EFS（Elastic-File-System）の特徴" class="headerlink" title="Amazon EFS（Elastic File System）の特徴"></a>Amazon EFS（Elastic File System）の特徴</h5><ul>
+<li><p>容量無制限：EFSではデータ量に伴い自動的にスケーリング（拡張・縮小）が行われるため、利用開始にあたり事前に容量を確保する必要はありません。保存したデータ量に応じて課金が発生します。</p>
+</li>
+<li><p>可用性：EFSはリージョン内の複数のAZにまたがってサービスを提供しているため、単独AZの障害にも影響を受けません。またデフォルトでAWS Backupを使ったバックアップが有効になっています。</p>
+</li>
+<li><p>堅牢性：EFSはデフォルトで保管時のデータの暗号化が有効になっています。また、EFSのファイルシステムマウント時にTLS（Transport Layer Security：セキュアな通信を行うプロトコル）を使うこともできるので、転送データを安全に扱えます。</p>
+</li>
+</ul>
+<h5 id="パフォーマンスモードとスループットモード"><a href="#パフォーマンスモードとスループットモード" class="headerlink" title="パフォーマンスモードとスループットモード"></a>パフォーマンスモードとスループットモード</h5><ul>
+<li><p>パフォーマンスモード（EFS作成時に設定）には以下の2つがあります：</p>
+<ul>
+<li>汎用パフォーマンスモード … 一般的な用途向けのモード</li>
+<li>最大I/Oパフォーマンスモード … ビッグデータの解析などの大容量データや、数千台のクライアントの処理向けのモード</li>
+</ul>
+</li>
+<li><p>スループットモード（運用中に変更可能）には以下の2つがあります：</p>
+<ul>
+<li><p>バーストスループットモード … ストレージの容量に従ってベースライン性能（基本性能）が設定され、一時的に負荷が高くなった場合はベースライン性能の2倍まで性能向上できる</p>
+</li>
+<li><p>プロビジョンドスループットモード … ユーザーが予約した（provisioned）性能をAWSが保証してスループットを提供する</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="FSx"><a href="#FSx" class="headerlink" title="FSx"></a>FSx</h4><h5 id="Amazon-FSx-For-Windowsファイルサーバー"><a href="#Amazon-FSx-For-Windowsファイルサーバー" class="headerlink" title="Amazon FSx For Windowsファイルサーバー"></a>Amazon FSx For Windowsファイルサーバー</h5><pre><code>FSx For Windowsファイルサーバーは、SMBプロトコル（※）を介してWindows Server（OS）上に構築されたファイルシステムを提供するフルマネージドのストレージサービスです。</code></pre><ul>
+<li><p>フルマネージドシステムである</p>
+</li>
+<li><p>Windowsサーバーが提供する既存機能を利用できる</p>
+</li>
+</ul>
+<h5 id="Amazon-FSx-For-Lustre"><a href="#Amazon-FSx-For-Lustre" class="headerlink" title="Amazon FSx For Lustre"></a>Amazon FSx For Lustre</h5><p>  LustreとはLinux上で動作するオープンソースのファイルシステムで、主にスーパーコンピューターなどのHPC（High Performance Computing）や機械学習の分野で利用されています。大量のクライアント（ファイルシステムを利用する端末）から、低レイテンシかつ高スループットにファイルアクセスを行う必要のあるシステムで利用されます。</p>
+<ul>
+<li><p>フルマネージドシステムである</p>
+</li>
+<li><p>Amazon S3と連携できる</p>
+</li>
+<li><p>POSIXに準拠したファイルシステムである</p>
+</li>
+</ul>
+<h4 id="Storage-Gateway"><a href="#Storage-Gateway" class="headerlink" title="Storage Gateway"></a>Storage Gateway</h4><p>  AWS Storage Gatewayは、オンプレミス（自社環境）からAWSのストレージサービスへのアクセスを高速かつセキュアに行うことができるサービスです。堅牢性・耐久性に優れたS3をファイル共有ストレージとして利用したり、災害対策を目的としたバックアップやアーカイブを行ったり、あまりアクセスされないデータを自社サーバーからAWSへ移動させるなど、様々なケースで利用することができます。</p>
+<h6 id="Storage-Gatewayのゲートウェイタイプ"><a href="#Storage-Gatewayのゲートウェイタイプ" class="headerlink" title="Storage Gatewayのゲートウェイタイプ"></a>Storage Gatewayのゲートウェイタイプ</h6><table>
+<thead>
+<tr>
+<th>ストレージサービス</th>
+<th>ストレージ形式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ファイルゲートウェイ</td>
+<td>ファイル単位</td>
+</tr>
+<tr>
+<td>ボリュームゲートウェイ_キャシュー方</td>
+<td>ボリューム単位</td>
+</tr>
+<tr>
+<td>ボリュームゲートウェイ_保管型</td>
+<td>ボリューム単位</td>
+</tr>
+<tr>
+<td>テープゲートウェイ</td>
+<td>仮想テープ単位</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>ファイルゲートウェイ<br>オンプレミスから、NFSまたはSMBを介してS3バケットへアクセスすることができます。オンプレミスにキャッシュストレージを持つため、高速なデータアクセスが可能です。</p>
+</li>
+<li><p>ボリュームゲートウェイ<br>S3をiSCSI接続のブロックストレージボリュームとして提供します。iSCSI（Internet Small Computer System Interface）とはコンピュータのストレージを接続するSCSIプロトコルをTCP/IPで実現したもののことで、サーバーはiSCSIで接続されたストレージ（Storage Gatewayの場合はS3）をローカルディスクとして使用します。</p>
+<ul>
+<li>キャッシュ型（キャッシュボリューム）<br>すべてのデータをS3に保存し、高頻度アクセスのデータのみオンプレミスのキャッシュストレージにコピーします。データがキャッシュ上に存在しない場合はS3へアクセスするので遅延が発生しますが、オンプレミスのストレージ容量を抑えることができます。</li>
+<li>保管型（ストアドボリューム）</li>
+</ul>
+</li>
+</ul>
 
       
 
@@ -420,7 +547,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AWSクラウドの基本"><span class="toc-number">1.</span> <span class="toc-text">AWSクラウドの基本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要なサービス"><span class="toc-number">2.</span> <span class="toc-text">主要なサービス</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#EC2"><span class="toc-number">2.1.</span> <span class="toc-text">EC2</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Amazon-マシンイメージ（AMI）の選択"><span class="toc-number">2.1.1.</span> <span class="toc-text">Amazon マシンイメージ（AMI）の選択</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#インスタンスタイプの選択"><span class="toc-number">2.1.2.</span> <span class="toc-text">インスタンスタイプの選択</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#キーペアの設定"><span class="toc-number">2.1.3.</span> <span class="toc-text">キーペアの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ネットワークの設定"><span class="toc-number">2.1.4.</span> <span class="toc-text">ネットワークの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ストレージの設定"><span class="toc-number">2.1.5.</span> <span class="toc-text">ストレージの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.1.6.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高度な設定"><span class="toc-number">2.1.7.</span> <span class="toc-text">高度な設定</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S3"><span class="toc-number">2.2.</span> <span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#バージョニング"><span class="toc-number">2.2.1.</span> <span class="toc-text">バージョニング</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MFA-Delete"><span class="toc-number">2.2.2.</span> <span class="toc-text">MFA Delete</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#オブジェクトロック"><span class="toc-number">2.2.3.</span> <span class="toc-text">オブジェクトロック</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#クロスリージョンレプリケーション"><span class="toc-number">2.2.4.</span> <span class="toc-text">クロスリージョンレプリケーション</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#S3-Transfer-Acceleration"><span class="toc-number">2.2.5.</span> <span class="toc-text">S3 Transfer Acceleration</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#マルチパートアップロード"><span class="toc-number">2.2.6.</span> <span class="toc-text">マルチパートアップロード</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#S3のアクセス制御方法"><span class="toc-number">2.2.7.</span> <span class="toc-text">S3のアクセス制御方法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VPC"><span class="toc-number">2.3.</span> <span class="toc-text">VPC</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#IPアドレスの種類"><span class="toc-number">2.3.1.</span> <span class="toc-text">IPアドレスの種類</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ルートテーブル"><span class="toc-number">2.3.2.</span> <span class="toc-text">ルートテーブル</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#インターネットゲートウェイ"><span class="toc-number">2.3.3.</span> <span class="toc-text">インターネットゲートウェイ</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NATゲートウェイ"><span class="toc-number">2.3.4.</span> <span class="toc-text">NATゲートウェイ</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NATインスタンス"><span class="toc-number">2.3.5.</span> <span class="toc-text">NATインスタンス</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Egress-Onlyインターネットゲートウェイ"><span class="toc-number">2.3.6.</span> <span class="toc-text">Egress-Onlyインターネットゲートウェイ</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ENI（Elastic-Network-Interface）"><span class="toc-number">2.3.7.</span> <span class="toc-text">ENI（Elastic Network Interface）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#VPCエンドポイント"><span class="toc-number">2.3.8.</span> <span class="toc-text">VPCエンドポイント</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#VPCエンドポイントポリシー"><span class="toc-number">2.3.9.</span> <span class="toc-text">VPCエンドポイントポリシー</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AWSクラウドの基本"><span class="toc-number">1.</span> <span class="toc-text">AWSクラウドの基本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要なサービス"><span class="toc-number">2.</span> <span class="toc-text">主要なサービス</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#EC2"><span class="toc-number">2.1.</span> <span class="toc-text">EC2</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Amazon-マシンイメージ（AMI）の選択"><span class="toc-number">2.1.1.</span> <span class="toc-text">Amazon マシンイメージ（AMI）の選択</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#インスタンスタイプの選択"><span class="toc-number">2.1.2.</span> <span class="toc-text">インスタンスタイプの選択</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#キーペアの設定"><span class="toc-number">2.1.3.</span> <span class="toc-text">キーペアの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ネットワークの設定"><span class="toc-number">2.1.4.</span> <span class="toc-text">ネットワークの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ストレージの設定"><span class="toc-number">2.1.5.</span> <span class="toc-text">ストレージの設定</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#"><span class="toc-number">2.1.6.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#高度な設定"><span class="toc-number">2.1.7.</span> <span class="toc-text">高度な設定</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S3"><span class="toc-number">2.2.</span> <span class="toc-text">S3</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#バージョニング"><span class="toc-number">2.2.1.</span> <span class="toc-text">バージョニング</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MFA-Delete"><span class="toc-number">2.2.2.</span> <span class="toc-text">MFA Delete</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#オブジェクトロック"><span class="toc-number">2.2.3.</span> <span class="toc-text">オブジェクトロック</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#クロスリージョンレプリケーション"><span class="toc-number">2.2.4.</span> <span class="toc-text">クロスリージョンレプリケーション</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#S3-Transfer-Acceleration"><span class="toc-number">2.2.5.</span> <span class="toc-text">S3 Transfer Acceleration</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#マルチパートアップロード"><span class="toc-number">2.2.6.</span> <span class="toc-text">マルチパートアップロード</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#S3のアクセス制御方法"><span class="toc-number">2.2.7.</span> <span class="toc-text">S3のアクセス制御方法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VPC"><span class="toc-number">2.3.</span> <span class="toc-text">VPC</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#IPアドレスの種類"><span class="toc-number">2.3.1.</span> <span class="toc-text">IPアドレスの種類</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ルートテーブル"><span class="toc-number">2.3.2.</span> <span class="toc-text">ルートテーブル</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#インターネットゲートウェイ"><span class="toc-number">2.3.3.</span> <span class="toc-text">インターネットゲートウェイ</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NATゲートウェイ"><span class="toc-number">2.3.4.</span> <span class="toc-text">NATゲートウェイ</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NATインスタンス"><span class="toc-number">2.3.5.</span> <span class="toc-text">NATインスタンス</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Egress-Onlyインターネットゲートウェイ"><span class="toc-number">2.3.6.</span> <span class="toc-text">Egress-Onlyインターネットゲートウェイ</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ENI（Elastic-Network-Interface）"><span class="toc-number">2.3.7.</span> <span class="toc-text">ENI（Elastic Network Interface）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#VPCエンドポイント"><span class="toc-number">2.3.8.</span> <span class="toc-text">VPCエンドポイント</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#VPCエンドポイントポリシー"><span class="toc-number">2.3.9.</span> <span class="toc-text">VPCエンドポイントポリシー</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ELB-Auto-Scaling"><span class="toc-number">2.4.</span> <span class="toc-text">ELB&#x2F;Auto Scaling</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Elastic-Load-Balancing（ELB）"><span class="toc-number">2.4.1.</span> <span class="toc-text">Elastic Load Balancing（ELB）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ELBの種類"><span class="toc-number">2.4.2.</span> <span class="toc-text">ELBの種類</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ELBの機能"><span class="toc-number">2.4.3.</span> <span class="toc-text">ELBの機能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Auto-Scaling"><span class="toc-number">2.4.4.</span> <span class="toc-text">Auto Scaling</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#コンピューティング"><span class="toc-number">3.</span> <span class="toc-text">コンピューティング</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lambda-API-Gateway"><span class="toc-number">3.1.</span> <span class="toc-text">Lambda&#x2F;API Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Amazon-API-Gateway種類"><span class="toc-number">3.1.1.</span> <span class="toc-text">Amazon API Gateway種類</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#API-キャッシュ"><span class="toc-number">3.1.2.</span> <span class="toc-text">API キャッシュ</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ECS-Fargate"><span class="toc-number">3.2.</span> <span class="toc-text">ECS&#x2F;Fargate</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ストレージ"><span class="toc-number">4.</span> <span class="toc-text">ストレージ</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#EBS"><span class="toc-number">4.1.</span> <span class="toc-text">EBS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#EFS"><span class="toc-number">4.2.</span> <span class="toc-text">EFS</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Amazon-EFS（Elastic-File-System）の特徴"><span class="toc-number">4.2.1.</span> <span class="toc-text">Amazon EFS（Elastic File System）の特徴</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#パフォーマンスモードとスループットモード"><span class="toc-number">4.2.2.</span> <span class="toc-text">パフォーマンスモードとスループットモード</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FSx"><span class="toc-number">4.3.</span> <span class="toc-text">FSx</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Amazon-FSx-For-Windowsファイルサーバー"><span class="toc-number">4.3.1.</span> <span class="toc-text">Amazon FSx For Windowsファイルサーバー</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Amazon-FSx-For-Lustre"><span class="toc-number">4.3.2.</span> <span class="toc-text">Amazon FSx For Lustre</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Storage-Gateway"><span class="toc-number">4.4.</span> <span class="toc-text">Storage Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Storage-Gatewayのゲートウェイタイプ"><span class="toc-number">4.4.0.1.</span> <span class="toc-text">Storage Gatewayのゲートウェイタイプ</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
