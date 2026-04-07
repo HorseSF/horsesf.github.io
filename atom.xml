@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2024-03-12T12:36:33.925Z</updated>
+  <updated>2026-04-07T14:02:17.799Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SAP-C02 memo</title>
+    <link href="http://yoursite.com/2026/04/07/SAP-C02-memo/"/>
+    <id>http://yoursite.com/2026/04/07/SAP-C02-memo/</id>
+    <published>2026-04-07T14:00:19.000Z</published>
+    <updated>2026-04-07T14:02:17.799Z</updated>
+    
+    <content type="html"><![CDATA[<p>AWS SAP-C02 memo</p><a id="more"></a>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;AWS SAP-C02 memo&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="AWS SAP-C02 memo" scheme="http://yoursite.com/tags/AWS-SAP-C02-memo/"/>
+    
+  </entry>
   
   <entry>
     <title>AWS Certified Solutions Architect-Professional(SAP-02)</title>
