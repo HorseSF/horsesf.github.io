@@ -16,7 +16,7 @@
 <meta property="og:description" content="服务 频度    Amazon AppFlow    AWS AppSync    Amazon EventBridge    Amazon MQ    Amazon SNS    Amazon SQS    AWS Step Functions">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2026-04-11T11:33:38.000Z">
-<meta property="article:modified_time" content="2026-04-11T11:50:14.469Z">
+<meta property="article:modified_time" content="2026-04-11T12:55:44.640Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -212,6 +212,121 @@
 <a id="more"></a>
 
 <hr>
+<h2 id="🚀-AppSync-vs-API-Gateway-vs-ALB（终极三选一）"><a href="#🚀-AppSync-vs-API-Gateway-vs-ALB（终极三选一）" class="headerlink" title="🚀 AppSync vs API Gateway vs ALB（终极三选一）"></a>🚀 AppSync vs API Gateway vs ALB（终极三选一）</h2><hr>
+<h2 id="🧠-一句话总览"><a href="#🧠-一句话总览" class="headerlink" title="🧠 一句话总览"></a>🧠 一句话总览</h2><ul>
+<li>AppSync 👉 GraphQL（数据聚合）</li>
+<li>API Gateway 👉 REST API 管理</li>
+<li>ALB 👉 HTTP/HTTPS 流量转发（负载均衡）</li>
+</ul>
+<hr>
+<h2 id="📊-核心对比表（必背）"><a href="#📊-核心对比表（必背）" class="headerlink" title="📊 核心对比表（必背）"></a>📊 核心对比表（必背）</h2><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>AppSync</th>
+<th>API Gateway</th>
+<th>ALB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>GraphQL API</td>
+<td>REST / HTTP API</td>
+<td>负载均衡器</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>数据聚合</td>
+<td>API 管理</td>
+<td>流量分发</td>
+</tr>
+<tr>
+<td>是否 API 层</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌（网络层/传输层上层）</td>
+</tr>
+<tr>
+<td>后端支持</td>
+<td>Lambda / DynamoDB</td>
+<td>Lambda / HTTP</td>
+<td>EC2 / ECS / IP</td>
+</tr>
+<tr>
+<td>实时能力</td>
+<td>原生支持（订阅）</td>
+<td>WebSocket（需配置）</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>路由能力</td>
+<td>GraphQL 查询</td>
+<td>URL / Method</td>
+<td>Path / Host</td>
+</tr>
+<tr>
+<td>使用复杂度</td>
+<td>高</td>
+<td>中</td>
+<td>低</td>
+</tr>
+<tr>
+<td>典型用户</td>
+<td>前端（Web/Mobile）</td>
+<td>后端 API</td>
+<td>运维 / 架构</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-使用场景（考试重点）"><a href="#🚀-使用场景（考试重点）" class="headerlink" title="🚀 使用场景（考试重点）"></a>🚀 使用场景（考试重点）</h2><hr>
+<h3 id="✅-选-AppSync（GraphQL）"><a href="#✅-选-AppSync（GraphQL）" class="headerlink" title="✅ 选 AppSync（GraphQL）"></a>✅ 选 AppSync（GraphQL）</h3><ul>
+<li>前端需要 <strong>一次获取多个数据</strong></li>
+<li>微服务数据聚合</li>
+<li>实时订阅（WebSocket）</li>
+<li>移动端 / 离线同步</li>
+</ul>
+<hr>
+<h3 id="✅-选-API-Gateway（REST）"><a href="#✅-选-API-Gateway（REST）" class="headerlink" title="✅ 选 API Gateway（REST）"></a>✅ 选 API Gateway（REST）</h3><ul>
+<li>标准 API（CRUD）</li>
+<li>微服务 API 层</li>
+<li>与 Lambda / HTTP 集成</li>
+<li>需要认证 / 限流 / API 管理</li>
+</ul>
+<hr>
+<h3 id="✅-选-ALB（负载均衡）"><a href="#✅-选-ALB（负载均衡）" class="headerlink" title="✅ 选 ALB（负载均衡）"></a>✅ 选 ALB（负载均衡）</h3><ul>
+<li>HTTP/HTTPS 流量分发</li>
+<li>后端是：<ul>
+<li>EC2</li>
+<li>ECS / 容器</li>
+</ul>
+</li>
+<li>Path / Host 路由</li>
+</ul>
+<hr>
+<h2 id="🧱-架构对比"><a href="#🧱-架构对比" class="headerlink" title="🧱 架构对比"></a>🧱 架构对比</h2><hr>
+<h3 id="📌-AppSync（数据聚合）"><a href="#📌-AppSync（数据聚合）" class="headerlink" title="📌 AppSync（数据聚合）"></a>📌 AppSync（数据聚合）</h3><p>Frontend<br>  ↓<br>AppSync（GraphQL）<br>  ↓<br> ├── Lambda<br> ├── DynamoDB<br> ├── HTTP</p>
+<hr>
+<h3 id="📌-API-Gateway（API层）"><a href="#📌-API-Gateway（API层）" class="headerlink" title="📌 API Gateway（API层）"></a>📌 API Gateway（API层）</h3><p>Client<br>  ↓<br>API Gateway<br>  ↓<br> ├── Lambda<br> ├── HTTP Backend<br> ├── AWS Service</p>
+<hr>
+<h3 id="📌-ALB（负载均衡）"><a href="#📌-ALB（负载均衡）" class="headerlink" title="📌 ALB（负载均衡）"></a>📌 ALB（负载均衡）</h3><p>Client<br>  ↓<br>ALB<br>  ↓<br> ├── EC2<br> ├── ECS<br> ├── Containers</p>
+<hr>
+<h2 id="⚠️-高频陷阱"><a href="#⚠️-高频陷阱" class="headerlink" title="⚠️ 高频陷阱"></a>⚠️ 高频陷阱</h2><hr>
+<h3 id="❌-ALB-API-管理"><a href="#❌-ALB-API-管理" class="headerlink" title="❌ ALB = API 管理"></a>❌ ALB = API 管理</h3><p>→ 错（只是转发流量）</p>
+<hr>
+<h3 id="❌-AppSync-API-Gateway-替代"><a href="#❌-AppSync-API-Gateway-替代" class="headerlink" title="❌ AppSync = API Gateway 替代"></a>❌ AppSync = API Gateway 替代</h3><p>→ 错（用途不同）</p>
+<hr>
+<h3 id="❌-API-Gateway-只能-REST"><a href="#❌-API-Gateway-只能-REST" class="headerlink" title="❌ API Gateway 只能 REST"></a>❌ API Gateway 只能 REST</h3><p>→ 错（也支持 WebSocket）</p>
+<hr>
+<h3 id="❌-用-AppSync-做简单-API"><a href="#❌-用-AppSync-做简单-API" class="headerlink" title="❌ 用 AppSync 做简单 API"></a>❌ 用 AppSync 做简单 API</h3><p>→ 过度设计</p>
+<hr>
+<h2 id="🧠-秒杀口诀（最重要）"><a href="#🧠-秒杀口诀（最重要）" class="headerlink" title="🧠 秒杀口诀（最重要）"></a>🧠 秒杀口诀（最重要）</h2><hr>
+<h3 id="🔥-GraphQL-聚合-实时"><a href="#🔥-GraphQL-聚合-实时" class="headerlink" title="🔥 GraphQL / 聚合 / 实时"></a>🔥 GraphQL / 聚合 / 实时</h3><p>→ AppSync</p>
+<hr>
+<h3 id="⚡-REST-API-管理-Lambda"><a href="#⚡-REST-API-管理-Lambda" class="headerlink" title="⚡ REST / API 管理 / Lambda"></a>⚡ REST / API 管理 / Lambda</h3><p>→ API Gateway</p>
+<hr>
+<h3 id="🌐-EC2-容器-路由流量"><a href="#🌐-EC2-容器-路由流量" class="headerlink" title="🌐 EC2 / 容器 / 路由流量"></a>🌐 EC2 / 容器 / 路由流量</h3><p>→ ALB</p>
+<hr>
+<h2 id="🧾-一句话总结"><a href="#🧾-一句话总结" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 AppSync = 数据聚合（GraphQL）<br>👉 API Gateway = API 管理（REST）<br>👉 ALB = 流量分发（负载均衡）  </p>
 
       
 
@@ -322,7 +437,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-AppSync-vs-API-Gateway-vs-ALB（终极三选一）"><span class="toc-number">1.</span> <span class="toc-text">🚀 AppSync vs API Gateway vs ALB（终极三选一）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一句话总览"><span class="toc-number">2.</span> <span class="toc-text">🧠 一句话总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📊-核心对比表（必背）"><span class="toc-number">3.</span> <span class="toc-text">📊 核心对比表（必背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-使用场景（考试重点）"><span class="toc-number">4.</span> <span class="toc-text">🚀 使用场景（考试重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-AppSync（GraphQL）"><span class="toc-number">4.1.</span> <span class="toc-text">✅ 选 AppSync（GraphQL）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-API-Gateway（REST）"><span class="toc-number">4.2.</span> <span class="toc-text">✅ 选 API Gateway（REST）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-ALB（负载均衡）"><span class="toc-number">4.3.</span> <span class="toc-text">✅ 选 ALB（负载均衡）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧱-架构对比"><span class="toc-number">5.</span> <span class="toc-text">🧱 架构对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-AppSync（数据聚合）"><span class="toc-number">5.1.</span> <span class="toc-text">📌 AppSync（数据聚合）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-API-Gateway（API层）"><span class="toc-number">5.2.</span> <span class="toc-text">📌 API Gateway（API层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-ALB（负载均衡）"><span class="toc-number">5.3.</span> <span class="toc-text">📌 ALB（负载均衡）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱"><span class="toc-number">6.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-ALB-API-管理"><span class="toc-number">6.1.</span> <span class="toc-text">❌ ALB &#x3D; API 管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-AppSync-API-Gateway-替代"><span class="toc-number">6.2.</span> <span class="toc-text">❌ AppSync &#x3D; API Gateway 替代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-API-Gateway-只能-REST"><span class="toc-number">6.3.</span> <span class="toc-text">❌ API Gateway 只能 REST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-用-AppSync-做简单-API"><span class="toc-number">6.4.</span> <span class="toc-text">❌ 用 AppSync 做简单 API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-秒杀口诀（最重要）"><span class="toc-number">7.</span> <span class="toc-text">🧠 秒杀口诀（最重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-GraphQL-聚合-实时"><span class="toc-number">7.1.</span> <span class="toc-text">🔥 GraphQL &#x2F; 聚合 &#x2F; 实时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-REST-API-管理-Lambda"><span class="toc-number">7.2.</span> <span class="toc-text">⚡ REST &#x2F; API 管理 &#x2F; Lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌐-EC2-容器-路由流量"><span class="toc-number">7.3.</span> <span class="toc-text">🌐 EC2 &#x2F; 容器 &#x2F; 路由流量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">8.</span> <span class="toc-text">🧾 一句话总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
