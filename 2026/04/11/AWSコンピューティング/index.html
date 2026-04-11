@@ -16,7 +16,7 @@
 <meta property="og:description" content="服务 频度    AWS App Runner    AWS Auto Scaling    AWS Batch    AWS Elastic Beanstalk    Amazon EC2 ★★★★★   Amazon EC2 Auto Scaling ★★★★★   AWS Fargate ★★★★   AWS Lambda ★★★★★   Amazon Lightsail    AWS">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2026-04-11T11:34:27.000Z">
-<meta property="article:modified_time" content="2026-04-11T11:50:09.614Z">
+<meta property="article:modified_time" content="2026-04-11T12:26:44.070Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -228,6 +228,90 @@
 <a id="more"></a>
 
 <hr>
+<h2 id="🚀-Placement-Group-三种类型总结（SAP-秒杀）"><a href="#🚀-Placement-Group-三种类型总结（SAP-秒杀）" class="headerlink" title="🚀 Placement Group 三种类型总结（SAP 秒杀）"></a>🚀 Placement Group 三种类型总结（SAP 秒杀）</h2><hr>
+<h2 id="🧠-一、总览（必须背）"><a href="#🧠-一、总览（必须背）" class="headerlink" title="🧠 一、总览（必须背）"></a>🧠 一、总览（必须背）</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>目标</th>
+<th>关键词</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cluster</td>
+<td>低延迟 / 高带宽</td>
+<td>HPC</td>
+</tr>
+<tr>
+<td>Spread</td>
+<td>高可用</td>
+<td>单点隔离</td>
+</tr>
+<tr>
+<td>Partition</td>
+<td>大规模分布</td>
+<td>容错</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-二、逐个理解"><a href="#🚀-二、逐个理解" class="headerlink" title="🚀 二、逐个理解"></a>🚀 二、逐个理解</h2><hr>
+<h3 id="🔥-1-Cluster-Placement-Group（集群）"><a href="#🔥-1-Cluster-Placement-Group（集群）" class="headerlink" title="🔥 1. Cluster Placement Group（集群）"></a>🔥 1. Cluster Placement Group（集群）</h3><h4 id="📌-特点"><a href="#📌-特点" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>实例在同一物理网络</li>
+<li>超低延迟</li>
+<li>高带宽</li>
+</ul>
+<h4 id="🎯-场景"><a href="#🎯-场景" class="headerlink" title="🎯 场景"></a>🎯 场景</h4><ul>
+<li>HPC（高性能计算）</li>
+<li>MPI</li>
+<li>紧密耦合系统</li>
+<li>EFA = HPC 专用“高速网卡”</li>
+</ul>
+<h4 id="⚠️-注意"><a href="#⚠️-注意" class="headerlink" title="⚠️ 注意"></a>⚠️ 注意</h4><ul>
+<li>通常在 <strong>同一 AZ</strong></li>
+<li>不适合高可用</li>
+</ul>
+<hr>
+<h3 id="🛡️-2-Spread-Placement-Group（分散）"><a href="#🛡️-2-Spread-Placement-Group（分散）" class="headerlink" title="🛡️ 2. Spread Placement Group（分散）"></a>🛡️ 2. Spread Placement Group（分散）</h3><h4 id="📌-特点-1"><a href="#📌-特点-1" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>每个实例在不同硬件</li>
+<li>避免单点故障</li>
+</ul>
+<h4 id="🎯-场景-1"><a href="#🎯-场景-1" class="headerlink" title="🎯 场景"></a>🎯 场景</h4><ul>
+<li>关键节点（DB / 主节点）</li>
+<li>少量实例（≤7）</li>
+</ul>
+<h4 id="⚠️-限制"><a href="#⚠️-限制" class="headerlink" title="⚠️ 限制"></a>⚠️ 限制</h4><ul>
+<li>实例数量有限</li>
+</ul>
+<hr>
+<h3 id="🧱-3-Partition-Placement-Group（分区）"><a href="#🧱-3-Partition-Placement-Group（分区）" class="headerlink" title="🧱 3. Partition Placement Group（分区）"></a>🧱 3. Partition Placement Group（分区）</h3><h4 id="📌-特点-2"><a href="#📌-特点-2" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>分成多个 partition</li>
+<li>每个 partition 在不同硬件组</li>
+</ul>
+<h4 id="🎯-场景-2"><a href="#🎯-场景-2" class="headerlink" title="🎯 场景"></a>🎯 场景</h4><ul>
+<li>大规模集群（Hadoop / Kafka）</li>
+<li>容错设计</li>
+</ul>
+<h4 id="⚠️-优点"><a href="#⚠️-优点" class="headerlink" title="⚠️ 优点"></a>⚠️ 优点</h4><ul>
+<li>单 partition 故障不影响其他</li>
+</ul>
+<hr>
+<h2 id="🧠-三、秒杀判断口诀"><a href="#🧠-三、秒杀判断口诀" class="headerlink" title="🧠 三、秒杀判断口诀"></a>🧠 三、秒杀判断口诀</h2><hr>
+<h3 id="🔥-HPC-低延迟"><a href="#🔥-HPC-低延迟" class="headerlink" title="🔥 HPC / 低延迟"></a>🔥 HPC / 低延迟</h3><p>→ Cluster</p>
+<hr>
+<h3 id="🛡️-避免单点故障"><a href="#🛡️-避免单点故障" class="headerlink" title="🛡️ 避免单点故障"></a>🛡️ 避免单点故障</h3><p>→ Spread</p>
+<hr>
+<h3 id="🧱-大规模分布-容错"><a href="#🧱-大规模分布-容错" class="headerlink" title="🧱 大规模分布 / 容错"></a>🧱 大规模分布 / 容错</h3><p>→ Partition</p>
+<hr>
+<h2 id="⚠️-高频陷阱"><a href="#⚠️-高频陷阱" class="headerlink" title="⚠️ 高频陷阱"></a>⚠️ 高频陷阱</h2><hr>
+<h3 id="❌-HPC-选-Spread"><a href="#❌-HPC-选-Spread" class="headerlink" title="❌ HPC 选 Spread"></a>❌ HPC 选 Spread</h3><p>→ 错（没有低延迟）</p>
+<hr>
+<h3 id="❌-高可用选-Cluster"><a href="#❌-高可用选-Cluster" class="headerlink" title="❌ 高可用选 Cluster"></a>❌ 高可用选 Cluster</h3><p>→ 错（同一硬件风险）</p>
+<hr>
+<h3 id="❌-小规模用-Partition"><a href="#❌-小规模用-Partition" class="headerlink" title="❌ 小规模用 Partition"></a>❌ 小规模用 Partition</h3><p>→ 没必要</p>
+<hr>
+<h2 id="🧾-一句话总结"><a href="#🧾-一句话总结" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 Cluster = 性能<br>👉 Spread = 高可用<br>👉 Partition = 大规模容错  </p>
+<p>EC2 集群（计算）<br>   +<br>EFA（高速通信）<br>   +<br>FSx for Lustre（高速存储）<br>   +<br>Cluster Placement Group（低延迟网络）</p>
+<hr>
 
       
 
@@ -338,7 +422,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-Placement-Group-三种类型总结（SAP-秒杀）"><span class="toc-number">1.</span> <span class="toc-text">🚀 Placement Group 三种类型总结（SAP 秒杀）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一、总览（必须背）"><span class="toc-number">2.</span> <span class="toc-text">🧠 一、总览（必须背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-二、逐个理解"><span class="toc-number">3.</span> <span class="toc-text">🚀 二、逐个理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-1-Cluster-Placement-Group（集群）"><span class="toc-number">3.1.</span> <span class="toc-text">🔥 1. Cluster Placement Group（集群）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点"><span class="toc-number">3.1.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景"><span class="toc-number">3.1.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⚠️-注意"><span class="toc-number">3.1.3.</span> <span class="toc-text">⚠️ 注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🛡️-2-Spread-Placement-Group（分散）"><span class="toc-number">3.2.</span> <span class="toc-text">🛡️ 2. Spread Placement Group（分散）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⚠️-限制"><span class="toc-number">3.2.3.</span> <span class="toc-text">⚠️ 限制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧱-3-Partition-Placement-Group（分区）"><span class="toc-number">3.3.</span> <span class="toc-text">🧱 3. Partition Placement Group（分区）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⚠️-优点"><span class="toc-number">3.3.3.</span> <span class="toc-text">⚠️ 优点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-三、秒杀判断口诀"><span class="toc-number">4.</span> <span class="toc-text">🧠 三、秒杀判断口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-HPC-低延迟"><span class="toc-number">4.1.</span> <span class="toc-text">🔥 HPC &#x2F; 低延迟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🛡️-避免单点故障"><span class="toc-number">4.2.</span> <span class="toc-text">🛡️ 避免单点故障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧱-大规模分布-容错"><span class="toc-number">4.3.</span> <span class="toc-text">🧱 大规模分布 &#x2F; 容错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱"><span class="toc-number">5.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-HPC-选-Spread"><span class="toc-number">5.1.</span> <span class="toc-text">❌ HPC 选 Spread</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-高可用选-Cluster"><span class="toc-number">5.2.</span> <span class="toc-text">❌ 高可用选 Cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-小规模用-Partition"><span class="toc-number">5.3.</span> <span class="toc-text">❌ 小规模用 Partition</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">6.</span> <span class="toc-text">🧾 一句话总结</span></a></li></ol>
                     </div>
                 </span>
             </div>

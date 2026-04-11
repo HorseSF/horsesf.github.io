@@ -16,7 +16,7 @@
 <meta property="og:description" content="服务 频度    Amazon CloudFront ★★★★   AWS Direct Connect ★★★★   ELB ★★★★★   AWS PrivateLink ★★★★   Amazon Route 53 ★★★★★   AWS Transit Gateway ★★★★★   Amazon VPC ★★★★★   AWS VPN">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2026-04-11T11:37:06.000Z">
-<meta property="article:modified_time" content="2026-04-11T11:49:53.218Z">
+<meta property="article:modified_time" content="2026-04-11T12:26:57.078Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -216,6 +216,447 @@
 <a id="more"></a>
 
 <hr>
+<h2 id="🌐-VPC-连接方式全景总结"><a href="#🌐-VPC-连接方式全景总结" class="headerlink" title="🌐 VPC 连接方式全景总结"></a>🌐 VPC 连接方式全景总结</h2><hr>
+<h2 id="🧠-一、总览（先记分类）"><a href="#🧠-一、总览（先记分类）" class="headerlink" title="🧠 一、总览（先记分类）"></a>🧠 一、总览（先记分类）</h2><h3 id="🔗-VPC-之间连接"><a href="#🔗-VPC-之间连接" class="headerlink" title="🔗 VPC 之间连接"></a>🔗 VPC 之间连接</h3><ul>
+<li>VPC Peering</li>
+<li>Transit Gateway（TGW）</li>
+</ul>
+<h3 id="🏢-混合云-本地连接"><a href="#🏢-混合云-本地连接" class="headerlink" title="🏢 混合云 / 本地连接"></a>🏢 混合云 / 本地连接</h3><ul>
+<li>Site-to-Site VPN</li>
+<li>Client VPN</li>
+<li>Direct Connect（DX）</li>
+</ul>
+<h3 id="🔒-私有服务访问"><a href="#🔒-私有服务访问" class="headerlink" title="🔒 私有服务访问"></a>🔒 私有服务访问</h3><ul>
+<li>PrivateLink（VPC Endpoint）</li>
+</ul>
+<h3 id="🌍-公网访问"><a href="#🌍-公网访问" class="headerlink" title="🌍 公网访问"></a>🌍 公网访问</h3><ul>
+<li>Internet Gateway（IGW）</li>
+<li>NAT Gateway</li>
+</ul>
+<hr>
+<h2 id="🚀-二、逐个击破（考试重点）"><a href="#🚀-二、逐个击破（考试重点）" class="headerlink" title="🚀 二、逐个击破（考试重点）"></a>🚀 二、逐个击破（考试重点）</h2><hr>
+<h3 id="🔗-1-VPC-Peering（点对点）"><a href="#🔗-1-VPC-Peering（点对点）" class="headerlink" title="🔗 1. VPC Peering（点对点）"></a>🔗 1. VPC Peering（点对点）</h3><h4 id="📌-特点"><a href="#📌-特点" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>一对一连接</li>
+<li>低延迟</li>
+<li>不支持跨区域传递路由（无 transitive）</li>
+</ul>
+<h4 id="❗-限制"><a href="#❗-限制" class="headerlink" title="❗ 限制"></a>❗ 限制</h4><ul>
+<li>不可传递（A-B, B-C → A-C ❌）</li>
+<li>大规模复杂网络难维护</li>
+</ul>
+<h4 id="🧠-秒杀场景"><a href="#🧠-秒杀场景" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>少量 VPC 互通 → Peering</li>
+</ul>
+<hr>
+<h3 id="🌐-2-Transit-Gateway（核心必考）"><a href="#🌐-2-Transit-Gateway（核心必考）" class="headerlink" title="🌐 2. Transit Gateway（核心必考）"></a>🌐 2. Transit Gateway（核心必考）</h3><h4 id="📌-特点-1"><a href="#📌-特点-1" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>Hub-and-Spoke（中心化）</li>
+<li>支持上百 VPC</li>
+<li>支持 VPN / DX 接入</li>
+</ul>
+<h4 id="✅-优点"><a href="#✅-优点" class="headerlink" title="✅ 优点"></a>✅ 优点</h4><ul>
+<li>支持路由传递（transitive）</li>
+<li>简化网络架构</li>
+</ul>
+<h4 id="🧠-秒杀场景-1"><a href="#🧠-秒杀场景-1" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>多 VPC 互通 → TGW</li>
+<li>企业级网络 → TGW</li>
+</ul>
+<hr>
+<h3 id="🔒-3-PrivateLink（私有服务访问）"><a href="#🔒-3-PrivateLink（私有服务访问）" class="headerlink" title="🔒 3. PrivateLink（私有服务访问）"></a>🔒 3. PrivateLink（私有服务访问）</h3><h4 id="📌-特点-2"><a href="#📌-特点-2" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>通过 Endpoint 访问服务</li>
+<li>不暴露 VPC</li>
+<li>单向访问（Client → Service）</li>
+</ul>
+<h4 id="❗-限制-1"><a href="#❗-限制-1" class="headerlink" title="❗ 限制"></a>❗ 限制</h4><ul>
+<li>不是网络互通</li>
+<li>不能访问整个 VPC</li>
+</ul>
+<h4 id="🧠-秒杀场景-2"><a href="#🧠-秒杀场景-2" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>跨账户访问服务 → PrivateLink</li>
+<li>高安全隔离 → PrivateLink</li>
+</ul>
+<hr>
+<h3 id="🏢-4-Site-to-Site-VPN（本地互通）"><a href="#🏢-4-Site-to-Site-VPN（本地互通）" class="headerlink" title="🏢 4. Site-to-Site VPN（本地互通）"></a>🏢 4. Site-to-Site VPN（本地互通）</h3><h4 id="📌-特点-3"><a href="#📌-特点-3" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>本地数据中心 ↔ AWS</li>
+<li>基于公网（IPSec）</li>
+</ul>
+<h4 id="❗-特点"><a href="#❗-特点" class="headerlink" title="❗ 特点"></a>❗ 特点</h4><ul>
+<li>成本低</li>
+<li>延迟较高（走公网）</li>
+</ul>
+<h4 id="🧠-秒杀场景-3"><a href="#🧠-秒杀场景-3" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>快速建立混合云 → VPN</li>
+</ul>
+<hr>
+<h3 id="👤-5-Client-VPN（用户接入）"><a href="#👤-5-Client-VPN（用户接入）" class="headerlink" title="👤 5. Client VPN（用户接入）"></a>👤 5. Client VPN（用户接入）</h3><h4 id="📌-特点-4"><a href="#📌-特点-4" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>用户设备 → AWS</li>
+<li>远程办公</li>
+</ul>
+<h4 id="🧠-秒杀场景-4"><a href="#🧠-秒杀场景-4" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>员工访问 VPC → Client VPN</li>
+</ul>
+<hr>
+<h3 id="⚡-6-Direct-Connect（专线）"><a href="#⚡-6-Direct-Connect（专线）" class="headerlink" title="⚡ 6. Direct Connect（专线）"></a>⚡ 6. Direct Connect（专线）</h3><h4 id="📌-特点-5"><a href="#📌-特点-5" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>专线连接 AWS</li>
+<li>稳定 / 低延迟</li>
+</ul>
+<h4 id="❗-成本高"><a href="#❗-成本高" class="headerlink" title="❗ 成本高"></a>❗ 成本高</h4><h4 id="🧠-秒杀场景-5"><a href="#🧠-秒杀场景-5" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>企业级混合云 → DX</li>
+<li>稳定带宽需求 → DX</li>
+</ul>
+<hr>
+<h3 id="🌍-7-Internet-Gateway（公网入口）"><a href="#🌍-7-Internet-Gateway（公网入口）" class="headerlink" title="🌍 7. Internet Gateway（公网入口）"></a>🌍 7. Internet Gateway（公网入口）</h3><h4 id="📌-特点-6"><a href="#📌-特点-6" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>VPC 访问互联网</li>
+<li>公网 IP</li>
+</ul>
+<hr>
+<h3 id="🔄-8-NAT-Gateway（私网出网）"><a href="#🔄-8-NAT-Gateway（私网出网）" class="headerlink" title="🔄 8. NAT Gateway（私网出网）"></a>🔄 8. NAT Gateway（私网出网）</h3><h4 id="📌-特点-7"><a href="#📌-特点-7" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>私有子网访问互联网</li>
+<li>不允许入站</li>
+</ul>
+<hr>
+<h2 id="🧠-三、终极秒杀口诀"><a href="#🧠-三、终极秒杀口诀" class="headerlink" title="🧠 三、终极秒杀口诀"></a>🧠 三、终极秒杀口诀</h2><hr>
+<h3 id="🔗-VPC-互通"><a href="#🔗-VPC-互通" class="headerlink" title="🔗 VPC 互通"></a>🔗 VPC 互通</h3><ul>
+<li>少量 VPC → Peering</li>
+<li>大规模 → TGW</li>
+</ul>
+<hr>
+<h3 id="🔒-私有访问"><a href="#🔒-私有访问" class="headerlink" title="🔒 私有访问"></a>🔒 私有访问</h3><ul>
+<li>访问服务 → PrivateLink</li>
+<li>访问整个 VPC → TGW / Peering</li>
+</ul>
+<hr>
+<h3 id="🏢-混合云"><a href="#🏢-混合云" class="headerlink" title="🏢 混合云"></a>🏢 混合云</h3><ul>
+<li>快速 / 便宜 → VPN</li>
+<li>稳定 / 高性能 → Direct Connect</li>
+</ul>
+<hr>
+<h3 id="👤-用户访问"><a href="#👤-用户访问" class="headerlink" title="👤 用户访问"></a>👤 用户访问</h3><ul>
+<li>员工接入 → Client VPN</li>
+</ul>
+<hr>
+<h3 id="🌍-出网"><a href="#🌍-出网" class="headerlink" title="🌍 出网"></a>🌍 出网</h3><ul>
+<li>公网访问 → IGW</li>
+<li>私网出网 → NAT Gateway</li>
+</ul>
+<hr>
+<h2 id="⚠️-高频混淆（必背）"><a href="#⚠️-高频混淆（必背）" class="headerlink" title="⚠️ 高频混淆（必背）"></a>⚠️ 高频混淆（必背）</h2><table>
+<thead>
+<tr>
+<th>需求</th>
+<th>正确答案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>多 VPC 互通</td>
+<td>TGW</td>
+</tr>
+<tr>
+<td>两个 VPC</td>
+<td>Peering</td>
+</tr>
+<tr>
+<td>跨账户服务访问</td>
+<td>PrivateLink</td>
+</tr>
+<tr>
+<td>访问整个 VPC</td>
+<td>TGW / Peering</td>
+</tr>
+<tr>
+<td>用户远程访问</td>
+<td>Client VPN</td>
+</tr>
+<tr>
+<td>本地机房接入</td>
+<td>VPN / DX</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧾-一句话总结"><a href="#🧾-一句话总结" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 Peering = 点对点<br>👉 TGW = 网络中枢<br>👉 PrivateLink = 访问服务<br>👉 VPN/DX = 上云通道  </p>
+<h2 id="🚀-本地资源传输到-AWS-—-全景总结"><a href="#🚀-本地资源传输到-AWS-—-全景总结" class="headerlink" title="🚀 本地资源传输到 AWS — 全景总结"></a>🚀 本地资源传输到 AWS — 全景总结</h2><hr>
+<h2 id="🧠-一、先按“数据量-amp-场景”分类"><a href="#🧠-一、先按“数据量-amp-场景”分类" class="headerlink" title="🧠 一、先按“数据量 &amp; 场景”分类"></a>🧠 一、先按“数据量 &amp; 场景”分类</h2><h3 id="📦-小规模-临时"><a href="#📦-小规模-临时" class="headerlink" title="📦 小规模 / 临时"></a>📦 小规模 / 临时</h3><ul>
+<li>Internet（公网传输）</li>
+<li>S3 API / CLI / SDK</li>
+</ul>
+<h3 id="🌐-持续连接"><a href="#🌐-持续连接" class="headerlink" title="🌐 持续连接"></a>🌐 持续连接</h3><ul>
+<li>Site-to-Site VPN</li>
+<li>Direct Connect（DX）</li>
+</ul>
+<h3 id="🚚-超大规模（TB-PB）"><a href="#🚚-超大规模（TB-PB）" class="headerlink" title="🚚 超大规模（TB~PB）"></a>🚚 超大规模（TB~PB）</h3><ul>
+<li>Snowball / Snowmobile</li>
+</ul>
+<h3 id="🔄-数据迁移服务"><a href="#🔄-数据迁移服务" class="headerlink" title="🔄 数据迁移服务"></a>🔄 数据迁移服务</h3><ul>
+<li>DataSync</li>
+<li>Storage Gateway</li>
+</ul>
+<hr>
+<h2 id="🚀-二、逐个方式解析"><a href="#🚀-二、逐个方式解析" class="headerlink" title="🚀 二、逐个方式解析"></a>🚀 二、逐个方式解析</h2><hr>
+<h3 id="🌍-1-公网传输（Internet）"><a href="#🌍-1-公网传输（Internet）" class="headerlink" title="🌍 1. 公网传输（Internet）"></a>🌍 1. 公网传输（Internet）</h3><h4 id="📌-方式"><a href="#📌-方式" class="headerlink" title="📌 方式"></a>📌 方式</h4><ul>
+<li>S3 上传（CLI / SDK / API）</li>
+<li>HTTPS</li>
+</ul>
+<h4 id="✅-特点"><a href="#✅-特点" class="headerlink" title="✅ 特点"></a>✅ 特点</h4><ul>
+<li>简单</li>
+<li>无需专线</li>
+</ul>
+<h4 id="❗-缺点"><a href="#❗-缺点" class="headerlink" title="❗ 缺点"></a>❗ 缺点</h4><ul>
+<li>慢 / 不稳定</li>
+<li>受公网影响</li>
+</ul>
+<h4 id="🧠-秒杀场景-6"><a href="#🧠-秒杀场景-6" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>小数据量 → Internet</li>
+</ul>
+<hr>
+<h3 id="🔐-2-Site-to-Site-VPN"><a href="#🔐-2-Site-to-Site-VPN" class="headerlink" title="🔐 2. Site-to-Site VPN"></a>🔐 2. Site-to-Site VPN</h3><h4 id="📌-特点-8"><a href="#📌-特点-8" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>本地数据中心 ↔ AWS</li>
+<li>IPSec 加密</li>
+<li>走公网</li>
+</ul>
+<h4 id="✅-优点-1"><a href="#✅-优点-1" class="headerlink" title="✅ 优点"></a>✅ 优点</h4><ul>
+<li>快速搭建</li>
+<li>成本低</li>
+</ul>
+<h4 id="❗-缺点-1"><a href="#❗-缺点-1" class="headerlink" title="❗ 缺点"></a>❗ 缺点</h4><ul>
+<li>带宽有限</li>
+<li>延迟较高</li>
+</ul>
+<h4 id="🧠-秒杀场景-7"><a href="#🧠-秒杀场景-7" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>快速建立混合云 → VPN</li>
+</ul>
+<hr>
+<h3 id="⚡-3-Direct-Connect（DX）"><a href="#⚡-3-Direct-Connect（DX）" class="headerlink" title="⚡ 3. Direct Connect（DX）"></a>⚡ 3. Direct Connect（DX）</h3><h4 id="📌-特点-9"><a href="#📌-特点-9" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>专线连接 AWS</li>
+<li>稳定 / 低延迟</li>
+</ul>
+<h4 id="✅-优点-2"><a href="#✅-优点-2" class="headerlink" title="✅ 优点"></a>✅ 优点</h4><ul>
+<li>高带宽（Gbps）</li>
+<li>不走公网</li>
+</ul>
+<h4 id="❗-缺点-2"><a href="#❗-缺点-2" class="headerlink" title="❗ 缺点"></a>❗ 缺点</h4><ul>
+<li>成本高</li>
+<li>部署慢</li>
+</ul>
+<h4 id="🧠-秒杀场景-8"><a href="#🧠-秒杀场景-8" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>企业级长期连接 → DX</li>
+</ul>
+<hr>
+<h3 id="🚚-4-Snow-系列（离线传输）"><a href="#🚚-4-Snow-系列（离线传输）" class="headerlink" title="🚚 4. Snow 系列（离线传输）"></a>🚚 4. Snow 系列（离线传输）</h3><h4 id="📌-包括"><a href="#📌-包括" class="headerlink" title="📌 包括"></a>📌 包括</h4><ul>
+<li>Snowball</li>
+<li>Snowmobile</li>
+</ul>
+<h4 id="✅-特点-1"><a href="#✅-特点-1" class="headerlink" title="✅ 特点"></a>✅ 特点</h4><ul>
+<li>物理设备运输数据</li>
+<li>不依赖网络</li>
+</ul>
+<h4 id="🧠-秒杀场景-9"><a href="#🧠-秒杀场景-9" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>PB级数据</li>
+<li>网络太慢</li>
+</ul>
+<hr>
+<h3 id="🔄-5-AWS-DataSync（强烈推荐）"><a href="#🔄-5-AWS-DataSync（强烈推荐）" class="headerlink" title="🔄 5. AWS DataSync（强烈推荐）"></a>🔄 5. AWS DataSync（强烈推荐）</h3><h4 id="📌-特点-10"><a href="#📌-特点-10" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>自动化数据传输</li>
+<li>高速 / 增量同步</li>
+<li>支持 NFS / SMB</li>
+</ul>
+<h4 id="✅-优点-3"><a href="#✅-优点-3" class="headerlink" title="✅ 优点"></a>✅ 优点</h4><ul>
+<li>简单</li>
+<li>高效</li>
+<li>可调度</li>
+</ul>
+<h4 id="🧠-秒杀场景-10"><a href="#🧠-秒杀场景-10" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>持续数据同步 → DataSync</li>
+</ul>
+<hr>
+<h3 id="🗄️-6-Storage-Gateway"><a href="#🗄️-6-Storage-Gateway" class="headerlink" title="🗄️ 6. Storage Gateway"></a>🗄️ 6. Storage Gateway</h3><h4 id="📌-类型"><a href="#📌-类型" class="headerlink" title="📌 类型"></a>📌 类型</h4><ul>
+<li>File Gateway</li>
+<li>Volume Gateway</li>
+<li>Tape Gateway</li>
+</ul>
+<h4 id="✅-特点-2"><a href="#✅-特点-2" class="headerlink" title="✅ 特点"></a>✅ 特点</h4><ul>
+<li>本地缓存 + 云存储</li>
+<li>无缝集成</li>
+</ul>
+<h4 id="🧠-秒杀场景-11"><a href="#🧠-秒杀场景-11" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>混合存储 → Storage Gateway</li>
+</ul>
+<hr>
+<h3 id="🚀-7-S3-Transfer-Acceleration"><a href="#🚀-7-S3-Transfer-Acceleration" class="headerlink" title="🚀 7. S3 Transfer Acceleration"></a>🚀 7. S3 Transfer Acceleration</h3><h4 id="📌-特点-11"><a href="#📌-特点-11" class="headerlink" title="📌 特点"></a>📌 特点</h4><ul>
+<li>利用 AWS 边缘节点</li>
+<li>加速上传</li>
+</ul>
+<h4 id="🧠-秒杀场景-12"><a href="#🧠-秒杀场景-12" class="headerlink" title="🧠 秒杀场景"></a>🧠 秒杀场景</h4><ul>
+<li>跨洲上传慢 → 开启加速</li>
+</ul>
+<hr>
+<h2 id="🧠-三、终极秒杀口诀-1"><a href="#🧠-三、终极秒杀口诀-1" class="headerlink" title="🧠 三、终极秒杀口诀"></a>🧠 三、终极秒杀口诀</h2><hr>
+<h3 id="📦-数据量判断"><a href="#📦-数据量判断" class="headerlink" title="📦 数据量判断"></a>📦 数据量判断</h3><ul>
+<li>小数据 → Internet</li>
+<li>TB级 → DataSync</li>
+<li>PB级 → Snowball</li>
+</ul>
+<hr>
+<h3 id="🌐-网络连接"><a href="#🌐-网络连接" class="headerlink" title="🌐 网络连接"></a>🌐 网络连接</h3><ul>
+<li>快速上线 → VPN</li>
+<li>稳定高性能 → Direct Connect</li>
+</ul>
+<hr>
+<h3 id="🔄-持续同步"><a href="#🔄-持续同步" class="headerlink" title="🔄 持续同步"></a>🔄 持续同步</h3><ul>
+<li>自动同步 → DataSync</li>
+<li>混合存储 → Storage Gateway</li>
+</ul>
+<hr>
+<h3 id="⚡-传输优化"><a href="#⚡-传输优化" class="headerlink" title="⚡ 传输优化"></a>⚡ 传输优化</h3><ul>
+<li>跨洲慢 → Transfer Acceleration</li>
+</ul>
+<hr>
+<h2 id="⚠️-高频对比（必考）"><a href="#⚠️-高频对比（必考）" class="headerlink" title="⚠️ 高频对比（必考）"></a>⚠️ 高频对比（必考）</h2><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>最优方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>快速建立连接</td>
+<td>VPN</td>
+</tr>
+<tr>
+<td>稳定低延迟</td>
+<td>Direct Connect</td>
+</tr>
+<tr>
+<td>持续同步数据</td>
+<td>DataSync</td>
+</tr>
+<tr>
+<td>PB级迁移</td>
+<td>Snowball</td>
+</tr>
+<tr>
+<td>本地文件系统上云</td>
+<td>Storage Gateway</td>
+</tr>
+<tr>
+<td>跨洲上传慢</td>
+<td>Transfer Acceleration</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧾-一句话总结-1"><a href="#🧾-一句话总结-1" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 小数据走公网<br>👉 持续同步用 DataSync<br>👉 长期连接用 DX<br>👉 超大数据用 Snow  </p>
+<hr>
+<h2 id="📌-什么是-Transit-VIF？"><a href="#📌-什么是-Transit-VIF？" class="headerlink" title="📌 什么是 Transit VIF？"></a>📌 什么是 Transit VIF？</h2><ul>
+<li>VIF = Virtual Interface（虚拟接口）</li>
+<li>Transit VIF = 连接到 <strong>Transit Gateway（TGW）</strong> 的接口</li>
+</ul>
+<p>👉 本质：<br>DX → Transit VIF → TGW → 多个 VPC</p>
+<hr>
+<h2 id="🧱-架构图（核心理解）"><a href="#🧱-架构图（核心理解）" class="headerlink" title="🧱 架构图（核心理解）"></a>🧱 架构图（核心理解）</h2><p>本地数据中心<br>   ↓<br>Direct Connect<br>   ↓<br>Transit VIF<br>   ↓<br>Transit Gateway（TGW）<br>   ↓<br>VPC-A / VPC-B / VPC-C</p>
+<hr>
+<h2 id="🚀-为什么用-Transit-VIF？"><a href="#🚀-为什么用-Transit-VIF？" class="headerlink" title="🚀 为什么用 Transit VIF？"></a>🚀 为什么用 Transit VIF？</h2><h3 id="❗-解决问题"><a href="#❗-解决问题" class="headerlink" title="❗ 解决问题"></a>❗ 解决问题</h3><p>👉 本地访问多个 VPC</p>
+<hr>
+<h3 id="❌-如果不用-Transit-VIF"><a href="#❌-如果不用-Transit-VIF" class="headerlink" title="❌ 如果不用 Transit VIF"></a>❌ 如果不用 Transit VIF</h3><ul>
+<li>每个 VPC：<br>→ 都要建 Private VIF</li>
+</ul>
+<p>👉 ❌ 不可扩展 / 很复杂</p>
+<hr>
+<h3 id="✅-使用-Transit-VIF"><a href="#✅-使用-Transit-VIF" class="headerlink" title="✅ 使用 Transit VIF"></a>✅ 使用 Transit VIF</h3><ul>
+<li>一个 Transit VIF</li>
+<li>连接 TGW</li>
+<li>TGW 连接所有 VPC</li>
+</ul>
+<p>👉 ✅ 一对多（可扩展）</p>
+<hr>
+<h2 id="🧠-对比（必考）"><a href="#🧠-对比（必考）" class="headerlink" title="🧠 对比（必考）"></a>🧠 对比（必考）</h2><hr>
+<h3 id="🔹-Private-VIF"><a href="#🔹-Private-VIF" class="headerlink" title="🔹 Private VIF"></a>🔹 Private VIF</h3><ul>
+<li>连接：DX → 单个 VPC（VGW）</li>
+<li>一对一</li>
+<li>小规模</li>
+</ul>
+<hr>
+<h3 id="🔹-Transit-VIF"><a href="#🔹-Transit-VIF" class="headerlink" title="🔹 Transit VIF"></a>🔹 Transit VIF</h3><ul>
+<li>连接：DX → TGW → 多个 VPC</li>
+<li>一对多</li>
+<li>大规模架构</li>
+</ul>
+<hr>
+<h3 id="🔹-Public-VIF"><a href="#🔹-Public-VIF" class="headerlink" title="🔹 Public VIF"></a>🔹 Public VIF</h3><ul>
+<li>访问 AWS 公共服务（S3 等）</li>
+</ul>
+<hr>
+<h2 id="🧠-秒杀判断（考试套路）"><a href="#🧠-秒杀判断（考试套路）" class="headerlink" title="🧠 秒杀判断（考试套路）"></a>🧠 秒杀判断（考试套路）</h2><hr>
+<h3 id="📌-看到这些关键词👇"><a href="#📌-看到这些关键词👇" class="headerlink" title="📌 看到这些关键词👇"></a>📌 看到这些关键词👇</h3><ul>
+<li>本地数据中心</li>
+<li>多个 VPC</li>
+<li>高扩展性</li>
+<li>简化连接</li>
+</ul>
+<p>👉 秒选：<br><strong>Transit VIF + Transit Gateway</strong></p>
+<hr>
+<h3 id="📌-如果是"><a href="#📌-如果是" class="headerlink" title="📌 如果是"></a>📌 如果是</h3><ul>
+<li>单个 VPC<br>👉 选：<br><strong>Private VIF</strong></li>
+</ul>
+<hr>
+<h2 id="⚠️-高频误区"><a href="#⚠️-高频误区" class="headerlink" title="⚠️ 高频误区"></a>⚠️ 高频误区</h2><hr>
+<h3 id="❌-Transit-VIF-TGW"><a href="#❌-Transit-VIF-TGW" class="headerlink" title="❌ Transit VIF = TGW"></a>❌ Transit VIF = TGW</h3><p>👉 错</p>
+<ul>
+<li>Transit VIF：DX接口</li>
+<li>TGW：网络枢纽</li>
+</ul>
+<hr>
+<h3 id="❌-Transit-VIF-不需要-TGW"><a href="#❌-Transit-VIF-不需要-TGW" class="headerlink" title="❌ Transit VIF 不需要 TGW"></a>❌ Transit VIF 不需要 TGW</h3><p>👉 错</p>
+<p>👉 必须搭配 TGW</p>
+<hr>
+<h3 id="❌-可以直接连-VPC"><a href="#❌-可以直接连-VPC" class="headerlink" title="❌ 可以直接连 VPC"></a>❌ 可以直接连 VPC</h3><p>👉 错</p>
+<p>👉 必须：<br>Transit VIF → TGW → VPC</p>
+<hr>
+<h2 id="🧾-一句话总结-2"><a href="#🧾-一句话总结-2" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 <strong>Transit VIF = 用 DX 把本地接入 TGW，从而访问多个 VPC</strong></p>
+<h2 id="🚀-Public-VIF-vs-Private-VIF-vs-Transit-VIF"><a href="#🚀-Public-VIF-vs-Private-VIF-vs-Transit-VIF" class="headerlink" title="🚀 Public VIF vs Private VIF vs Transit VIF"></a>🚀 Public VIF vs Private VIF vs Transit VIF</h2><pre><code>                      🏢 本地数据中心
+                            │
+                     Direct Connect
+                            │
+    ┌───────────────────────┬───────────────────────┐
+    │                       │                       │
+🌍 Public VIF          🔒 Private VIF         🌐 Transit VIF
+    │                       │                       │</code></pre><p>  AWS 公共服务              单个 VPC              Transit Gateway<br> (S3 / DynamoDB等)              │                       │<br>                                │               ┌───────┼───────┐<br>                                │               │       │       │<br>                              VPC-A          VPC-A   VPC-B   VPC-C</p>
+<hr>
+<h2 id="🧠-一、核心区别（秒杀表）"><a href="#🧠-一、核心区别（秒杀表）" class="headerlink" title="🧠 一、核心区别（秒杀表）"></a>🧠 一、核心区别（秒杀表）</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>连接目标</th>
+<th>范围</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Public VIF</td>
+<td>AWS 公共服务</td>
+<td>全局</td>
+<td>访问 S3 / DynamoDB</td>
+</tr>
+<tr>
+<td>Private VIF</td>
+<td>单个 VPC（VGW）</td>
+<td>一对一</td>
+<td>小规模连接</td>
+</tr>
+<tr>
+<td>Transit VIF</td>
+<td>Transit Gateway</td>
+<td>一对多</td>
+<td>多 VPC 架构</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="⚠️-高频陷阱"><a href="#⚠️-高频陷阱" class="headerlink" title="⚠️ 高频陷阱"></a>⚠️ 高频陷阱</h1><ul>
+<li>Public VIF ❌ 不能访问私有 VPC</li>
+<li>Private VIF ❌ 不支持多 VPC（不可扩展）</li>
+<li>Transit VIF ❌ 必须配合 TGW</li>
+</ul>
+<hr>
+<h1 id="🧾-一句话总结-3"><a href="#🧾-一句话总结-3" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h1><p>👉 Public = 访问 AWS 服务<br>👉 Private = 连一个 VPC<br>👉 Transit = 连一堆 VPC  </p>
+<hr>
 
       
 
@@ -326,7 +767,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🌐-VPC-连接方式全景总结"><span class="toc-number">1.</span> <span class="toc-text">🌐 VPC 连接方式全景总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一、总览（先记分类）"><span class="toc-number">2.</span> <span class="toc-text">🧠 一、总览（先记分类）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔗-VPC-之间连接"><span class="toc-number">2.1.</span> <span class="toc-text">🔗 VPC 之间连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🏢-混合云-本地连接"><span class="toc-number">2.2.</span> <span class="toc-text">🏢 混合云 &#x2F; 本地连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔒-私有服务访问"><span class="toc-number">2.3.</span> <span class="toc-text">🔒 私有服务访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌍-公网访问"><span class="toc-number">2.4.</span> <span class="toc-text">🌍 公网访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-二、逐个击破（考试重点）"><span class="toc-number">3.</span> <span class="toc-text">🚀 二、逐个击破（考试重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔗-1-VPC-Peering（点对点）"><span class="toc-number">3.1.</span> <span class="toc-text">🔗 1. VPC Peering（点对点）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点"><span class="toc-number">3.1.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#❗-限制"><span class="toc-number">3.1.2.</span> <span class="toc-text">❗ 限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景"><span class="toc-number">3.1.3.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌐-2-Transit-Gateway（核心必考）"><span class="toc-number">3.2.</span> <span class="toc-text">🌐 2. Transit Gateway（核心必考）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#✅-优点"><span class="toc-number">3.2.2.</span> <span class="toc-text">✅ 优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-1"><span class="toc-number">3.2.3.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔒-3-PrivateLink（私有服务访问）"><span class="toc-number">3.3.</span> <span class="toc-text">🔒 3. PrivateLink（私有服务访问）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#❗-限制-1"><span class="toc-number">3.3.2.</span> <span class="toc-text">❗ 限制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-2"><span class="toc-number">3.3.3.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🏢-4-Site-to-Site-VPN（本地互通）"><span class="toc-number">3.4.</span> <span class="toc-text">🏢 4. Site-to-Site VPN（本地互通）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-3"><span class="toc-number">3.4.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#❗-特点"><span class="toc-number">3.4.2.</span> <span class="toc-text">❗ 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-3"><span class="toc-number">3.4.3.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#👤-5-Client-VPN（用户接入）"><span class="toc-number">3.5.</span> <span class="toc-text">👤 5. Client VPN（用户接入）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-4"><span class="toc-number">3.5.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-4"><span class="toc-number">3.5.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-6-Direct-Connect（专线）"><span class="toc-number">3.6.</span> <span class="toc-text">⚡ 6. Direct Connect（专线）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-5"><span class="toc-number">3.6.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#❗-成本高"><span class="toc-number">3.6.2.</span> <span class="toc-text">❗ 成本高</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-5"><span class="toc-number">3.6.3.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌍-7-Internet-Gateway（公网入口）"><span class="toc-number">3.7.</span> <span class="toc-text">🌍 7. Internet Gateway（公网入口）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-6"><span class="toc-number">3.7.1.</span> <span class="toc-text">📌 特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔄-8-NAT-Gateway（私网出网）"><span class="toc-number">3.8.</span> <span class="toc-text">🔄 8. NAT Gateway（私网出网）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-7"><span class="toc-number">3.8.1.</span> <span class="toc-text">📌 特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-三、终极秒杀口诀"><span class="toc-number">4.</span> <span class="toc-text">🧠 三、终极秒杀口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔗-VPC-互通"><span class="toc-number">4.1.</span> <span class="toc-text">🔗 VPC 互通</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔒-私有访问"><span class="toc-number">4.2.</span> <span class="toc-text">🔒 私有访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🏢-混合云"><span class="toc-number">4.3.</span> <span class="toc-text">🏢 混合云</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#👤-用户访问"><span class="toc-number">4.4.</span> <span class="toc-text">👤 用户访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌍-出网"><span class="toc-number">4.5.</span> <span class="toc-text">🌍 出网</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频混淆（必背）"><span class="toc-number">5.</span> <span class="toc-text">⚠️ 高频混淆（必背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">6.</span> <span class="toc-text">🧾 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-本地资源传输到-AWS-—-全景总结"><span class="toc-number">7.</span> <span class="toc-text">🚀 本地资源传输到 AWS — 全景总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一、先按“数据量-amp-场景”分类"><span class="toc-number">8.</span> <span class="toc-text">🧠 一、先按“数据量 &amp; 场景”分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📦-小规模-临时"><span class="toc-number">8.1.</span> <span class="toc-text">📦 小规模 &#x2F; 临时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌐-持续连接"><span class="toc-number">8.2.</span> <span class="toc-text">🌐 持续连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🚚-超大规模（TB-PB）"><span class="toc-number">8.3.</span> <span class="toc-text">🚚 超大规模（TB~PB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔄-数据迁移服务"><span class="toc-number">8.4.</span> <span class="toc-text">🔄 数据迁移服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-二、逐个方式解析"><span class="toc-number">9.</span> <span class="toc-text">🚀 二、逐个方式解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🌍-1-公网传输（Internet）"><span class="toc-number">9.1.</span> <span class="toc-text">🌍 1. 公网传输（Internet）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-方式"><span class="toc-number">9.1.1.</span> <span class="toc-text">📌 方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#✅-特点"><span class="toc-number">9.1.2.</span> <span class="toc-text">✅ 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#❗-缺点"><span class="toc-number">9.1.3.</span> <span class="toc-text">❗ 缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-6"><span class="toc-number">9.1.4.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔐-2-Site-to-Site-VPN"><span class="toc-number">9.2.</span> <span class="toc-text">🔐 2. Site-to-Site VPN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-8"><span class="toc-number">9.2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#✅-优点-1"><span class="toc-number">9.2.2.</span> <span class="toc-text">✅ 优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#❗-缺点-1"><span class="toc-number">9.2.3.</span> <span class="toc-text">❗ 缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-7"><span class="toc-number">9.2.4.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-3-Direct-Connect（DX）"><span class="toc-number">9.3.</span> <span class="toc-text">⚡ 3. Direct Connect（DX）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-9"><span class="toc-number">9.3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#✅-优点-2"><span class="toc-number">9.3.2.</span> <span class="toc-text">✅ 优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#❗-缺点-2"><span class="toc-number">9.3.3.</span> <span class="toc-text">❗ 缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-8"><span class="toc-number">9.3.4.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🚚-4-Snow-系列（离线传输）"><span class="toc-number">9.4.</span> <span class="toc-text">🚚 4. Snow 系列（离线传输）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-包括"><span class="toc-number">9.4.1.</span> <span class="toc-text">📌 包括</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#✅-特点-1"><span class="toc-number">9.4.2.</span> <span class="toc-text">✅ 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-9"><span class="toc-number">9.4.3.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔄-5-AWS-DataSync（强烈推荐）"><span class="toc-number">9.5.</span> <span class="toc-text">🔄 5. AWS DataSync（强烈推荐）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-10"><span class="toc-number">9.5.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#✅-优点-3"><span class="toc-number">9.5.2.</span> <span class="toc-text">✅ 优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-10"><span class="toc-number">9.5.3.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🗄️-6-Storage-Gateway"><span class="toc-number">9.6.</span> <span class="toc-text">🗄️ 6. Storage Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-类型"><span class="toc-number">9.6.1.</span> <span class="toc-text">📌 类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#✅-特点-2"><span class="toc-number">9.6.2.</span> <span class="toc-text">✅ 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-11"><span class="toc-number">9.6.3.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🚀-7-S3-Transfer-Acceleration"><span class="toc-number">9.7.</span> <span class="toc-text">🚀 7. S3 Transfer Acceleration</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-11"><span class="toc-number">9.7.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-秒杀场景-12"><span class="toc-number">9.7.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-三、终极秒杀口诀-1"><span class="toc-number">10.</span> <span class="toc-text">🧠 三、终极秒杀口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📦-数据量判断"><span class="toc-number">10.1.</span> <span class="toc-text">📦 数据量判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌐-网络连接"><span class="toc-number">10.2.</span> <span class="toc-text">🌐 网络连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔄-持续同步"><span class="toc-number">10.3.</span> <span class="toc-text">🔄 持续同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-传输优化"><span class="toc-number">10.4.</span> <span class="toc-text">⚡ 传输优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频对比（必考）"><span class="toc-number">11.</span> <span class="toc-text">⚠️ 高频对比（必考）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结-1"><span class="toc-number">12.</span> <span class="toc-text">🧾 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📌-什么是-Transit-VIF？"><span class="toc-number">13.</span> <span class="toc-text">📌 什么是 Transit VIF？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧱-架构图（核心理解）"><span class="toc-number">14.</span> <span class="toc-text">🧱 架构图（核心理解）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-为什么用-Transit-VIF？"><span class="toc-number">15.</span> <span class="toc-text">🚀 为什么用 Transit VIF？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❗-解决问题"><span class="toc-number">15.1.</span> <span class="toc-text">❗ 解决问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-如果不用-Transit-VIF"><span class="toc-number">15.2.</span> <span class="toc-text">❌ 如果不用 Transit VIF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-使用-Transit-VIF"><span class="toc-number">15.3.</span> <span class="toc-text">✅ 使用 Transit VIF</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-对比（必考）"><span class="toc-number">16.</span> <span class="toc-text">🧠 对比（必考）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔹-Private-VIF"><span class="toc-number">16.1.</span> <span class="toc-text">🔹 Private VIF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔹-Transit-VIF"><span class="toc-number">16.2.</span> <span class="toc-text">🔹 Transit VIF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔹-Public-VIF"><span class="toc-number">16.3.</span> <span class="toc-text">🔹 Public VIF</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-秒杀判断（考试套路）"><span class="toc-number">17.</span> <span class="toc-text">🧠 秒杀判断（考试套路）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-看到这些关键词👇"><span class="toc-number">17.1.</span> <span class="toc-text">📌 看到这些关键词👇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-如果是"><span class="toc-number">17.2.</span> <span class="toc-text">📌 如果是</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频误区"><span class="toc-number">18.</span> <span class="toc-text">⚠️ 高频误区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Transit-VIF-TGW"><span class="toc-number">18.1.</span> <span class="toc-text">❌ Transit VIF &#x3D; TGW</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Transit-VIF-不需要-TGW"><span class="toc-number">18.2.</span> <span class="toc-text">❌ Transit VIF 不需要 TGW</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-可以直接连-VPC"><span class="toc-number">18.3.</span> <span class="toc-text">❌ 可以直接连 VPC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结-2"><span class="toc-number">19.</span> <span class="toc-text">🧾 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-Public-VIF-vs-Private-VIF-vs-Transit-VIF"><span class="toc-number">20.</span> <span class="toc-text">🚀 Public VIF vs Private VIF vs Transit VIF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一、核心区别（秒杀表）"><span class="toc-number">21.</span> <span class="toc-text">🧠 一、核心区别（秒杀表）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#⚠️-高频陷阱"><span class="toc-number"></span> <span class="toc-text">⚠️ 高频陷阱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🧾-一句话总结-3"><span class="toc-number"></span> <span class="toc-text">🧾 一句话总结</span></a>
                     </div>
                 </span>
             </div>

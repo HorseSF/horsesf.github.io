@@ -16,7 +16,7 @@
 <meta property="og:description" content="服务 频度    Amazon ECR    Amazon ECS ★★★★   Amazon ECS Anywhere    Amazon EKS ★★★★   Amazon EKS Anywhere    Amazon EKS Distro">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2026-04-11T11:34:47.000Z">
-<meta property="article:modified_time" content="2026-04-11T11:50:10.884Z">
+<meta property="article:modified_time" content="2026-04-11T12:27:04.259Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -208,6 +208,124 @@
 <a id="more"></a>
 
 <hr>
+<h1 id="📦-コンテナ"><a href="#📦-コンテナ" class="headerlink" title="📦 コンテナ"></a>📦 コンテナ</h1><table>
+<thead>
+<tr>
+<th>服务</th>
+<th>频度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Amazon ECR</td>
+<td></td>
+</tr>
+<tr>
+<td>Amazon ECS</td>
+<td>★★★★</td>
+</tr>
+<tr>
+<td>Amazon ECS Anywhere</td>
+<td></td>
+</tr>
+<tr>
+<td>Amazon EKS</td>
+<td>★★★★</td>
+</tr>
+<tr>
+<td>Amazon EKS Anywhere</td>
+<td></td>
+</tr>
+<tr>
+<td>Amazon EKS Distro</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="🚀-EC2-ECS-EKS-ECR-Fargate"><a href="#🚀-EC2-ECS-EKS-ECR-Fargate" class="headerlink" title="🚀 EC2 / ECS / EKS / ECR / Fargate"></a>🚀 EC2 / ECS / EKS / ECR / Fargate</h2><h3 id="🖥️-EC2（基础计算）"><a href="#🖥️-EC2（基础计算）" class="headerlink" title="🖥️ EC2（基础计算）"></a>🖥️ EC2（基础计算）</h3><ul>
+<li>需要完全控制（OS / 网络 / 软件） → EC2</li>
+<li>传统应用迁移（Lift &amp; Shift） → EC2</li>
+<li>自建容器集群 → EC2</li>
+<li>成本优化 → Spot / Savings Plans</li>
+</ul>
+<p>👉 关键词：完全控制 / 自管理</p>
+<hr>
+<h3 id="🐳-ECS（AWS-原生容器平台）"><a href="#🐳-ECS（AWS-原生容器平台）" class="headerlink" title="🐳 ECS（AWS 原生容器平台）"></a>🐳 ECS（AWS 原生容器平台）</h3><ul>
+<li>不需要 Kubernetes → ECS（默认优先）</li>
+<li>简单微服务 / Web 服务 → ECS</li>
+<li>与 AWS 深度集成 → ECS</li>
+<li>学习成本低 → ECS</li>
+</ul>
+<p>👉 关键词：简单 / AWS 原生 / 易用</p>
+<hr>
+<h3 id="☸️-EKS（Kubernetes）"><a href="#☸️-EKS（Kubernetes）" class="headerlink" title="☸️ EKS（Kubernetes）"></a>☸️ EKS（Kubernetes）</h3><ul>
+<li>需要 Kubernetes 标准 → EKS</li>
+<li>使用 Helm / CRD / Operator → EKS</li>
+<li>多云 / 混合云架构 → EKS</li>
+<li>高复杂微服务编排 → EKS</li>
+</ul>
+<p>👉 关键词：K8s 标准 / 高灵活 / 高复杂</p>
+<hr>
+<h3 id="📦-ECR（容器镜像仓库）"><a href="#📦-ECR（容器镜像仓库）" class="headerlink" title="📦 ECR（容器镜像仓库）"></a>📦 ECR（容器镜像仓库）</h3><ul>
+<li>存 Docker 镜像 → ECR</li>
+<li>ECS / EKS 默认镜像源 → ECR</li>
+<li>私有镜像安全管理 → ECR</li>
+</ul>
+<p>👉 关键词：镜像仓库 / Registry</p>
+<hr>
+<h3 id="⚡-Fargate（无服务器容器）"><a href="#⚡-Fargate（无服务器容器）" class="headerlink" title="⚡ Fargate（无服务器容器）"></a>⚡ Fargate（无服务器容器）</h3><ul>
+<li>不想管理服务器 → Fargate</li>
+<li>按任务付费 → Fargate</li>
+<li>自动扩缩容 → Fargate</li>
+<li>高隔离（任务级） → Fargate</li>
+</ul>
+<p>👉 关键词：Serverless / 无节点</p>
+<hr>
+<h2 id="🔄-关键组合（必考）"><a href="#🔄-关键组合（必考）" class="headerlink" title="🔄 关键组合（必考）"></a>🔄 关键组合（必考）</h2><h3 id="1️⃣-ECS-运行模式"><a href="#1️⃣-ECS-运行模式" class="headerlink" title="1️⃣ ECS 运行模式"></a>1️⃣ ECS 运行模式</h3><ul>
+<li>ECS + EC2 → 自管节点（更灵活）</li>
+<li>ECS + Fargate → 无服务器（最常考）</li>
+</ul>
+<hr>
+<h3 id="2️⃣-EKS-运行模式"><a href="#2️⃣-EKS-运行模式" class="headerlink" title="2️⃣ EKS 运行模式"></a>2️⃣ EKS 运行模式</h3><ul>
+<li>EKS + EC2 → 自管 worker node</li>
+<li>EKS + Fargate → 无节点运行 Pod</li>
+</ul>
+<hr>
+<h3 id="3️⃣-镜像流（固定套路）"><a href="#3️⃣-镜像流（固定套路）" class="headerlink" title="3️⃣ 镜像流（固定套路）"></a>3️⃣ 镜像流（固定套路）</h3><p>开发 → build → push → ECR → ECS / EKS →（EC2 或 Fargate）</p>
+<hr>
+<h2 id="🧠-秒杀判断逻辑"><a href="#🧠-秒杀判断逻辑" class="headerlink" title="🧠 秒杀判断逻辑"></a>🧠 秒杀判断逻辑</h2><h3 id="1️⃣-是否需要-Kubernetes？"><a href="#1️⃣-是否需要-Kubernetes？" class="headerlink" title="1️⃣ 是否需要 Kubernetes？"></a>1️⃣ 是否需要 Kubernetes？</h3><ul>
+<li>是 → EKS</li>
+<li>否 → ECS（默认答案）</li>
+</ul>
+<hr>
+<h3 id="2️⃣-是否要管理服务器？"><a href="#2️⃣-是否要管理服务器？" class="headerlink" title="2️⃣ 是否要管理服务器？"></a>2️⃣ 是否要管理服务器？</h3><ul>
+<li>要 → EC2 / ECS+EC2 / EKS+EC2</li>
+<li>不要 → Fargate</li>
+</ul>
+<hr>
+<h3 id="3️⃣-是否追求简单？"><a href="#3️⃣-是否追求简单？" class="headerlink" title="3️⃣ 是否追求简单？"></a>3️⃣ 是否追求简单？</h3><ul>
+<li>简单优先 → ECS</li>
+<li>标准化 / 可移植 → EKS</li>
+</ul>
+<hr>
+<h3 id="4️⃣-是否涉及容器镜像？"><a href="#4️⃣-是否涉及容器镜像？" class="headerlink" title="4️⃣ 是否涉及容器镜像？"></a>4️⃣ 是否涉及容器镜像？</h3><ul>
+<li>是 → ECR</li>
+</ul>
+<hr>
+<h2 id="⚠️-高频陷阱"><a href="#⚠️-高频陷阱" class="headerlink" title="⚠️ 高频陷阱"></a>⚠️ 高频陷阱</h2><ul>
+<li>ECS ≠ Kubernetes（很多人误选 EKS）</li>
+<li>Fargate 不能 SSH（无主机）</li>
+<li>ECR 不运行容器（只是仓库）</li>
+<li>EKS 控制面 AWS 已托管</li>
+<li>ECS 比 EKS 更简单（默认优选）</li>
+</ul>
+<hr>
+<h2 id="🧾-一句话总结"><a href="#🧾-一句话总结" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><ul>
+<li>EC2 = 自己管服务器  </li>
+<li>ECS = AWS 原生容器（简单优先）  </li>
+<li>EKS = Kubernetes（复杂 / 标准）  </li>
+<li>ECR = 存镜像  </li>
+<li>Fargate = 无服务器运行容器  </li>
+</ul>
+<hr>
 
       
 
@@ -318,7 +436,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#📦-コンテナ"><span class="toc-number">1.</span> <span class="toc-text">📦 コンテナ</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-EC2-ECS-EKS-ECR-Fargate"><span class="toc-number">1.1.</span> <span class="toc-text">🚀 EC2 &#x2F; ECS &#x2F; EKS &#x2F; ECR &#x2F; Fargate</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🖥️-EC2（基础计算）"><span class="toc-number">1.1.1.</span> <span class="toc-text">🖥️ EC2（基础计算）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🐳-ECS（AWS-原生容器平台）"><span class="toc-number">1.1.2.</span> <span class="toc-text">🐳 ECS（AWS 原生容器平台）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#☸️-EKS（Kubernetes）"><span class="toc-number">1.1.3.</span> <span class="toc-text">☸️ EKS（Kubernetes）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📦-ECR（容器镜像仓库）"><span class="toc-number">1.1.4.</span> <span class="toc-text">📦 ECR（容器镜像仓库）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-Fargate（无服务器容器）"><span class="toc-number">1.1.5.</span> <span class="toc-text">⚡ Fargate（无服务器容器）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔄-关键组合（必考）"><span class="toc-number">1.2.</span> <span class="toc-text">🔄 关键组合（必考）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1️⃣-ECS-运行模式"><span class="toc-number">1.2.1.</span> <span class="toc-text">1️⃣ ECS 运行模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2️⃣-EKS-运行模式"><span class="toc-number">1.2.2.</span> <span class="toc-text">2️⃣ EKS 运行模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3️⃣-镜像流（固定套路）"><span class="toc-number">1.2.3.</span> <span class="toc-text">3️⃣ 镜像流（固定套路）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-秒杀判断逻辑"><span class="toc-number">1.3.</span> <span class="toc-text">🧠 秒杀判断逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1️⃣-是否需要-Kubernetes？"><span class="toc-number">1.3.1.</span> <span class="toc-text">1️⃣ 是否需要 Kubernetes？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2️⃣-是否要管理服务器？"><span class="toc-number">1.3.2.</span> <span class="toc-text">2️⃣ 是否要管理服务器？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3️⃣-是否追求简单？"><span class="toc-number">1.3.3.</span> <span class="toc-text">3️⃣ 是否追求简单？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4️⃣-是否涉及容器镜像？"><span class="toc-number">1.3.4.</span> <span class="toc-text">4️⃣ 是否涉及容器镜像？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱"><span class="toc-number">1.4.</span> <span class="toc-text">⚠️ 高频陷阱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">1.5.</span> <span class="toc-text">🧾 一句话总结</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
