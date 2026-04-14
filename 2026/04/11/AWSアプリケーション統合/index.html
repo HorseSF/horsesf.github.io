@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>AWSアプリケーション統合 | HorseSF blog</title>
+  <title>AWSアプリケーション統合_2 | HorseSF blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="服务 频度    Amazon AppFlow    AWS AppSync    Amazon EventBridge    Amazon MQ    Amazon SNS    Amazon SQS    AWS Step Functions">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AWSアプリケーション統合">
+<meta property="og:title" content="AWSアプリケーション統合_2">
 <meta property="og:url" content="http://yoursite.com/2026/04/11/AWS%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E7%B5%B1%E5%90%88/index.html">
 <meta property="og:site_name" content="HorseSF blog">
 <meta property="og:description" content="服务 频度    Amazon AppFlow    AWS AppSync    Amazon EventBridge    Amazon MQ    Amazon SNS    Amazon SQS    AWS Step Functions">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2026-04-11T11:33:38.000Z">
-<meta property="article:modified_time" content="2026-04-11T12:55:44.640Z">
+<meta property="article:modified_time" content="2026-04-14T11:36:21.188Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -160,7 +160,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      AWSアプリケーション統合
+      AWSアプリケーション統合_2
     </h1>
   
 
@@ -327,6 +327,230 @@
 <h3 id="🌐-EC2-容器-路由流量"><a href="#🌐-EC2-容器-路由流量" class="headerlink" title="🌐 EC2 / 容器 / 路由流量"></a>🌐 EC2 / 容器 / 路由流量</h3><p>→ ALB</p>
 <hr>
 <h2 id="🧾-一句话总结"><a href="#🧾-一句话总结" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 AppSync = 数据聚合（GraphQL）<br>👉 API Gateway = API 管理（REST）<br>👉 ALB = 流量分发（负载均衡）  </p>
+<hr>
+<h2 id="🚀-Amazon-AppFlow（应用集成服务）"><a href="#🚀-Amazon-AppFlow（应用集成服务）" class="headerlink" title="🚀 Amazon AppFlow（应用集成服务）"></a>🚀 Amazon AppFlow（应用集成服务）</h2><hr>
+<h2 id="🧠-一句话"><a href="#🧠-一句话" class="headerlink" title="🧠 一句话"></a>🧠 一句话</h2><p>👉 AppFlow = <strong>SaaS 应用和 AWS 之间的数据传输工具</strong></p>
+<hr>
+<h2 id="🚀-一、它是干嘛的？"><a href="#🚀-一、它是干嘛的？" class="headerlink" title="🚀 一、它是干嘛的？"></a>🚀 一、它是干嘛的？</h2><p>👉 用于：</p>
+<ul>
+<li>从 SaaS 拉数据到 AWS</li>
+<li>或把 AWS 数据推送到 SaaS</li>
+</ul>
+<hr>
+<h2 id="📦-二、支持的-SaaS（重点）"><a href="#📦-二、支持的-SaaS（重点）" class="headerlink" title="📦 二、支持的 SaaS（重点）"></a>📦 二、支持的 SaaS（重点）</h2><p>👉 常见：</p>
+<ul>
+<li>Salesforce</li>
+<li>Google Analytics</li>
+<li>SAP</li>
+<li>Slack</li>
+<li>Zendesk</li>
+</ul>
+<hr>
+<h2 id="📦-三、数据流方向"><a href="#📦-三、数据流方向" class="headerlink" title="📦 三、数据流方向"></a>📦 三、数据流方向</h2><hr>
+<h3 id="🔽-SaaS-→-AWS"><a href="#🔽-SaaS-→-AWS" class="headerlink" title="🔽 SaaS → AWS"></a>🔽 SaaS → AWS</h3><p>👉 例如：</p>
+<ul>
+<li>Salesforce → S3</li>
+<li>Google Analytics → Redshift</li>
+</ul>
+<hr>
+<h3 id="🔼-AWS-→-SaaS"><a href="#🔼-AWS-→-SaaS" class="headerlink" title="🔼 AWS → SaaS"></a>🔼 AWS → SaaS</h3><p>👉 例如：</p>
+<ul>
+<li>S3 → Salesforce</li>
+</ul>
+<hr>
+<h2 id="🧠-四、核心特点"><a href="#🧠-四、核心特点" class="headerlink" title="🧠 四、核心特点"></a>🧠 四、核心特点</h2><hr>
+<h3 id="✅-1️⃣-无代码（No-code）"><a href="#✅-1️⃣-无代码（No-code）" class="headerlink" title="✅ 1️⃣ 无代码（No-code）"></a>✅ 1️⃣ 无代码（No-code）</h3><p>👉 不用写程序</p>
+<hr>
+<h3 id="✅-2️⃣-自动调度"><a href="#✅-2️⃣-自动调度" class="headerlink" title="✅ 2️⃣ 自动调度"></a>✅ 2️⃣ 自动调度</h3><p>👉 定时同步数据</p>
+<hr>
+<h3 id="✅-3️⃣-数据转换"><a href="#✅-3️⃣-数据转换" class="headerlink" title="✅ 3️⃣ 数据转换"></a>✅ 3️⃣ 数据转换</h3><p>支持：</p>
+<ul>
+<li>字段映射</li>
+<li>过滤</li>
+</ul>
+<hr>
+<h3 id="✅-4️⃣-安全"><a href="#✅-4️⃣-安全" class="headerlink" title="✅ 4️⃣ 安全"></a>✅ 4️⃣ 安全</h3><ul>
+<li>加密（KMS）</li>
+<li>私有连接（PrivateLink）</li>
+</ul>
+<hr>
+<h2 id="🚀-五、典型架构"><a href="#🚀-五、典型架构" class="headerlink" title="🚀 五、典型架构"></a>🚀 五、典型架构</h2><hr>
+<p>SaaS（Salesforce）<br>   ↓<br>AppFlow<br>   ↓<br>S3 / Redshift<br>   ↓<br>Athena / 分析</p>
+<hr>
+<h2 id="🧠-六、使用场景（必考）"><a href="#🧠-六、使用场景（必考）" class="headerlink" title="🧠 六、使用场景（必考）"></a>🧠 六、使用场景（必考）</h2><hr>
+<h3 id="✅-必选"><a href="#✅-必选" class="headerlink" title="✅ 必选"></a>✅ 必选</h3><ul>
+<li>SaaS → AWS 数据同步</li>
+<li>CRM / ERP 数据导入</li>
+<li>不想写 ETL 代码</li>
+</ul>
+<hr>
+<h3 id="❌-不适合"><a href="#❌-不适合" class="headerlink" title="❌ 不适合"></a>❌ 不适合</h3><ul>
+<li>数据库迁移（用 DMS）</li>
+<li>实时流（用 Kinesis）</li>
+<li>复杂 ETL（用 Glue）</li>
+</ul>
+<hr>
+<h2 id="⚠️-七、常见对比"><a href="#⚠️-七、常见对比" class="headerlink" title="⚠️ 七、常见对比"></a>⚠️ 七、常见对比</h2><hr>
+<h3 id="🔥-AppFlow-vs-Glue"><a href="#🔥-AppFlow-vs-Glue" class="headerlink" title="🔥 AppFlow vs Glue"></a>🔥 AppFlow vs Glue</h3><table>
+<thead>
+<tr>
+<th>AppFlow</th>
+<th>Glue</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SaaS 集成</td>
+<td>ETL</td>
+</tr>
+<tr>
+<td>无代码</td>
+<td>需要开发</td>
+</tr>
+<tr>
+<td>简单转换</td>
+<td>复杂转换</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🔥-AppFlow-vs-Data-Exchange"><a href="#🔥-AppFlow-vs-Data-Exchange" class="headerlink" title="🔥 AppFlow vs Data Exchange"></a>🔥 AppFlow vs Data Exchange</h3><table>
+<thead>
+<tr>
+<th>AppFlow</th>
+<th>Data Exchange</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据传输</td>
+<td>数据购买</td>
+</tr>
+<tr>
+<td>SaaS 数据</td>
+<td>第三方数据</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧠-八、秒杀口诀"><a href="#🧠-八、秒杀口诀" class="headerlink" title="🧠 八、秒杀口诀"></a>🧠 八、秒杀口诀</h2><hr>
+<h3 id="🔥-看到这些词-→-AppFlow"><a href="#🔥-看到这些词-→-AppFlow" class="headerlink" title="🔥 看到这些词 → AppFlow"></a>🔥 看到这些词 → AppFlow</h3><ul>
+<li>SaaS（Salesforce / SAP）</li>
+<li>数据同步</li>
+<li>无代码</li>
+<li>自动导入 S3</li>
+</ul>
+<hr>
+<h2 id="🧾-一句话总结-1"><a href="#🧾-一句话总结-1" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 AppFlow = <strong>把 SaaS 数据搬到 AWS 的无代码工具</strong></p>
+<hr>
+<h2 id="🚀-Amazon-MQ-vs-SQS-vs-SNS（消息服务三选一）"><a href="#🚀-Amazon-MQ-vs-SQS-vs-SNS（消息服务三选一）" class="headerlink" title="🚀 Amazon MQ vs SQS vs SNS（消息服务三选一）"></a>🚀 Amazon MQ vs SQS vs SNS（消息服务三选一）</h2><hr>
+<h2 id="🧠-一句话总览-1"><a href="#🧠-一句话总览-1" class="headerlink" title="🧠 一句话总览"></a>🧠 一句话总览</h2><ul>
+<li>Amazon MQ 👉 传统消息中间件（RabbitMQ / ActiveMQ）</li>
+<li>SQS 👉 队列（解耦 / 缓冲 / 重试）</li>
+<li>SNS 👉 通知（发布订阅 / 广播）</li>
+</ul>
+<hr>
+<h2 id="📊-核心对比表（必背）-1"><a href="#📊-核心对比表（必背）-1" class="headerlink" title="📊 核心对比表（必背）"></a>📊 核心对比表（必背）</h2><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>Amazon MQ</th>
+<th>SQS</th>
+<th>SNS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>消息代理（Broker）</td>
+<td>队列</td>
+<td>发布/订阅</td>
+</tr>
+<tr>
+<td>模式</td>
+<td>Queue / Topic</td>
+<td>Queue</td>
+<td>Topic</td>
+</tr>
+<tr>
+<td>消费模式</td>
+<td>推/拉</td>
+<td>拉（polling）</td>
+<td>推（push）</td>
+</tr>
+<tr>
+<td>消息保留</td>
+<td>由 Broker 控制</td>
+<td>最长14天</td>
+<td>短暂</td>
+</tr>
+<tr>
+<td>是否顺序</td>
+<td>支持</td>
+<td>FIFO 支持</td>
+<td>不保证</td>
+</tr>
+<tr>
+<td>是否广播</td>
+<td>支持（Topic）</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>管理方式</td>
+<td>需要理解 MQ</td>
+<td>Serverless</td>
+<td>Serverless</td>
+</tr>
+<tr>
+<td>适用系统</td>
+<td>传统系统</td>
+<td>云原生</td>
+<td>事件通知</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-使用场景（考试重点）-1"><a href="#🚀-使用场景（考试重点）-1" class="headerlink" title="🚀 使用场景（考试重点）"></a>🚀 使用场景（考试重点）</h2><hr>
+<h3 id="✅-选-Amazon-MQ"><a href="#✅-选-Amazon-MQ" class="headerlink" title="✅ 选 Amazon MQ"></a>✅ 选 Amazon MQ</h3><ul>
+<li>需要 RabbitMQ / ActiveMQ</li>
+<li>迁移旧系统（JMS / AMQP）</li>
+<li>已有 MQ 架构</li>
+</ul>
+<hr>
+<h3 id="✅-选-SQS"><a href="#✅-选-SQS" class="headerlink" title="✅ 选 SQS"></a>✅ 选 SQS</h3><ul>
+<li>微服务解耦</li>
+<li>异步处理</li>
+<li>削峰填谷</li>
+<li>失败重试（DLQ）</li>
+</ul>
+<hr>
+<h3 id="✅-选-SNS"><a href="#✅-选-SNS" class="headerlink" title="✅ 选 SNS"></a>✅ 选 SNS</h3><ul>
+<li>广播消息（1 → N）</li>
+<li>通知（Email / SMS）</li>
+<li>事件分发</li>
+</ul>
+<hr>
+<h2 id="🧱-架构对比-1"><a href="#🧱-架构对比-1" class="headerlink" title="🧱 架构对比"></a>🧱 架构对比</h2><hr>
+<h3 id="📌-SQS（队列）"><a href="#📌-SQS（队列）" class="headerlink" title="📌 SQS（队列）"></a>📌 SQS（队列）</h3><p>Producer<br>  ↓<br>SQS<br>  ↓<br>Consumer（一个或多个）</p>
+<p>👉 每条消息通常被一个消费者处理</p>
+<hr>
+<h3 id="📌-SNS（广播）"><a href="#📌-SNS（广播）" class="headerlink" title="📌 SNS（广播）"></a>📌 SNS（广播）</h3><p>Publisher<br>  ↓<br>SNS Topic<br>  ↓<br> ├── SQS<br> ├── Lambda<br> ├── Email</p>
+<p>👉 一条消息发给多个订阅者</p>
+<hr>
+<h3 id="📌-Amazon-MQ（Broker）"><a href="#📌-Amazon-MQ（Broker）" class="headerlink" title="📌 Amazon MQ（Broker）"></a>📌 Amazon MQ（Broker）</h3><p>App<br>  ↓<br>Amazon MQ<br>  ↓<br>Consumers</p>
+<p>👉 完整消息系统（类似 RabbitMQ）</p>
+<hr>
+<h2 id="⚠️-高频陷阱-1"><a href="#⚠️-高频陷阱-1" class="headerlink" title="⚠️ 高频陷阱"></a>⚠️ 高频陷阱</h2><hr>
+<h3 id="❌-用-SNS-做队列"><a href="#❌-用-SNS-做队列" class="headerlink" title="❌ 用 SNS 做队列"></a>❌ 用 SNS 做队列</h3><p>→ 没有持久化</p>
+<hr>
+<h3 id="❌-用-SQS-做广播"><a href="#❌-用-SQS-做广播" class="headerlink" title="❌ 用 SQS 做广播"></a>❌ 用 SQS 做广播</h3><p>→ 不支持</p>
+<hr>
+<h3 id="❌-用-MQ-做简单解耦"><a href="#❌-用-MQ-做简单解耦" class="headerlink" title="❌ 用 MQ 做简单解耦"></a>❌ 用 MQ 做简单解耦</h3><p>→ 过度设计</p>
+<hr>
+<h2 id="🧠-秒杀口诀（最重要）-1"><a href="#🧠-秒杀口诀（最重要）-1" class="headerlink" title="🧠 秒杀口诀（最重要）"></a>🧠 秒杀口诀（最重要）</h2><hr>
+<h3 id="🔥-解耦-异步-重试"><a href="#🔥-解耦-异步-重试" class="headerlink" title="🔥 解耦 / 异步 / 重试"></a>🔥 解耦 / 异步 / 重试</h3><p>→ SQS</p>
+<hr>
+<h3 id="🔥-广播-通知-Fan-out"><a href="#🔥-广播-通知-Fan-out" class="headerlink" title="🔥 广播 / 通知 / Fan-out"></a>🔥 广播 / 通知 / Fan-out</h3><p>→ SNS</p>
+<hr>
+<h3 id="🔥-RabbitMQ-ActiveMQ-迁移"><a href="#🔥-RabbitMQ-ActiveMQ-迁移" class="headerlink" title="🔥 RabbitMQ / ActiveMQ / 迁移"></a>🔥 RabbitMQ / ActiveMQ / 迁移</h3><p>→ Amazon MQ</p>
+<hr>
+<h2 id="🧾-一句话总结-2"><a href="#🧾-一句话总结-2" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 MQ = 传统系统<br>👉 SQS = 解耦队列<br>👉 SNS = 广播通知  </p>
+<hr>
 
       
 
@@ -410,7 +634,7 @@
   
   
     <a href="/2026/04/11/AWS%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">AWS分析</div>
+      <div class="article-nav-title">AWS分析_1</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -437,7 +661,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-AppSync-vs-API-Gateway-vs-ALB（终极三选一）"><span class="toc-number">1.</span> <span class="toc-text">🚀 AppSync vs API Gateway vs ALB（终极三选一）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一句话总览"><span class="toc-number">2.</span> <span class="toc-text">🧠 一句话总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📊-核心对比表（必背）"><span class="toc-number">3.</span> <span class="toc-text">📊 核心对比表（必背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-使用场景（考试重点）"><span class="toc-number">4.</span> <span class="toc-text">🚀 使用场景（考试重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-AppSync（GraphQL）"><span class="toc-number">4.1.</span> <span class="toc-text">✅ 选 AppSync（GraphQL）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-API-Gateway（REST）"><span class="toc-number">4.2.</span> <span class="toc-text">✅ 选 API Gateway（REST）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-ALB（负载均衡）"><span class="toc-number">4.3.</span> <span class="toc-text">✅ 选 ALB（负载均衡）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧱-架构对比"><span class="toc-number">5.</span> <span class="toc-text">🧱 架构对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-AppSync（数据聚合）"><span class="toc-number">5.1.</span> <span class="toc-text">📌 AppSync（数据聚合）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-API-Gateway（API层）"><span class="toc-number">5.2.</span> <span class="toc-text">📌 API Gateway（API层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-ALB（负载均衡）"><span class="toc-number">5.3.</span> <span class="toc-text">📌 ALB（负载均衡）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱"><span class="toc-number">6.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-ALB-API-管理"><span class="toc-number">6.1.</span> <span class="toc-text">❌ ALB &#x3D; API 管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-AppSync-API-Gateway-替代"><span class="toc-number">6.2.</span> <span class="toc-text">❌ AppSync &#x3D; API Gateway 替代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-API-Gateway-只能-REST"><span class="toc-number">6.3.</span> <span class="toc-text">❌ API Gateway 只能 REST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-用-AppSync-做简单-API"><span class="toc-number">6.4.</span> <span class="toc-text">❌ 用 AppSync 做简单 API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-秒杀口诀（最重要）"><span class="toc-number">7.</span> <span class="toc-text">🧠 秒杀口诀（最重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-GraphQL-聚合-实时"><span class="toc-number">7.1.</span> <span class="toc-text">🔥 GraphQL &#x2F; 聚合 &#x2F; 实时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-REST-API-管理-Lambda"><span class="toc-number">7.2.</span> <span class="toc-text">⚡ REST &#x2F; API 管理 &#x2F; Lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌐-EC2-容器-路由流量"><span class="toc-number">7.3.</span> <span class="toc-text">🌐 EC2 &#x2F; 容器 &#x2F; 路由流量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">8.</span> <span class="toc-text">🧾 一句话总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-AppSync-vs-API-Gateway-vs-ALB（终极三选一）"><span class="toc-number">1.</span> <span class="toc-text">🚀 AppSync vs API Gateway vs ALB（终极三选一）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一句话总览"><span class="toc-number">2.</span> <span class="toc-text">🧠 一句话总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📊-核心对比表（必背）"><span class="toc-number">3.</span> <span class="toc-text">📊 核心对比表（必背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-使用场景（考试重点）"><span class="toc-number">4.</span> <span class="toc-text">🚀 使用场景（考试重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-AppSync（GraphQL）"><span class="toc-number">4.1.</span> <span class="toc-text">✅ 选 AppSync（GraphQL）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-API-Gateway（REST）"><span class="toc-number">4.2.</span> <span class="toc-text">✅ 选 API Gateway（REST）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-ALB（负载均衡）"><span class="toc-number">4.3.</span> <span class="toc-text">✅ 选 ALB（负载均衡）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧱-架构对比"><span class="toc-number">5.</span> <span class="toc-text">🧱 架构对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-AppSync（数据聚合）"><span class="toc-number">5.1.</span> <span class="toc-text">📌 AppSync（数据聚合）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-API-Gateway（API层）"><span class="toc-number">5.2.</span> <span class="toc-text">📌 API Gateway（API层）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-ALB（负载均衡）"><span class="toc-number">5.3.</span> <span class="toc-text">📌 ALB（负载均衡）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱"><span class="toc-number">6.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-ALB-API-管理"><span class="toc-number">6.1.</span> <span class="toc-text">❌ ALB &#x3D; API 管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-AppSync-API-Gateway-替代"><span class="toc-number">6.2.</span> <span class="toc-text">❌ AppSync &#x3D; API Gateway 替代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-API-Gateway-只能-REST"><span class="toc-number">6.3.</span> <span class="toc-text">❌ API Gateway 只能 REST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-用-AppSync-做简单-API"><span class="toc-number">6.4.</span> <span class="toc-text">❌ 用 AppSync 做简单 API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-秒杀口诀（最重要）"><span class="toc-number">7.</span> <span class="toc-text">🧠 秒杀口诀（最重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-GraphQL-聚合-实时"><span class="toc-number">7.1.</span> <span class="toc-text">🔥 GraphQL &#x2F; 聚合 &#x2F; 实时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-REST-API-管理-Lambda"><span class="toc-number">7.2.</span> <span class="toc-text">⚡ REST &#x2F; API 管理 &#x2F; Lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌐-EC2-容器-路由流量"><span class="toc-number">7.3.</span> <span class="toc-text">🌐 EC2 &#x2F; 容器 &#x2F; 路由流量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">8.</span> <span class="toc-text">🧾 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-Amazon-AppFlow（应用集成服务）"><span class="toc-number">9.</span> <span class="toc-text">🚀 Amazon AppFlow（应用集成服务）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一句话"><span class="toc-number">10.</span> <span class="toc-text">🧠 一句话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-一、它是干嘛的？"><span class="toc-number">11.</span> <span class="toc-text">🚀 一、它是干嘛的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-二、支持的-SaaS（重点）"><span class="toc-number">12.</span> <span class="toc-text">📦 二、支持的 SaaS（重点）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-三、数据流方向"><span class="toc-number">13.</span> <span class="toc-text">📦 三、数据流方向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔽-SaaS-→-AWS"><span class="toc-number">13.1.</span> <span class="toc-text">🔽 SaaS → AWS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔼-AWS-→-SaaS"><span class="toc-number">13.2.</span> <span class="toc-text">🔼 AWS → SaaS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-四、核心特点"><span class="toc-number">14.</span> <span class="toc-text">🧠 四、核心特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-1️⃣-无代码（No-code）"><span class="toc-number">14.1.</span> <span class="toc-text">✅ 1️⃣ 无代码（No-code）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-2️⃣-自动调度"><span class="toc-number">14.2.</span> <span class="toc-text">✅ 2️⃣ 自动调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-3️⃣-数据转换"><span class="toc-number">14.3.</span> <span class="toc-text">✅ 3️⃣ 数据转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-4️⃣-安全"><span class="toc-number">14.4.</span> <span class="toc-text">✅ 4️⃣ 安全</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-五、典型架构"><span class="toc-number">15.</span> <span class="toc-text">🚀 五、典型架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-六、使用场景（必考）"><span class="toc-number">16.</span> <span class="toc-text">🧠 六、使用场景（必考）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-必选"><span class="toc-number">16.1.</span> <span class="toc-text">✅ 必选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-不适合"><span class="toc-number">16.2.</span> <span class="toc-text">❌ 不适合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-七、常见对比"><span class="toc-number">17.</span> <span class="toc-text">⚠️ 七、常见对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-AppFlow-vs-Glue"><span class="toc-number">17.1.</span> <span class="toc-text">🔥 AppFlow vs Glue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-AppFlow-vs-Data-Exchange"><span class="toc-number">17.2.</span> <span class="toc-text">🔥 AppFlow vs Data Exchange</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-八、秒杀口诀"><span class="toc-number">18.</span> <span class="toc-text">🧠 八、秒杀口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-看到这些词-→-AppFlow"><span class="toc-number">18.1.</span> <span class="toc-text">🔥 看到这些词 → AppFlow</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结-1"><span class="toc-number">19.</span> <span class="toc-text">🧾 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-Amazon-MQ-vs-SQS-vs-SNS（消息服务三选一）"><span class="toc-number">20.</span> <span class="toc-text">🚀 Amazon MQ vs SQS vs SNS（消息服务三选一）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一句话总览-1"><span class="toc-number">21.</span> <span class="toc-text">🧠 一句话总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📊-核心对比表（必背）-1"><span class="toc-number">22.</span> <span class="toc-text">📊 核心对比表（必背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-使用场景（考试重点）-1"><span class="toc-number">23.</span> <span class="toc-text">🚀 使用场景（考试重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-Amazon-MQ"><span class="toc-number">23.1.</span> <span class="toc-text">✅ 选 Amazon MQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-SQS"><span class="toc-number">23.2.</span> <span class="toc-text">✅ 选 SQS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-选-SNS"><span class="toc-number">23.3.</span> <span class="toc-text">✅ 选 SNS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧱-架构对比-1"><span class="toc-number">24.</span> <span class="toc-text">🧱 架构对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-SQS（队列）"><span class="toc-number">24.1.</span> <span class="toc-text">📌 SQS（队列）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-SNS（广播）"><span class="toc-number">24.2.</span> <span class="toc-text">📌 SNS（广播）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-Amazon-MQ（Broker）"><span class="toc-number">24.3.</span> <span class="toc-text">📌 Amazon MQ（Broker）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱-1"><span class="toc-number">25.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-用-SNS-做队列"><span class="toc-number">25.1.</span> <span class="toc-text">❌ 用 SNS 做队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-用-SQS-做广播"><span class="toc-number">25.2.</span> <span class="toc-text">❌ 用 SQS 做广播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-用-MQ-做简单解耦"><span class="toc-number">25.3.</span> <span class="toc-text">❌ 用 MQ 做简单解耦</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-秒杀口诀（最重要）-1"><span class="toc-number">26.</span> <span class="toc-text">🧠 秒杀口诀（最重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-解耦-异步-重试"><span class="toc-number">26.1.</span> <span class="toc-text">🔥 解耦 &#x2F; 异步 &#x2F; 重试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-广播-通知-Fan-out"><span class="toc-number">26.2.</span> <span class="toc-text">🔥 广播 &#x2F; 通知 &#x2F; Fan-out</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-RabbitMQ-ActiveMQ-迁移"><span class="toc-number">26.3.</span> <span class="toc-text">🔥 RabbitMQ &#x2F; ActiveMQ &#x2F; 迁移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结-2"><span class="toc-number">27.</span> <span class="toc-text">🧾 一句话总结</span></a></li></ol>
                     </div>
                 </span>
             </div>

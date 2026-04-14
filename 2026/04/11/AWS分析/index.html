@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>AWS分析 | HorseSF blog</title>
+  <title>AWS分析_1 | HorseSF blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="服务 频度    Amazon Athena ★★★   AWS Data Exchange    Amazon Data Firehose    Amazon EMR    AWS Glue ★★★   Amazon Kinesis Data Streams ★★★   AWS Lake Formation    Amazon Managed Service for Apache Flin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AWS分析">
+<meta property="og:title" content="AWS分析_1">
 <meta property="og:url" content="http://yoursite.com/2026/04/11/AWS%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="HorseSF blog">
 <meta property="og:description" content="服务 频度    Amazon Athena ★★★   AWS Data Exchange    Amazon Data Firehose    Amazon EMR    AWS Glue ★★★   Amazon Kinesis Data Streams ★★★   AWS Lake Formation    Amazon Managed Service for Apache Flin">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2026-04-11T11:33:14.000Z">
-<meta property="article:modified_time" content="2026-04-11T12:27:16.047Z">
+<meta property="article:modified_time" content="2026-04-14T11:28:53.842Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -160,7 +160,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      AWS分析
+      AWS分析_1
     </h1>
   
 
@@ -482,6 +482,208 @@
 <hr>
 <h2 id="🧾-一句话总结-1"><a href="#🧾-一句话总结-1" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 Streams = 原始数据流<br>👉 Firehose = 自动落地<br>👉 Analytics = 实时分析  </p>
 <hr>
+<h2 id="🚀-Amazon-MSK（Managed-Streaming-for-Apache-Kafka）"><a href="#🚀-Amazon-MSK（Managed-Streaming-for-Apache-Kafka）" class="headerlink" title="🚀 Amazon MSK（Managed Streaming for Apache Kafka）"></a>🚀 Amazon MSK（Managed Streaming for Apache Kafka）</h2><hr>
+<h2 id="🧠-一句话"><a href="#🧠-一句话" class="headerlink" title="🧠 一句话"></a>🧠 一句话</h2><p>👉 MSK = <strong>AWS 托管的 Kafka（消息流平台）</strong></p>
+<hr>
+<h2 id="🚀-一、它是干嘛的？"><a href="#🚀-一、它是干嘛的？" class="headerlink" title="🚀 一、它是干嘛的？"></a>🚀 一、它是干嘛的？</h2><p>👉 用于：</p>
+<ul>
+<li>实时数据流处理</li>
+<li>高吞吐消息系统</li>
+<li>事件驱动架构</li>
+</ul>
+<hr>
+<h2 id="📦-二、核心概念（Kafka）"><a href="#📦-二、核心概念（Kafka）" class="headerlink" title="📦 二、核心概念（Kafka）"></a>📦 二、核心概念（Kafka）</h2><hr>
+<h3 id="📌-Producer（生产者）"><a href="#📌-Producer（生产者）" class="headerlink" title="📌 Producer（生产者）"></a>📌 Producer（生产者）</h3><p>👉 发送数据</p>
+<hr>
+<h3 id="📌-Topic"><a href="#📌-Topic" class="headerlink" title="📌 Topic"></a>📌 Topic</h3><p>👉 消息分类（类似队列）</p>
+<hr>
+<h3 id="📌-Consumer（消费者）"><a href="#📌-Consumer（消费者）" class="headerlink" title="📌 Consumer（消费者）"></a>📌 Consumer（消费者）</h3><p>👉 读取数据</p>
+<hr>
+<h3 id="📌-Broker"><a href="#📌-Broker" class="headerlink" title="📌 Broker"></a>📌 Broker</h3><p>👉 Kafka 服务器节点</p>
+<hr>
+<h2 id="🧠-三、MSK-vs-Kinesis（高频）"><a href="#🧠-三、MSK-vs-Kinesis（高频）" class="headerlink" title="🧠 三、MSK vs Kinesis（高频）"></a>🧠 三、MSK vs Kinesis（高频）</h2><hr>
+<table>
+<thead>
+<tr>
+<th>对比</th>
+<th>MSK</th>
+<th>Kinesis</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>Kafka</td>
+<td>AWS 原生</td>
+</tr>
+<tr>
+<td>管理</td>
+<td>托管 Kafka</td>
+<td>Serverless</td>
+</tr>
+<tr>
+<td>协议</td>
+<td>Kafka API</td>
+<td>AWS API</td>
+</tr>
+<tr>
+<td>适用</td>
+<td>Kafka 生态</td>
+<td>AWS 集成</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-四、MSK-优势"><a href="#🚀-四、MSK-优势" class="headerlink" title="🚀 四、MSK 优势"></a>🚀 四、MSK 优势</h2><hr>
+<h3 id="✅-1️⃣-完全兼容-Kafka"><a href="#✅-1️⃣-完全兼容-Kafka" class="headerlink" title="✅ 1️⃣ 完全兼容 Kafka"></a>✅ 1️⃣ 完全兼容 Kafka</h3><ul>
+<li>无需改代码</li>
+</ul>
+<hr>
+<h3 id="✅-2️⃣-高吞吐"><a href="#✅-2️⃣-高吞吐" class="headerlink" title="✅ 2️⃣ 高吞吐"></a>✅ 2️⃣ 高吞吐</h3><ul>
+<li>适合日志 / 流数据</li>
+</ul>
+<hr>
+<h3 id="✅-3️⃣-高可用"><a href="#✅-3️⃣-高可用" class="headerlink" title="✅ 3️⃣ 高可用"></a>✅ 3️⃣ 高可用</h3><ul>
+<li>Multi-AZ</li>
+</ul>
+<hr>
+<h3 id="✅-4️⃣-托管服务"><a href="#✅-4️⃣-托管服务" class="headerlink" title="✅ 4️⃣ 托管服务"></a>✅ 4️⃣ 托管服务</h3><ul>
+<li>不用自己维护 Kafka 集群</li>
+</ul>
+<hr>
+<h2 id="🚀-五、典型架构"><a href="#🚀-五、典型架构" class="headerlink" title="🚀 五、典型架构"></a>🚀 五、典型架构</h2><hr>
+<p>数据源（App / IoT）<br>   ↓<br>MSK（Kafka）<br>   ↓<br> ├── Lambda<br> ├── Analytics<br> ├── S3 / Redshift</p>
+<hr>
+<h2 id="🧠-六、使用场景（必考）"><a href="#🧠-六、使用场景（必考）" class="headerlink" title="🧠 六、使用场景（必考）"></a>🧠 六、使用场景（必考）</h2><hr>
+<h3 id="✅-Kafka-已有系统"><a href="#✅-Kafka-已有系统" class="headerlink" title="✅ Kafka 已有系统"></a>✅ Kafka 已有系统</h3><p>👉 Lift &amp; Shift → MSK</p>
+<hr>
+<h3 id="✅-高吞吐实时流"><a href="#✅-高吞吐实时流" class="headerlink" title="✅ 高吞吐实时流"></a>✅ 高吞吐实时流</h3><p>👉 日志 / 点击流</p>
+<hr>
+<h3 id="✅-复杂流处理"><a href="#✅-复杂流处理" class="headerlink" title="✅ 复杂流处理"></a>✅ 复杂流处理</h3><p>👉 多消费者系统</p>
+<hr>
+<h2 id="⚠️-七、不适合场景"><a href="#⚠️-七、不适合场景" class="headerlink" title="⚠️ 七、不适合场景"></a>⚠️ 七、不适合场景</h2><hr>
+<h3 id="❌-简单数据流"><a href="#❌-简单数据流" class="headerlink" title="❌ 简单数据流"></a>❌ 简单数据流</h3><p>👉 用 Kinesis 更简单</p>
+<hr>
+<h3 id="❌-不熟-Kafka"><a href="#❌-不熟-Kafka" class="headerlink" title="❌ 不熟 Kafka"></a>❌ 不熟 Kafka</h3><p>👉 学习成本高</p>
+<hr>
+<h2 id="⚠️-八、常见对比"><a href="#⚠️-八、常见对比" class="headerlink" title="⚠️ 八、常见对比"></a>⚠️ 八、常见对比</h2><hr>
+<h3 id="🔥-MSK-vs-SQS"><a href="#🔥-MSK-vs-SQS" class="headerlink" title="🔥 MSK vs SQS"></a>🔥 MSK vs SQS</h3><table>
+<thead>
+<tr>
+<th>MSK</th>
+<th>SQS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>流平台</td>
+<td>队列</td>
+</tr>
+<tr>
+<td>高吞吐</td>
+<td>简单解耦</td>
+</tr>
+<tr>
+<td>多消费者</td>
+<td>单消费模型</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🔥-MSK-vs-SNS"><a href="#🔥-MSK-vs-SNS" class="headerlink" title="🔥 MSK vs SNS"></a>🔥 MSK vs SNS</h3><table>
+<thead>
+<tr>
+<th>MSK</th>
+<th>SNS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>流系统</td>
+<td>通知系统</td>
+</tr>
+<tr>
+<td>持久化</td>
+<td>短暂</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧠-九、秒杀口诀"><a href="#🧠-九、秒杀口诀" class="headerlink" title="🧠 九、秒杀口诀"></a>🧠 九、秒杀口诀</h2><hr>
+<h3 id="🔥-看到这些词-→-MSK"><a href="#🔥-看到这些词-→-MSK" class="headerlink" title="🔥 看到这些词 → MSK"></a>🔥 看到这些词 → MSK</h3><ul>
+<li>Kafka</li>
+<li>高吞吐</li>
+<li>实时流</li>
+<li>多消费者</li>
+</ul>
+<hr>
+<h3 id="⚡-简单队列-→-SQS"><a href="#⚡-简单队列-→-SQS" class="headerlink" title="⚡ 简单队列 → SQS"></a>⚡ 简单队列 → SQS</h3><h3 id="⚡-简单流-→-Kinesis"><a href="#⚡-简单流-→-Kinesis" class="headerlink" title="⚡ 简单流 → Kinesis"></a>⚡ 简单流 → Kinesis</h3><hr>
+<h2 id="🧾-一句话总结-2"><a href="#🧾-一句话总结-2" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 MSK = <strong>托管 Kafka，用于高吞吐实时数据流系统</strong></p>
+<hr>
+<h2 id="🚀-AWS-Data-Exchange（数据交易服务）"><a href="#🚀-AWS-Data-Exchange（数据交易服务）" class="headerlink" title="🚀 AWS Data Exchange（数据交易服务）"></a>🚀 AWS Data Exchange（数据交易服务）</h2><hr>
+<h2 id="🧠-一句话-1"><a href="#🧠-一句话-1" class="headerlink" title="🧠 一句话"></a>🧠 一句话</h2><p>👉 Data Exchange = <strong>在 AWS 上买卖第三方数据</strong></p>
+<hr>
+<h2 id="🚀-一、它是干嘛的？-1"><a href="#🚀-一、它是干嘛的？-1" class="headerlink" title="🚀 一、它是干嘛的？"></a>🚀 一、它是干嘛的？</h2><p>👉 用于：</p>
+<ul>
+<li>获取第三方数据</li>
+<li>订阅数据产品</li>
+<li>安全共享数据</li>
+</ul>
+<hr>
+<h2 id="📦-二、数据来源"><a href="#📦-二、数据来源" class="headerlink" title="📦 二、数据来源"></a>📦 二、数据来源</h2><p>👉 常见提供方：</p>
+<ul>
+<li>金融市场数据</li>
+<li>天气数据</li>
+<li>医疗数据</li>
+<li>地理数据</li>
+</ul>
+<hr>
+<h2 id="📦-三、数据去向"><a href="#📦-三、数据去向" class="headerlink" title="📦 三、数据去向"></a>📦 三、数据去向</h2><p>👉 数据通常交付到：</p>
+<ul>
+<li>S3（最常见）</li>
+<li>Redshift</li>
+<li>API（部分数据集）</li>
+</ul>
+<hr>
+<h2 id="🧠-四、核心特点"><a href="#🧠-四、核心特点" class="headerlink" title="🧠 四、核心特点"></a>🧠 四、核心特点</h2><hr>
+<h3 id="✅-1️⃣-数据订阅模式"><a href="#✅-1️⃣-数据订阅模式" class="headerlink" title="✅ 1️⃣ 数据订阅模式"></a>✅ 1️⃣ 数据订阅模式</h3><p>👉 类似“买数据”</p>
+<hr>
+<h3 id="✅-2️⃣-自动更新"><a href="#✅-2️⃣-自动更新" class="headerlink" title="✅ 2️⃣ 自动更新"></a>✅ 2️⃣ 自动更新</h3><p>👉 数据提供方更新 → 自动同步</p>
+<hr>
+<h3 id="✅-3️⃣-安全共享"><a href="#✅-3️⃣-安全共享" class="headerlink" title="✅ 3️⃣ 安全共享"></a>✅ 3️⃣ 安全共享</h3><p>👉 不需要自己处理数据分发</p>
+<hr>
+<h3 id="✅-4️⃣-与-AWS-集成"><a href="#✅-4️⃣-与-AWS-集成" class="headerlink" title="✅ 4️⃣ 与 AWS 集成"></a>✅ 4️⃣ 与 AWS 集成</h3><p>👉 可直接用于分析：</p>
+<ul>
+<li>Athena</li>
+<li>Redshift</li>
+<li>Glue</li>
+</ul>
+<hr>
+<h2 id="🚀-五、典型使用流程"><a href="#🚀-五、典型使用流程" class="headerlink" title="🚀 五、典型使用流程"></a>🚀 五、典型使用流程</h2><hr>
+<p>1️⃣ 浏览数据集（Marketplace）<br>2️⃣ 订阅数据产品<br>3️⃣ 数据交付到 S3<br>4️⃣ 用 Athena / Redshift 分析  </p>
+<hr>
+<h2 id="🧠-六、使用场景（考试重点）"><a href="#🧠-六、使用场景（考试重点）" class="headerlink" title="🧠 六、使用场景（考试重点）"></a>🧠 六、使用场景（考试重点）</h2><hr>
+<h3 id="✅-必选场景"><a href="#✅-必选场景" class="headerlink" title="✅ 必选场景"></a>✅ 必选场景</h3><ul>
+<li>需要第三方数据</li>
+<li>不想自己抓取 / 清洗数据</li>
+<li>数据订阅（金融 / 天气等）</li>
+</ul>
+<hr>
+<h3 id="❌-不适合"><a href="#❌-不适合" class="headerlink" title="❌ 不适合"></a>❌ 不适合</h3><ul>
+<li>自己系统内部数据处理</li>
+<li>实时流数据处理</li>
+</ul>
+<hr>
+<h2 id="⚠️-七、常见混淆"><a href="#⚠️-七、常见混淆" class="headerlink" title="⚠️ 七、常见混淆"></a>⚠️ 七、常见混淆</h2><hr>
+<h3 id="❌-Data-Exchange-数据迁移"><a href="#❌-Data-Exchange-数据迁移" class="headerlink" title="❌ Data Exchange = 数据迁移"></a>❌ Data Exchange = 数据迁移</h3><p>👉 错</p>
+<hr>
+<h3 id="❌-Data-Exchange-ETL"><a href="#❌-Data-Exchange-ETL" class="headerlink" title="❌ Data Exchange = ETL"></a>❌ Data Exchange = ETL</h3><p>👉 错</p>
+<hr>
+<h3 id="❌-Data-Exchange-数据湖"><a href="#❌-Data-Exchange-数据湖" class="headerlink" title="❌ Data Exchange = 数据湖"></a>❌ Data Exchange = 数据湖</h3><p>👉 错</p>
+<hr>
+<h2 id="🧠-八、秒杀口诀"><a href="#🧠-八、秒杀口诀" class="headerlink" title="🧠 八、秒杀口诀"></a>🧠 八、秒杀口诀</h2><hr>
+<h3 id="🔥-看到这些词-→-Data-Exchange"><a href="#🔥-看到这些词-→-Data-Exchange" class="headerlink" title="🔥 看到这些词 → Data Exchange"></a>🔥 看到这些词 → Data Exchange</h3><ul>
+<li>第三方数据</li>
+<li>数据订阅</li>
+<li>市场数据 / 天气数据</li>
+</ul>
+<hr>
+<h2 id="🧾-一句话总结-3"><a href="#🧾-一句话总结-3" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 Data Exchange = <strong>AWS 上的“数据市场”，用于获取第三方数据</strong></p>
+<hr>
 
       
 
@@ -558,7 +760,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          AWSアプリケーション統合
+          AWSアプリケーション統合_2
         
       </div>
     </a>
@@ -592,7 +794,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-AWS-数据分析-搜索-数据平台全家桶"><span class="toc-number">1.</span> <span class="toc-text">🚀 AWS 数据分析 &#x2F; 搜索 &#x2F; 数据平台全家桶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一、先记整体分类（最重要）"><span class="toc-number">2.</span> <span class="toc-text">🧠 一、先记整体分类（最重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🏢-数据仓库（OLAP）"><span class="toc-number">2.1.</span> <span class="toc-text">🏢 数据仓库（OLAP）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔍-搜索-日志分析"><span class="toc-number">2.2.</span> <span class="toc-text">🔍 搜索 &#x2F; 日志分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-查询-分析"><span class="toc-number">2.3.</span> <span class="toc-text">📊 查询 &#x2F; 分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔄-数据流-实时"><span class="toc-number">2.4.</span> <span class="toc-text">🔄 数据流 &#x2F; 实时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📦-存储（数据湖）"><span class="toc-number">2.5.</span> <span class="toc-text">📦 存储（数据湖）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-二、核心服务对比"><span class="toc-number">3.</span> <span class="toc-text">🚀 二、核心服务对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-三、逐个理解（考试重点）"><span class="toc-number">4.</span> <span class="toc-text">🚀 三、逐个理解（考试重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🏢-1-Redshift（数据仓库）"><span class="toc-number">4.1.</span> <span class="toc-text">🏢 1. Redshift（数据仓库）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点"><span class="toc-number">4.1.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景"><span class="toc-number">4.1.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔍-2-OpenSearch（日志-搜索）"><span class="toc-number">4.2.</span> <span class="toc-text">🔍 2. OpenSearch（日志 &#x2F; 搜索）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-1"><span class="toc-number">4.2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-1"><span class="toc-number">4.2.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-3-Athena（秒杀高频）"><span class="toc-number">4.3.</span> <span class="toc-text">📊 3. Athena（秒杀高频）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-2"><span class="toc-number">4.3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-2"><span class="toc-number">4.3.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔄-4-Glue（ETL）"><span class="toc-number">4.4.</span> <span class="toc-text">🔄 4. Glue（ETL）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-3"><span class="toc-number">4.4.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-3"><span class="toc-number">4.4.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-5-EMR（大数据）"><span class="toc-number">4.5.</span> <span class="toc-text">⚡ 5. EMR（大数据）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-4"><span class="toc-number">4.5.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-4"><span class="toc-number">4.5.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌊-6-Kinesis（流数据）"><span class="toc-number">4.6.</span> <span class="toc-text">🌊 6. Kinesis（流数据）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-组成"><span class="toc-number">4.6.1.</span> <span class="toc-text">📌 组成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-5"><span class="toc-number">4.6.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📦-7-S3（数据湖核心）"><span class="toc-number">4.7.</span> <span class="toc-text">📦 7. S3（数据湖核心）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-5"><span class="toc-number">4.7.1.</span> <span class="toc-text">📌 特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-四、核心关系（必会）"><span class="toc-number">5.</span> <span class="toc-text">🧠 四、核心关系（必会）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🧱-数据湖架构"><span class="toc-number">5.1.</span> <span class="toc-text">🧱 数据湖架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔍-日志分析架构"><span class="toc-number">5.2.</span> <span class="toc-text">🔍 日志分析架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-五、秒杀口诀（重点）"><span class="toc-number">6.</span> <span class="toc-text">🧠 五、秒杀口诀（重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-SQL-分析"><span class="toc-number">6.1.</span> <span class="toc-text">📊 SQL 分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔍-搜索-日志"><span class="toc-number">6.2.</span> <span class="toc-text">🔍 搜索 &#x2F; 日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔄-数据处理"><span class="toc-number">6.3.</span> <span class="toc-text">🔄 数据处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌊-实时数据"><span class="toc-number">6.4.</span> <span class="toc-text">🌊 实时数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱"><span class="toc-number">7.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Athena-替代-Redshift"><span class="toc-number">7.1.</span> <span class="toc-text">❌ Athena 替代 Redshift</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-OpenSearch-做-BI"><span class="toc-number">7.2.</span> <span class="toc-text">❌ OpenSearch 做 BI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-EMR-用于简单查询"><span class="toc-number">7.3.</span> <span class="toc-text">❌ EMR 用于简单查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Redshift-直接接流数据"><span class="toc-number">7.4.</span> <span class="toc-text">❌ Redshift 直接接流数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">8.</span> <span class="toc-text">🧾 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-Kinesis-三兄弟总结（SAP-秒杀）"><span class="toc-number">9.</span> <span class="toc-text">🚀 Kinesis 三兄弟总结（SAP 秒杀）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一句话总览"><span class="toc-number">10.</span> <span class="toc-text">🧠 一句话总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-一、三兄弟对比总表（必背）"><span class="toc-number">11.</span> <span class="toc-text">📦 一、三兄弟对比总表（必背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-二、逐个理解"><span class="toc-number">12.</span> <span class="toc-text">🚀 二、逐个理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-1-Kinesis-Data-Streams"><span class="toc-number">12.1.</span> <span class="toc-text">🔥 1. Kinesis Data Streams</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-6"><span class="toc-number">12.1.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-6"><span class="toc-number">12.1.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-关键词"><span class="toc-number">12.1.3.</span> <span class="toc-text">🧠 关键词</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🚀-2-Kinesis-Data-Firehose"><span class="toc-number">12.2.</span> <span class="toc-text">🚀 2. Kinesis Data Firehose</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-7"><span class="toc-number">12.2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-7"><span class="toc-number">12.2.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-关键词-1"><span class="toc-number">12.2.3.</span> <span class="toc-text">🧠 关键词</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-3-Kinesis-Data-Analytics"><span class="toc-number">12.3.</span> <span class="toc-text">📊 3. Kinesis Data Analytics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-8"><span class="toc-number">12.3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-8"><span class="toc-number">12.3.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-关键词-2"><span class="toc-number">12.3.3.</span> <span class="toc-text">🧠 关键词</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-三、关系图（核心理解）"><span class="toc-number">13.</span> <span class="toc-text">🧠 三、关系图（核心理解）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-四、秒杀口诀"><span class="toc-number">14.</span> <span class="toc-text">🧠 四、秒杀口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-需要“自己处理”"><span class="toc-number">14.1.</span> <span class="toc-text">🔥 需要“自己处理”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🚀-需要“自动存储”"><span class="toc-number">14.2.</span> <span class="toc-text">🚀 需要“自动存储”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-需要“SQL分析”"><span class="toc-number">14.3.</span> <span class="toc-text">📊 需要“SQL分析”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱-1"><span class="toc-number">15.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Firehose-做复杂处理"><span class="toc-number">15.1.</span> <span class="toc-text">❌ Firehose 做复杂处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Streams-自动存-S3"><span class="toc-number">15.2.</span> <span class="toc-text">❌ Streams 自动存 S3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Analytics-替代-Streams"><span class="toc-number">15.3.</span> <span class="toc-text">❌ Analytics 替代 Streams</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结-1"><span class="toc-number">16.</span> <span class="toc-text">🧾 一句话总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-AWS-数据分析-搜索-数据平台全家桶"><span class="toc-number">1.</span> <span class="toc-text">🚀 AWS 数据分析 &#x2F; 搜索 &#x2F; 数据平台全家桶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一、先记整体分类（最重要）"><span class="toc-number">2.</span> <span class="toc-text">🧠 一、先记整体分类（最重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🏢-数据仓库（OLAP）"><span class="toc-number">2.1.</span> <span class="toc-text">🏢 数据仓库（OLAP）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔍-搜索-日志分析"><span class="toc-number">2.2.</span> <span class="toc-text">🔍 搜索 &#x2F; 日志分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-查询-分析"><span class="toc-number">2.3.</span> <span class="toc-text">📊 查询 &#x2F; 分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔄-数据流-实时"><span class="toc-number">2.4.</span> <span class="toc-text">🔄 数据流 &#x2F; 实时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📦-存储（数据湖）"><span class="toc-number">2.5.</span> <span class="toc-text">📦 存储（数据湖）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-二、核心服务对比"><span class="toc-number">3.</span> <span class="toc-text">🚀 二、核心服务对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-三、逐个理解（考试重点）"><span class="toc-number">4.</span> <span class="toc-text">🚀 三、逐个理解（考试重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🏢-1-Redshift（数据仓库）"><span class="toc-number">4.1.</span> <span class="toc-text">🏢 1. Redshift（数据仓库）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点"><span class="toc-number">4.1.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景"><span class="toc-number">4.1.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔍-2-OpenSearch（日志-搜索）"><span class="toc-number">4.2.</span> <span class="toc-text">🔍 2. OpenSearch（日志 &#x2F; 搜索）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-1"><span class="toc-number">4.2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-1"><span class="toc-number">4.2.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-3-Athena（秒杀高频）"><span class="toc-number">4.3.</span> <span class="toc-text">📊 3. Athena（秒杀高频）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-2"><span class="toc-number">4.3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-2"><span class="toc-number">4.3.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔄-4-Glue（ETL）"><span class="toc-number">4.4.</span> <span class="toc-text">🔄 4. Glue（ETL）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-3"><span class="toc-number">4.4.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-3"><span class="toc-number">4.4.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-5-EMR（大数据）"><span class="toc-number">4.5.</span> <span class="toc-text">⚡ 5. EMR（大数据）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-4"><span class="toc-number">4.5.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-4"><span class="toc-number">4.5.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌊-6-Kinesis（流数据）"><span class="toc-number">4.6.</span> <span class="toc-text">🌊 6. Kinesis（流数据）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-组成"><span class="toc-number">4.6.1.</span> <span class="toc-text">📌 组成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-5"><span class="toc-number">4.6.2.</span> <span class="toc-text">🎯 场景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📦-7-S3（数据湖核心）"><span class="toc-number">4.7.</span> <span class="toc-text">📦 7. S3（数据湖核心）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-5"><span class="toc-number">4.7.1.</span> <span class="toc-text">📌 特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-四、核心关系（必会）"><span class="toc-number">5.</span> <span class="toc-text">🧠 四、核心关系（必会）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🧱-数据湖架构"><span class="toc-number">5.1.</span> <span class="toc-text">🧱 数据湖架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔍-日志分析架构"><span class="toc-number">5.2.</span> <span class="toc-text">🔍 日志分析架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-五、秒杀口诀（重点）"><span class="toc-number">6.</span> <span class="toc-text">🧠 五、秒杀口诀（重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-SQL-分析"><span class="toc-number">6.1.</span> <span class="toc-text">📊 SQL 分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔍-搜索-日志"><span class="toc-number">6.2.</span> <span class="toc-text">🔍 搜索 &#x2F; 日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔄-数据处理"><span class="toc-number">6.3.</span> <span class="toc-text">🔄 数据处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🌊-实时数据"><span class="toc-number">6.4.</span> <span class="toc-text">🌊 实时数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱"><span class="toc-number">7.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Athena-替代-Redshift"><span class="toc-number">7.1.</span> <span class="toc-text">❌ Athena 替代 Redshift</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-OpenSearch-做-BI"><span class="toc-number">7.2.</span> <span class="toc-text">❌ OpenSearch 做 BI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-EMR-用于简单查询"><span class="toc-number">7.3.</span> <span class="toc-text">❌ EMR 用于简单查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Redshift-直接接流数据"><span class="toc-number">7.4.</span> <span class="toc-text">❌ Redshift 直接接流数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">8.</span> <span class="toc-text">🧾 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-Kinesis-三兄弟总结（SAP-秒杀）"><span class="toc-number">9.</span> <span class="toc-text">🚀 Kinesis 三兄弟总结（SAP 秒杀）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一句话总览"><span class="toc-number">10.</span> <span class="toc-text">🧠 一句话总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-一、三兄弟对比总表（必背）"><span class="toc-number">11.</span> <span class="toc-text">📦 一、三兄弟对比总表（必背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-二、逐个理解"><span class="toc-number">12.</span> <span class="toc-text">🚀 二、逐个理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-1-Kinesis-Data-Streams"><span class="toc-number">12.1.</span> <span class="toc-text">🔥 1. Kinesis Data Streams</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-6"><span class="toc-number">12.1.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-6"><span class="toc-number">12.1.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-关键词"><span class="toc-number">12.1.3.</span> <span class="toc-text">🧠 关键词</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🚀-2-Kinesis-Data-Firehose"><span class="toc-number">12.2.</span> <span class="toc-text">🚀 2. Kinesis Data Firehose</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-7"><span class="toc-number">12.2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-7"><span class="toc-number">12.2.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-关键词-1"><span class="toc-number">12.2.3.</span> <span class="toc-text">🧠 关键词</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-3-Kinesis-Data-Analytics"><span class="toc-number">12.3.</span> <span class="toc-text">📊 3. Kinesis Data Analytics</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-8"><span class="toc-number">12.3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-8"><span class="toc-number">12.3.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🧠-关键词-2"><span class="toc-number">12.3.3.</span> <span class="toc-text">🧠 关键词</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-三、关系图（核心理解）"><span class="toc-number">13.</span> <span class="toc-text">🧠 三、关系图（核心理解）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-四、秒杀口诀"><span class="toc-number">14.</span> <span class="toc-text">🧠 四、秒杀口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-需要“自己处理”"><span class="toc-number">14.1.</span> <span class="toc-text">🔥 需要“自己处理”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🚀-需要“自动存储”"><span class="toc-number">14.2.</span> <span class="toc-text">🚀 需要“自动存储”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📊-需要“SQL分析”"><span class="toc-number">14.3.</span> <span class="toc-text">📊 需要“SQL分析”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱-1"><span class="toc-number">15.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Firehose-做复杂处理"><span class="toc-number">15.1.</span> <span class="toc-text">❌ Firehose 做复杂处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Streams-自动存-S3"><span class="toc-number">15.2.</span> <span class="toc-text">❌ Streams 自动存 S3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Analytics-替代-Streams"><span class="toc-number">15.3.</span> <span class="toc-text">❌ Analytics 替代 Streams</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结-1"><span class="toc-number">16.</span> <span class="toc-text">🧾 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-Amazon-MSK（Managed-Streaming-for-Apache-Kafka）"><span class="toc-number">17.</span> <span class="toc-text">🚀 Amazon MSK（Managed Streaming for Apache Kafka）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一句话"><span class="toc-number">18.</span> <span class="toc-text">🧠 一句话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-一、它是干嘛的？"><span class="toc-number">19.</span> <span class="toc-text">🚀 一、它是干嘛的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-二、核心概念（Kafka）"><span class="toc-number">20.</span> <span class="toc-text">📦 二、核心概念（Kafka）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-Producer（生产者）"><span class="toc-number">20.1.</span> <span class="toc-text">📌 Producer（生产者）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-Topic"><span class="toc-number">20.2.</span> <span class="toc-text">📌 Topic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-Consumer（消费者）"><span class="toc-number">20.3.</span> <span class="toc-text">📌 Consumer（消费者）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-Broker"><span class="toc-number">20.4.</span> <span class="toc-text">📌 Broker</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-三、MSK-vs-Kinesis（高频）"><span class="toc-number">21.</span> <span class="toc-text">🧠 三、MSK vs Kinesis（高频）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-四、MSK-优势"><span class="toc-number">22.</span> <span class="toc-text">🚀 四、MSK 优势</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-1️⃣-完全兼容-Kafka"><span class="toc-number">22.1.</span> <span class="toc-text">✅ 1️⃣ 完全兼容 Kafka</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-2️⃣-高吞吐"><span class="toc-number">22.2.</span> <span class="toc-text">✅ 2️⃣ 高吞吐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-3️⃣-高可用"><span class="toc-number">22.3.</span> <span class="toc-text">✅ 3️⃣ 高可用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-4️⃣-托管服务"><span class="toc-number">22.4.</span> <span class="toc-text">✅ 4️⃣ 托管服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-五、典型架构"><span class="toc-number">23.</span> <span class="toc-text">🚀 五、典型架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-六、使用场景（必考）"><span class="toc-number">24.</span> <span class="toc-text">🧠 六、使用场景（必考）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-Kafka-已有系统"><span class="toc-number">24.1.</span> <span class="toc-text">✅ Kafka 已有系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-高吞吐实时流"><span class="toc-number">24.2.</span> <span class="toc-text">✅ 高吞吐实时流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-复杂流处理"><span class="toc-number">24.3.</span> <span class="toc-text">✅ 复杂流处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-七、不适合场景"><span class="toc-number">25.</span> <span class="toc-text">⚠️ 七、不适合场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-简单数据流"><span class="toc-number">25.1.</span> <span class="toc-text">❌ 简单数据流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-不熟-Kafka"><span class="toc-number">25.2.</span> <span class="toc-text">❌ 不熟 Kafka</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-八、常见对比"><span class="toc-number">26.</span> <span class="toc-text">⚠️ 八、常见对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-MSK-vs-SQS"><span class="toc-number">26.1.</span> <span class="toc-text">🔥 MSK vs SQS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-MSK-vs-SNS"><span class="toc-number">26.2.</span> <span class="toc-text">🔥 MSK vs SNS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-九、秒杀口诀"><span class="toc-number">27.</span> <span class="toc-text">🧠 九、秒杀口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-看到这些词-→-MSK"><span class="toc-number">27.1.</span> <span class="toc-text">🔥 看到这些词 → MSK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-简单队列-→-SQS"><span class="toc-number">27.2.</span> <span class="toc-text">⚡ 简单队列 → SQS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚡-简单流-→-Kinesis"><span class="toc-number">27.3.</span> <span class="toc-text">⚡ 简单流 → Kinesis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结-2"><span class="toc-number">28.</span> <span class="toc-text">🧾 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-AWS-Data-Exchange（数据交易服务）"><span class="toc-number">29.</span> <span class="toc-text">🚀 AWS Data Exchange（数据交易服务）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一句话-1"><span class="toc-number">30.</span> <span class="toc-text">🧠 一句话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-一、它是干嘛的？-1"><span class="toc-number">31.</span> <span class="toc-text">🚀 一、它是干嘛的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-二、数据来源"><span class="toc-number">32.</span> <span class="toc-text">📦 二、数据来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-三、数据去向"><span class="toc-number">33.</span> <span class="toc-text">📦 三、数据去向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-四、核心特点"><span class="toc-number">34.</span> <span class="toc-text">🧠 四、核心特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-1️⃣-数据订阅模式"><span class="toc-number">34.1.</span> <span class="toc-text">✅ 1️⃣ 数据订阅模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-2️⃣-自动更新"><span class="toc-number">34.2.</span> <span class="toc-text">✅ 2️⃣ 自动更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-3️⃣-安全共享"><span class="toc-number">34.3.</span> <span class="toc-text">✅ 3️⃣ 安全共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-4️⃣-与-AWS-集成"><span class="toc-number">34.4.</span> <span class="toc-text">✅ 4️⃣ 与 AWS 集成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-五、典型使用流程"><span class="toc-number">35.</span> <span class="toc-text">🚀 五、典型使用流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-六、使用场景（考试重点）"><span class="toc-number">36.</span> <span class="toc-text">🧠 六、使用场景（考试重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#✅-必选场景"><span class="toc-number">36.1.</span> <span class="toc-text">✅ 必选场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-不适合"><span class="toc-number">36.2.</span> <span class="toc-text">❌ 不适合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-七、常见混淆"><span class="toc-number">37.</span> <span class="toc-text">⚠️ 七、常见混淆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Data-Exchange-数据迁移"><span class="toc-number">37.1.</span> <span class="toc-text">❌ Data Exchange &#x3D; 数据迁移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Data-Exchange-ETL"><span class="toc-number">37.2.</span> <span class="toc-text">❌ Data Exchange &#x3D; ETL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-Data-Exchange-数据湖"><span class="toc-number">37.3.</span> <span class="toc-text">❌ Data Exchange &#x3D; 数据湖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-八、秒杀口诀"><span class="toc-number">38.</span> <span class="toc-text">🧠 八、秒杀口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-看到这些词-→-Data-Exchange"><span class="toc-number">38.1.</span> <span class="toc-text">🔥 看到这些词 → Data Exchange</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结-3"><span class="toc-number">39.</span> <span class="toc-text">🧾 一句话总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
