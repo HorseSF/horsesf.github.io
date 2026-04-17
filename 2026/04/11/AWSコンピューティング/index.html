@@ -16,7 +16,7 @@
 <meta property="og:description" content="服务 频度    AWS App Runner    AWS Auto Scaling    AWS Batch    AWS Elastic Beanstalk    Amazon EC2 ★★★★★   Amazon EC2 Auto Scaling ★★★★★   AWS Fargate ★★★★   AWS Lambda ★★★★★   Amazon Lightsail    AWS">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2026-04-11T11:34:27.000Z">
-<meta property="article:modified_time" content="2026-04-11T12:26:44.070Z">
+<meta property="article:modified_time" content="2026-04-16T13:44:57.411Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -312,6 +312,151 @@
 <h2 id="🧾-一句话总结"><a href="#🧾-一句话总结" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h2><p>👉 Cluster = 性能<br>👉 Spread = 高可用<br>👉 Partition = 大规模容错  </p>
 <p>EC2 集群（计算）<br>   +<br>EFA（高速通信）<br>   +<br>FSx for Lustre（高速存储）<br>   +<br>Cluster Placement Group（低延迟网络）</p>
 <hr>
+<h2 id="AWS-边缘计算与混合云对比"><a href="#AWS-边缘计算与混合云对比" class="headerlink" title="AWS 边缘计算与混合云对比"></a>AWS 边缘计算与混合云对比</h2><h3 id="Outposts-vs-Local-Zones-vs-Wavelength（SAP高频总结）"><a href="#Outposts-vs-Local-Zones-vs-Wavelength（SAP高频总结）" class="headerlink" title="Outposts vs Local Zones vs Wavelength（SAP高频总结）"></a>Outposts vs Local Zones vs Wavelength（SAP高频总结）</h3><hr>
+<h3 id="一、服务总览"><a href="#一、服务总览" class="headerlink" title="一、服务总览"></a>一、服务总览</h3><table>
+<thead>
+<tr>
+<th>服务</th>
+<th>核心定位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AWS Outposts</td>
+<td>本地机房里的 AWS（混合云）</td>
+</tr>
+<tr>
+<td>AWS Local Zones</td>
+<td>城市级低延迟 AWS</td>
+</tr>
+<tr>
+<td>AWS Wavelength</td>
+<td>5G 网络中的 AWS</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="二、核心区别（重点）"><a href="#二、核心区别（重点）" class="headerlink" title="二、核心区别（重点）"></a>二、核心区别（重点）</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Outposts</th>
+<th>Local Zones</th>
+<th>Wavelength</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>部署位置</td>
+<td>客户机房（On-Prem）</td>
+<td>AWS 城市节点</td>
+<td>电信运营商网络</td>
+</tr>
+<tr>
+<td>延迟</td>
+<td>⭐ 最低（本地）</td>
+<td>低（约10ms）</td>
+<td>⭐ 极低（5G级）</td>
+</tr>
+<tr>
+<td>是否本地</td>
+<td>✅ 是</td>
+<td>❌ 否</td>
+<td>❌ 否</td>
+</tr>
+<tr>
+<td>数据驻留</td>
+<td>✅ 支持</td>
+<td>❌ 不支持</td>
+<td>❌ 不支持</td>
+</tr>
+<tr>
+<td>网络路径</td>
+<td>本地直连 AWS</td>
+<td>AWS Backbone</td>
+<td>运营商 5G 网络</td>
+</tr>
+<tr>
+<td>管理方式</td>
+<td>AWS 管理</td>
+<td>AWS 管理</td>
+<td>AWS + Telco</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="三、使用场景"><a href="#三、使用场景" class="headerlink" title="三、使用场景"></a>三、使用场景</h3><h4 id="1️⃣-Outposts（本地-AWS）"><a href="#1️⃣-Outposts（本地-AWS）" class="headerlink" title="1️⃣ Outposts（本地 AWS）"></a>1️⃣ Outposts（本地 AWS）</h4><p><strong>关键词：</strong></p>
+<ul>
+<li>数据必须在本地（合规）</li>
+<li>超低延迟</li>
+<li>混合云</li>
+</ul>
+<p><strong>场景：</strong></p>
+<ul>
+<li>金融系统</li>
+<li>医疗系统</li>
+<li>工厂控制系统</li>
+</ul>
+<hr>
+<h4 id="2️⃣-Local-Zones（城市边缘）"><a href="#2️⃣-Local-Zones（城市边缘）" class="headerlink" title="2️⃣ Local Zones（城市边缘）"></a>2️⃣ Local Zones（城市边缘）</h4><p><strong>关键词：</strong></p>
+<ul>
+<li>城市低延迟</li>
+<li>靠近终端用户</li>
+</ul>
+<p><strong>场景：</strong></p>
+<ul>
+<li>游戏服务</li>
+<li>视频渲染</li>
+<li>AR / VR</li>
+</ul>
+<hr>
+<h4 id="3️⃣-Wavelength（5G边缘）"><a href="#3️⃣-Wavelength（5G边缘）" class="headerlink" title="3️⃣ Wavelength（5G边缘）"></a>3️⃣ Wavelength（5G边缘）</h4><p><strong>关键词：</strong></p>
+<ul>
+<li>5G 网络</li>
+<li>移动设备</li>
+<li>超低延迟</li>
+</ul>
+<p><strong>场景：</strong></p>
+<ul>
+<li>自动驾驶</li>
+<li>实时视频分析</li>
+<li>IoT（移动设备）</li>
+</ul>
+<hr>
+<h3 id="四、架构理解"><a href="#四、架构理解" class="headerlink" title="四、架构理解"></a>四、架构理解</h3><h4 id="Outposts（本地部署）"><a href="#Outposts（本地部署）" class="headerlink" title="Outposts（本地部署）"></a>Outposts（本地部署）</h4><p>用户 → 本地机房（Outposts） → AWS Region</p>
+<p>👉 数据不离开本地</p>
+<hr>
+<h4 id="Local-Zones（城市节点）"><a href="#Local-Zones（城市节点）" class="headerlink" title="Local Zones（城市节点）"></a>Local Zones（城市节点）</h4><p>用户 → Local Zone → AWS Region</p>
+<p>👉 靠近用户但不在本地</p>
+<hr>
+<h4 id="Wavelength（5G网络）"><a href="#Wavelength（5G网络）" class="headerlink" title="Wavelength（5G网络）"></a>Wavelength（5G网络）</h4><p>手机 → 5G网络 → Wavelength → AWS</p>
+<p>👉 在运营商网络内部</p>
+<hr>
+<h3 id="五、考试选型口诀（SAP重点）"><a href="#五、考试选型口诀（SAP重点）" class="headerlink" title="五、考试选型口诀（SAP重点）"></a>五、考试选型口诀（SAP重点）</h3><p>数据必须本地 → Outposts<br>城市低延迟 → Local Zones<br>5G / 移动设备 → Wavelength</p>
+<hr>
+<h3 id="六、典型考题判断"><a href="#六、典型考题判断" class="headerlink" title="六、典型考题判断"></a>六、典型考题判断</h3><h4 id="✔-数据合规-数据不能出本地"><a href="#✔-数据合规-数据不能出本地" class="headerlink" title="✔ 数据合规 / 数据不能出本地"></a>✔ 数据合规 / 数据不能出本地</h4><p>→ Outposts</p>
+<hr>
+<h4 id="✔-某个城市用户需要低延迟"><a href="#✔-某个城市用户需要低延迟" class="headerlink" title="✔ 某个城市用户需要低延迟"></a>✔ 某个城市用户需要低延迟</h4><p>→ Local Zones</p>
+<hr>
+<h4 id="✔-移动设备-5G-超低延迟"><a href="#✔-移动设备-5G-超低延迟" class="headerlink" title="✔ 移动设备 + 5G + 超低延迟"></a>✔ 移动设备 + 5G + 超低延迟</h4><p>→ Wavelength</p>
+<hr>
+<h3 id="七、优缺点总结"><a href="#七、优缺点总结" class="headerlink" title="七、优缺点总结"></a>七、优缺点总结</h3><h4 id="Outposts"><a href="#Outposts" class="headerlink" title="Outposts"></a>Outposts</h4><ul>
+<li>✅ 数据本地化</li>
+<li>✅ 混合云</li>
+<li>❌ 成本高</li>
+<li>❌ 部署复杂</li>
+</ul>
+<hr>
+<h4 id="Local-Zones"><a href="#Local-Zones" class="headerlink" title="Local Zones"></a>Local Zones</h4><ul>
+<li>✅ 低延迟</li>
+<li>✅ 易部署</li>
+<li>❌ 无数据驻留</li>
+</ul>
+<hr>
+<h4 id="Wavelength"><a href="#Wavelength" class="headerlink" title="Wavelength"></a>Wavelength</h4><ul>
+<li>✅ 超低延迟（5G）</li>
+<li>✅ 移动优化</li>
+<li>❌ 依赖运营商</li>
+</ul>
+<hr>
+<h3 id="八、一句话总结"><a href="#八、一句话总结" class="headerlink" title="八、一句话总结"></a>八、一句话总结</h3><p><strong>Outposts = 本地 AWS<br>Local Zones = 城市边缘 AWS<br>Wavelength = 5G 网络中的 AWS</strong></p>
+<hr>
 
       
 
@@ -388,14 +533,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          AWSコンテナ
+          AWSコンテナ_5
         
       </div>
     </a>
   
   
     <a href="/2026/04/11/AWS%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E8%B2%A1%E5%8B%99%E7%AE%A1%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">AWSクラウド財務管理</div>
+      <div class="article-nav-title">AWSクラウド財務管理_3</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -422,7 +567,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-Placement-Group-三种类型总结（SAP-秒杀）"><span class="toc-number">1.</span> <span class="toc-text">🚀 Placement Group 三种类型总结（SAP 秒杀）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一、总览（必须背）"><span class="toc-number">2.</span> <span class="toc-text">🧠 一、总览（必须背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-二、逐个理解"><span class="toc-number">3.</span> <span class="toc-text">🚀 二、逐个理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-1-Cluster-Placement-Group（集群）"><span class="toc-number">3.1.</span> <span class="toc-text">🔥 1. Cluster Placement Group（集群）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点"><span class="toc-number">3.1.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景"><span class="toc-number">3.1.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⚠️-注意"><span class="toc-number">3.1.3.</span> <span class="toc-text">⚠️ 注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🛡️-2-Spread-Placement-Group（分散）"><span class="toc-number">3.2.</span> <span class="toc-text">🛡️ 2. Spread Placement Group（分散）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⚠️-限制"><span class="toc-number">3.2.3.</span> <span class="toc-text">⚠️ 限制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧱-3-Partition-Placement-Group（分区）"><span class="toc-number">3.3.</span> <span class="toc-text">🧱 3. Partition Placement Group（分区）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⚠️-优点"><span class="toc-number">3.3.3.</span> <span class="toc-text">⚠️ 优点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-三、秒杀判断口诀"><span class="toc-number">4.</span> <span class="toc-text">🧠 三、秒杀判断口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-HPC-低延迟"><span class="toc-number">4.1.</span> <span class="toc-text">🔥 HPC &#x2F; 低延迟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🛡️-避免单点故障"><span class="toc-number">4.2.</span> <span class="toc-text">🛡️ 避免单点故障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧱-大规模分布-容错"><span class="toc-number">4.3.</span> <span class="toc-text">🧱 大规模分布 &#x2F; 容错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱"><span class="toc-number">5.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-HPC-选-Spread"><span class="toc-number">5.1.</span> <span class="toc-text">❌ HPC 选 Spread</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-高可用选-Cluster"><span class="toc-number">5.2.</span> <span class="toc-text">❌ 高可用选 Cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-小规模用-Partition"><span class="toc-number">5.3.</span> <span class="toc-text">❌ 小规模用 Partition</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">6.</span> <span class="toc-text">🧾 一句话总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-Placement-Group-三种类型总结（SAP-秒杀）"><span class="toc-number">1.</span> <span class="toc-text">🚀 Placement Group 三种类型总结（SAP 秒杀）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-一、总览（必须背）"><span class="toc-number">2.</span> <span class="toc-text">🧠 一、总览（必须背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-二、逐个理解"><span class="toc-number">3.</span> <span class="toc-text">🚀 二、逐个理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-1-Cluster-Placement-Group（集群）"><span class="toc-number">3.1.</span> <span class="toc-text">🔥 1. Cluster Placement Group（集群）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点"><span class="toc-number">3.1.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景"><span class="toc-number">3.1.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⚠️-注意"><span class="toc-number">3.1.3.</span> <span class="toc-text">⚠️ 注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🛡️-2-Spread-Placement-Group（分散）"><span class="toc-number">3.2.</span> <span class="toc-text">🛡️ 2. Spread Placement Group（分散）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⚠️-限制"><span class="toc-number">3.2.3.</span> <span class="toc-text">⚠️ 限制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧱-3-Partition-Placement-Group（分区）"><span class="toc-number">3.3.</span> <span class="toc-text">🧱 3. Partition Placement Group（分区）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#📌-特点-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#🎯-场景-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">🎯 场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#⚠️-优点"><span class="toc-number">3.3.3.</span> <span class="toc-text">⚠️ 优点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧠-三、秒杀判断口诀"><span class="toc-number">4.</span> <span class="toc-text">🧠 三、秒杀判断口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#🔥-HPC-低延迟"><span class="toc-number">4.1.</span> <span class="toc-text">🔥 HPC &#x2F; 低延迟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🛡️-避免单点故障"><span class="toc-number">4.2.</span> <span class="toc-text">🛡️ 避免单点故障</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧱-大规模分布-容错"><span class="toc-number">4.3.</span> <span class="toc-text">🧱 大规模分布 &#x2F; 容错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#⚠️-高频陷阱"><span class="toc-number">5.</span> <span class="toc-text">⚠️ 高频陷阱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-HPC-选-Spread"><span class="toc-number">5.1.</span> <span class="toc-text">❌ HPC 选 Spread</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-高可用选-Cluster"><span class="toc-number">5.2.</span> <span class="toc-text">❌ 高可用选 Cluster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-小规模用-Partition"><span class="toc-number">5.3.</span> <span class="toc-text">❌ 小规模用 Partition</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">6.</span> <span class="toc-text">🧾 一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-边缘计算与混合云对比"><span class="toc-number">7.</span> <span class="toc-text">AWS 边缘计算与混合云对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Outposts-vs-Local-Zones-vs-Wavelength（SAP高频总结）"><span class="toc-number">7.1.</span> <span class="toc-text">Outposts vs Local Zones vs Wavelength（SAP高频总结）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一、服务总览"><span class="toc-number">7.2.</span> <span class="toc-text">一、服务总览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、核心区别（重点）"><span class="toc-number">7.3.</span> <span class="toc-text">二、核心区别（重点）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、使用场景"><span class="toc-number">7.4.</span> <span class="toc-text">三、使用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1️⃣-Outposts（本地-AWS）"><span class="toc-number">7.4.1.</span> <span class="toc-text">1️⃣ Outposts（本地 AWS）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2️⃣-Local-Zones（城市边缘）"><span class="toc-number">7.4.2.</span> <span class="toc-text">2️⃣ Local Zones（城市边缘）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3️⃣-Wavelength（5G边缘）"><span class="toc-number">7.4.3.</span> <span class="toc-text">3️⃣ Wavelength（5G边缘）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、架构理解"><span class="toc-number">7.5.</span> <span class="toc-text">四、架构理解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Outposts（本地部署）"><span class="toc-number">7.5.1.</span> <span class="toc-text">Outposts（本地部署）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Local-Zones（城市节点）"><span class="toc-number">7.5.2.</span> <span class="toc-text">Local Zones（城市节点）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Wavelength（5G网络）"><span class="toc-number">7.5.3.</span> <span class="toc-text">Wavelength（5G网络）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、考试选型口诀（SAP重点）"><span class="toc-number">7.6.</span> <span class="toc-text">五、考试选型口诀（SAP重点）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、典型考题判断"><span class="toc-number">7.7.</span> <span class="toc-text">六、典型考题判断</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#✔-数据合规-数据不能出本地"><span class="toc-number">7.7.1.</span> <span class="toc-text">✔ 数据合规 &#x2F; 数据不能出本地</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#✔-某个城市用户需要低延迟"><span class="toc-number">7.7.2.</span> <span class="toc-text">✔ 某个城市用户需要低延迟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#✔-移动设备-5G-超低延迟"><span class="toc-number">7.7.3.</span> <span class="toc-text">✔ 移动设备 + 5G + 超低延迟</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七、优缺点总结"><span class="toc-number">7.8.</span> <span class="toc-text">七、优缺点总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Outposts"><span class="toc-number">7.8.1.</span> <span class="toc-text">Outposts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Local-Zones"><span class="toc-number">7.8.2.</span> <span class="toc-text">Local Zones</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Wavelength"><span class="toc-number">7.8.3.</span> <span class="toc-text">Wavelength</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#八、一句话总结"><span class="toc-number">7.9.</span> <span class="toc-text">八、一句话总结</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
