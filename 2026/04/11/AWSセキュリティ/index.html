@@ -16,7 +16,7 @@
 <meta property="og:description" content="服务 频度    AWS IAM ★★★★★   AWS KMS ★★★★★   AWS IAM Identity Center ★★★★   AWS Security Hub ★★★★   AWS Shield ★★★★   AWS Network Firewall ★★★★   Amazon GuardDuty ★★★★   AWS Resource Access Manager (AW">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2026-04-11T11:37:23.000Z">
-<meta property="article:modified_time" content="2026-04-11T12:27:02.369Z">
+<meta property="article:modified_time" content="2026-04-18T14:24:28.781Z">
 <meta property="article:author" content="HorseSF">
 <meta name="twitter:card" content="summary">
   
@@ -431,7 +431,143 @@
 <hr>
 <h1 id="🧾-一句话总结-1"><a href="#🧾-一句话总结-1" class="headerlink" title="🧾 一句话总结"></a>🧾 一句话总结</h1><p>👉 权限用 IAM<br>👉 资源用 RAM<br>👉 网络用 TGW<br>👉 服务用 PrivateLink<br>👉 数据用 Policy  </p>
 <hr>
-
+<h2 id="📘-AWS-认证体系总结"><a href="#📘-AWS-认证体系总结" class="headerlink" title="📘 AWS 认证体系总结"></a>📘 AWS 认证体系总结</h2><p>##🧠 一句话总览<br>AD 管“员工身份”，Cognito 管“应用用户”，Identity Center 管“登录 AWS”</p>
+<hr>
+<h2 id="🔹-1-核心服务定位"><a href="#🔹-1-核心服务定位" class="headerlink" title="🔹 1. 核心服务定位"></a>🔹 1. 核心服务定位</h2><table>
+<thead>
+<tr>
+<th>服务</th>
+<th>定位</th>
+<th>面向对象</th>
+<th>核心用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Active Directory</td>
+<td>企业目录</td>
+<td>员工</td>
+<td>管理用户/组/组织</td>
+</tr>
+<tr>
+<td>Amazon Cognito</td>
+<td>用户认证</td>
+<td>App 用户</td>
+<td>登录 Web / Mobile</td>
+</tr>
+<tr>
+<td>AWS IAM Identity Center</td>
+<td>SSO 平台</td>
+<td>员工</td>
+<td>登录多个 AWS 账号</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔹-2-架构关系（重点理解）"><a href="#🔹-2-架构关系（重点理解）" class="headerlink" title="🔹 2. 架构关系（重点理解）"></a>🔹 2. 架构关系（重点理解）</h2><p>企业员工<br>   ↓<br>Active Directory（身份源）<br>   ↓<br>IAM Identity Center（SSO）<br>   ↓<br>多个 AWS 账号（Organizations）</p>
+<p>应用用户<br>   ↓<br>Cognito（注册 / 登录）<br>   ↓<br>访问 API / App</p>
+<hr>
+<h2 id="🔹-3-使用场景对比（考试重点）"><a href="#🔹-3-使用场景对比（考试重点）" class="headerlink" title="🔹 3. 使用场景对比（考试重点）"></a>🔹 3. 使用场景对比（考试重点）</h2><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>选择</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>员工登录 AWS 控制台</td>
+<td>IAM Identity Center</td>
+</tr>
+<tr>
+<td>多账号统一登录（SSO）</td>
+<td>IAM Identity Center</td>
+</tr>
+<tr>
+<td>App 用户注册/登录</td>
+<td>Cognito</td>
+</tr>
+<tr>
+<td>企业已有用户目录</td>
+<td>Active Directory</td>
+</tr>
+<tr>
+<td>AD 集成 AWS</td>
+<td>Identity Center + AD</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔹-4-功能对比（高频考点）"><a href="#🔹-4-功能对比（高频考点）" class="headerlink" title="🔹 4. 功能对比（高频考点）"></a>🔹 4. 功能对比（高频考点）</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>AD</th>
+<th>Cognito</th>
+<th>Identity Center</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户管理</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌（引用）</td>
+</tr>
+<tr>
+<td>SSO</td>
+<td>可扩展</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>管理</td>
+<td>AWS 权限</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>JWT</td>
+<td>Token</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>多账号访问</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔹-5-关键区别（必须记住）"><a href="#🔹-5-关键区别（必须记住）" class="headerlink" title="🔹 5. 关键区别（必须记住）"></a>🔹 5. 关键区别（必须记住）</h2><p>👔 Active Directory<br>企业内部用户目录<br>不直接控制 AWS 权限<br>📱 Cognito<br>面向“外部用户”<br>提供登录 + Token（JWT）<br>🔐 Identity Center<br>面向“员工访问 AWS”<br>管理：<br>AWS 账号访问权限<br>Role 分配</p>
+<hr>
+<h2 id="🔹-6-常见考试陷阱-❗"><a href="#🔹-6-常见考试陷阱-❗" class="headerlink" title="🔹 6. 常见考试陷阱 ❗"></a>🔹 6. 常见考试陷阱 ❗</h2><table>
+<thead>
+<tr>
+<th>错误说法</th>
+<th>为什么错</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用 Cognito 管员工登录 AWS</td>
+<td>❌ 用 Identity Center</td>
+</tr>
+<tr>
+<td>用 IAM User 管理员工</td>
+<td>❌ 不可扩展</td>
+</tr>
+<tr>
+<td>AD 可以直接控制 AWS 权限</td>
+<td>❌ 需要 Identity Center</td>
+</tr>
+<tr>
+<td>Identity Center 是用户目录</td>
+<td>❌ 它是 SSO</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🔹-7-记忆口诀（强烈建议背）"><a href="#🔹-7-记忆口诀（强烈建议背）" class="headerlink" title="🔹 7. 记忆口诀（强烈建议背）"></a>🔹 7. 记忆口诀（强烈建议背）</h2><p>👔 员工身份 → AD<br>🔐 登录 AWS → Identity Center<br>📱 应用用户 → Cognito</p>
+<hr>
+<h2 id="🔹-8-延伸（加分点）"><a href="#🔹-8-延伸（加分点）" class="headerlink" title="🔹 8. 延伸（加分点）"></a>🔹 8. 延伸（加分点）</h2><p>👉 Identity Center 可以：</p>
+<p>直接对接 AD（作为身份源）<br>或对接外部 IdP（Okta / Azure AD）</p>
+<hr>
+<h2 id="✅-最终一句话总结"><a href="#✅-最终一句话总结" class="headerlink" title="✅ 最终一句话总结"></a>✅ 最终一句话总结</h2><h2 id="AD-提供身份，Identity-Center-提供登录-AWS，Cognito-提供应用用户认证"><a href="#AD-提供身份，Identity-Center-提供登录-AWS，Cognito-提供应用用户认证" class="headerlink" title="AD 提供身份，Identity Center 提供登录 AWS，Cognito 提供应用用户认证"></a>AD 提供身份，Identity Center 提供登录 AWS，Cognito 提供应用用户认证</h2>
       
 
       
@@ -541,7 +677,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-AWS-Resource-Access-Manager（RAM）"><span class="toc-number">1.</span> <span class="toc-text">🚀 AWS Resource Access Manager（RAM）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-一句话"><span class="toc-number">1.1.</span> <span class="toc-text">📌 一句话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-核心作用"><span class="toc-number">1.2.</span> <span class="toc-text">🧠 核心作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📦-常见共享资源（高频）"><span class="toc-number">1.3.</span> <span class="toc-text">📦 常见共享资源（高频）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❗-不能共享（易错）"><span class="toc-number">1.4.</span> <span class="toc-text">❗ 不能共享（易错）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚙️-工作机制"><span class="toc-number">1.5.</span> <span class="toc-text">⚙️ 工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀判断（考试套路）"><span class="toc-number">1.6.</span> <span class="toc-text">🧠 秒杀判断（考试套路）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#🔗-看到这些关键词-→-选-RAM"><span class="toc-number">1.6.1.</span> <span class="toc-text">🔗 看到这些关键词 → 选 RAM</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚠️-高频混淆"><span class="toc-number">1.7.</span> <span class="toc-text">⚠️ 高频混淆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-常见误区"><span class="toc-number">1.8.</span> <span class="toc-text">❌ 常见误区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">1.9.</span> <span class="toc-text">🧾 一句话总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🚀-AWS-跨账号访问方式总结"><span class="toc-number"></span> <span class="toc-text">🚀 AWS 跨账号访问方式总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🧠-一、核心分类（先记）"><span class="toc-number"></span> <span class="toc-text">🧠 一、核心分类（先记）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🔐-权限共享（最常见）"><span class="toc-number">1.</span> <span class="toc-text">🔐 权限共享（最常见）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-资源共享"><span class="toc-number">2.</span> <span class="toc-text">📦 资源共享</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔗-网络访问"><span class="toc-number">3.</span> <span class="toc-text">🔗 网络访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🗄️-数据访问"><span class="toc-number">4.</span> <span class="toc-text">🗄️ 数据访问</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🚀-二、逐个方式解析"><span class="toc-number"></span> <span class="toc-text">🚀 二、逐个方式解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🔐-1-IAM-Role（AssumeRole）"><span class="toc-number">1.</span> <span class="toc-text">🔐 1. IAM Role（AssumeRole）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点"><span class="toc-number">1.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景"><span class="toc-number">1.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-2-AWS-RAM（资源共享）"><span class="toc-number">2.</span> <span class="toc-text">📦 2. AWS RAM（资源共享）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-1"><span class="toc-number">2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-1"><span class="toc-number">2.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔗-3-VPC-Peering"><span class="toc-number">3.</span> <span class="toc-text">🔗 3. VPC Peering</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-2"><span class="toc-number">3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-2"><span class="toc-number">3.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🌐-4-Transit-Gateway（TGW）"><span class="toc-number">4.</span> <span class="toc-text">🌐 4. Transit Gateway（TGW）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-3"><span class="toc-number">4.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-3"><span class="toc-number">4.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔒-5-PrivateLink"><span class="toc-number">5.</span> <span class="toc-text">🔒 5. PrivateLink</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-4"><span class="toc-number">5.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-4"><span class="toc-number">5.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🗄️-6-S3-Bucket-Policy"><span class="toc-number">6.</span> <span class="toc-text">🗄️ 6. S3 Bucket Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-5"><span class="toc-number">6.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-5"><span class="toc-number">6.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔑-7-KMS-Key-Policy"><span class="toc-number">7.</span> <span class="toc-text">🔑 7. KMS Key Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-6"><span class="toc-number">7.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-6"><span class="toc-number">7.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🧠-三、终极秒杀口诀"><span class="toc-number"></span> <span class="toc-text">🧠 三、终极秒杀口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🔐-权限"><span class="toc-number">1.</span> <span class="toc-text">🔐 权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-共享资源"><span class="toc-number">2.</span> <span class="toc-text">📦 共享资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔗-网络"><span class="toc-number">3.</span> <span class="toc-text">🔗 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔒-服务访问"><span class="toc-number">4.</span> <span class="toc-text">🔒 服务访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🗄️-数据"><span class="toc-number">5.</span> <span class="toc-text">🗄️ 数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#⚠️-高频混淆（必背）"><span class="toc-number"></span> <span class="toc-text">⚠️ 高频混淆（必背）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🧾-一句话总结-1"><span class="toc-number"></span> <span class="toc-text">🧾 一句话总结</span></a>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#🚀-AWS-Resource-Access-Manager（RAM）"><span class="toc-number">1.</span> <span class="toc-text">🚀 AWS Resource Access Manager（RAM）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-一句话"><span class="toc-number">1.1.</span> <span class="toc-text">📌 一句话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-核心作用"><span class="toc-number">1.2.</span> <span class="toc-text">🧠 核心作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#📦-常见共享资源（高频）"><span class="toc-number">1.3.</span> <span class="toc-text">📦 常见共享资源（高频）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❗-不能共享（易错）"><span class="toc-number">1.4.</span> <span class="toc-text">❗ 不能共享（易错）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚙️-工作机制"><span class="toc-number">1.5.</span> <span class="toc-text">⚙️ 工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀判断（考试套路）"><span class="toc-number">1.6.</span> <span class="toc-text">🧠 秒杀判断（考试套路）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#🔗-看到这些关键词-→-选-RAM"><span class="toc-number">1.6.1.</span> <span class="toc-text">🔗 看到这些关键词 → 选 RAM</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⚠️-高频混淆"><span class="toc-number">1.7.</span> <span class="toc-text">⚠️ 高频混淆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#❌-常见误区"><span class="toc-number">1.8.</span> <span class="toc-text">❌ 常见误区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧾-一句话总结"><span class="toc-number">1.9.</span> <span class="toc-text">🧾 一句话总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🚀-AWS-跨账号访问方式总结"><span class="toc-number"></span> <span class="toc-text">🚀 AWS 跨账号访问方式总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🧠-一、核心分类（先记）"><span class="toc-number"></span> <span class="toc-text">🧠 一、核心分类（先记）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🔐-权限共享（最常见）"><span class="toc-number">1.</span> <span class="toc-text">🔐 权限共享（最常见）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-资源共享"><span class="toc-number">2.</span> <span class="toc-text">📦 资源共享</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔗-网络访问"><span class="toc-number">3.</span> <span class="toc-text">🔗 网络访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🗄️-数据访问"><span class="toc-number">4.</span> <span class="toc-text">🗄️ 数据访问</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🚀-二、逐个方式解析"><span class="toc-number"></span> <span class="toc-text">🚀 二、逐个方式解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🔐-1-IAM-Role（AssumeRole）"><span class="toc-number">1.</span> <span class="toc-text">🔐 1. IAM Role（AssumeRole）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点"><span class="toc-number">1.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景"><span class="toc-number">1.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-2-AWS-RAM（资源共享）"><span class="toc-number">2.</span> <span class="toc-text">📦 2. AWS RAM（资源共享）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-1"><span class="toc-number">2.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-1"><span class="toc-number">2.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔗-3-VPC-Peering"><span class="toc-number">3.</span> <span class="toc-text">🔗 3. VPC Peering</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-2"><span class="toc-number">3.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-2"><span class="toc-number">3.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🌐-4-Transit-Gateway（TGW）"><span class="toc-number">4.</span> <span class="toc-text">🌐 4. Transit Gateway（TGW）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-3"><span class="toc-number">4.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-3"><span class="toc-number">4.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔒-5-PrivateLink"><span class="toc-number">5.</span> <span class="toc-text">🔒 5. PrivateLink</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-4"><span class="toc-number">5.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-4"><span class="toc-number">5.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🗄️-6-S3-Bucket-Policy"><span class="toc-number">6.</span> <span class="toc-text">🗄️ 6. S3 Bucket Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-5"><span class="toc-number">6.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-5"><span class="toc-number">6.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔑-7-KMS-Key-Policy"><span class="toc-number">7.</span> <span class="toc-text">🔑 7. KMS Key Policy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#📌-特点-6"><span class="toc-number">7.1.</span> <span class="toc-text">📌 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#🧠-秒杀场景-6"><span class="toc-number">7.2.</span> <span class="toc-text">🧠 秒杀场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🧠-三、终极秒杀口诀"><span class="toc-number"></span> <span class="toc-text">🧠 三、终极秒杀口诀</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#🔐-权限"><span class="toc-number">1.</span> <span class="toc-text">🔐 权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#📦-共享资源"><span class="toc-number">2.</span> <span class="toc-text">📦 共享资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔗-网络"><span class="toc-number">3.</span> <span class="toc-text">🔗 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔒-服务访问"><span class="toc-number">4.</span> <span class="toc-text">🔒 服务访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🗄️-数据"><span class="toc-number">5.</span> <span class="toc-text">🗄️ 数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#⚠️-高频混淆（必背）"><span class="toc-number"></span> <span class="toc-text">⚠️ 高频混淆（必背）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#🧾-一句话总结-1"><span class="toc-number"></span> <span class="toc-text">🧾 一句话总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#📘-AWS-认证体系总结"><span class="toc-number">1.</span> <span class="toc-text">📘 AWS 认证体系总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔹-1-核心服务定位"><span class="toc-number">2.</span> <span class="toc-text">🔹 1. 核心服务定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔹-2-架构关系（重点理解）"><span class="toc-number">3.</span> <span class="toc-text">🔹 2. 架构关系（重点理解）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔹-3-使用场景对比（考试重点）"><span class="toc-number">4.</span> <span class="toc-text">🔹 3. 使用场景对比（考试重点）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔹-4-功能对比（高频考点）"><span class="toc-number">5.</span> <span class="toc-text">🔹 4. 功能对比（高频考点）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔹-5-关键区别（必须记住）"><span class="toc-number">6.</span> <span class="toc-text">🔹 5. 关键区别（必须记住）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔹-6-常见考试陷阱-❗"><span class="toc-number">7.</span> <span class="toc-text">🔹 6. 常见考试陷阱 ❗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔹-7-记忆口诀（强烈建议背）"><span class="toc-number">8.</span> <span class="toc-text">🔹 7. 记忆口诀（强烈建议背）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🔹-8-延伸（加分点）"><span class="toc-number">9.</span> <span class="toc-text">🔹 8. 延伸（加分点）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#✅-最终一句话总结"><span class="toc-number">10.</span> <span class="toc-text">✅ 最终一句话总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AD-提供身份，Identity-Center-提供登录-AWS，Cognito-提供应用用户认证"><span class="toc-number">11.</span> <span class="toc-text">AD 提供身份，Identity Center 提供登录 AWS，Cognito 提供应用用户认证</span></a></li></ol>
                     </div>
                 </span>
             </div>
